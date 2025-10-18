@@ -17,13 +17,13 @@
                             <b>Always Fast & Always Safe</b>
                         </p> --}}
                         <!-- <div class="d-flex">
-                                <a href="#about" class="btn-get-started">Get Started</a>
-                                <a
-                                  href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
-                                  class="glightbox btn-watch-video d-flex align-items-center"
-                                  ><i class="bi bi-play-circle"></i><span>Watch Video</span></a
-                                >
-                              </div> -->
+                                                            <a href="#about" class="btn-get-started">Get Started</a>
+                                                            <a
+                                                              href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                                                              class="glightbox btn-watch-video d-flex align-items-center"
+                                                              ><i class="bi bi-play-circle"></i><span>Watch Video</span></a
+                                                            >
+                                                          </div> -->
                     </div>
 
                     <div class="col-lg-6 order-1 order-lg-2 d-flex flex-column align-items-center" data-aos="zoom-out"
@@ -54,16 +54,16 @@
                         </div>
                     </div>
                     <!-- <div
-                              class="col-lg-6 order-1 order-lg-2 hero-img"
-                              data-aos="zoom-out"
-                              data-aos-delay="200"
-                            >
-                              <img
-                                src="assets/img/hero-img.png"
-                                class="img-fluid animated"
-                                alt=""
-                              />
-                            </div> -->
+                                                          class="col-lg-6 order-1 order-lg-2 hero-img"
+                                                          data-aos="zoom-out"
+                                                          data-aos-delay="200"
+                                                        >
+                                                          <img
+                                                            src="assets/img/hero-img.png"
+                                                            class="img-fluid animated"
+                                                            alt=""
+                                                          />
+                                                        </div> -->
                 </div>
             </div>
         </section>
@@ -312,111 +312,111 @@
         <!-- <section id="pricing" class="pricing section light-background"> -->
         <!-- Section Title -->
         <!-- <div class="container section-title" data-aos="fade-up">
-                          <h2>Pricing</h2>
-                          <p>
-                            Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-                            consectetur velit
-                          </p>
-                        </div> -->
+                                                      <h2>Pricing</h2>
+                                                      <p>
+                                                        Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+                                                        consectetur velit
+                                                      </p>
+                                                    </div> -->
         <!-- End Section Title -->
 
         <!-- <div class="container">
-                          <div class="row gy-4">
-                            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                              <div class="pricing-item">
-                                <h3>Free Plan</h3>
-                                <h4><sup>$</sup>0<span> / month</span></h4>
-                                <ul>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Quam adipiscing vitae proin</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Nec feugiat nisl pretium</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Nulla at volutpat diam uteera</span>
-                                  </li>
-                                  <li class="na">
-                                    <i class="bi bi-x"></i>
-                                    <span>Pharetra massa massa ultricies</span>
-                                  </li>
-                                  <li class="na">
-                                    <i class="bi bi-x"></i>
-                                    <span>Massa ultricies mi quis hendrerit</span>
-                                  </li>
-                                </ul>
-                                <a href="#" class="buy-btn">Buy Now</a>
-                              </div>
-                            </div> -->
+                                                      <div class="row gy-4">
+                                                        <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                                                          <div class="pricing-item">
+                                                            <h3>Free Plan</h3>
+                                                            <h4><sup>$</sup>0<span> / month</span></h4>
+                                                            <ul>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Quam adipiscing vitae proin</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Nec feugiat nisl pretium</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Nulla at volutpat diam uteera</span>
+                                                              </li>
+                                                              <li class="na">
+                                                                <i class="bi bi-x"></i>
+                                                                <span>Pharetra massa massa ultricies</span>
+                                                              </li>
+                                                              <li class="na">
+                                                                <i class="bi bi-x"></i>
+                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                              </li>
+                                                            </ul>
+                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                          </div>
+                                                        </div> -->
         <!-- End Pricing Item -->
 
         <!-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                              <div class="pricing-item featured">
-                                <h3>Business Plan</h3>
-                                <h4><sup>$</sup>29<span> / month</span></h4>
-                                <ul>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Quam adipiscing vitae proin</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Nec feugiat nisl pretium</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Nulla at volutpat diam uteera</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Pharetra massa massa ultricies</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Massa ultricies mi quis hendrerit</span>
-                                  </li>
-                                </ul>
-                                <a href="#" class="buy-btn">Buy Now</a>
-                              </div>
-                            </div> -->
+                                                          <div class="pricing-item featured">
+                                                            <h3>Business Plan</h3>
+                                                            <h4><sup>$</sup>29<span> / month</span></h4>
+                                                            <ul>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Quam adipiscing vitae proin</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Nec feugiat nisl pretium</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Nulla at volutpat diam uteera</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Pharetra massa massa ultricies</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                              </li>
+                                                            </ul>
+                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                          </div>
+                                                        </div> -->
         <!-- End Pricing Item -->
 
         <!-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-                              <div class="pricing-item">
-                                <h3>Developer Plan</h3>
-                                <h4><sup>$</sup>49<span> / month</span></h4>
-                                <ul>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Quam adipiscing vitae proin</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Nec feugiat nisl pretium</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Nulla at volutpat diam uteera</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Pharetra massa massa ultricies</span>
-                                  </li>
-                                  <li>
-                                    <i class="bi bi-check"></i>
-                                    <span>Massa ultricies mi quis hendrerit</span>
-                                  </li>
-                                </ul>
-                                <a href="#" class="buy-btn">Buy Now</a>
-                              </div>
-                            </div> -->
+                                                          <div class="pricing-item">
+                                                            <h3>Developer Plan</h3>
+                                                            <h4><sup>$</sup>49<span> / month</span></h4>
+                                                            <ul>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Quam adipiscing vitae proin</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Nec feugiat nisl pretium</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Nulla at volutpat diam uteera</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Pharetra massa massa ultricies</span>
+                                                              </li>
+                                                              <li>
+                                                                <i class="bi bi-check"></i>
+                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                              </li>
+                                                            </ul>
+                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                          </div>
+                                                        </div> -->
         <!-- End Pricing Item -->
         <!-- </div>
-                        </div>
-                      </section> -->
+                                                    </div>
+                                                  </section> -->
         <!-- /Pricing Section -->
 
         <!-- Testimonials Section -->
@@ -616,46 +616,75 @@
                             <!-- End Info Item -->
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32808.60953306585!2d106.79017025065507!3d-6.277541035477562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f18ca27987dd%3A0x6a032aaca638c397!2sKemang%2C%20Cipete%20Sel.%2C%20Kec.%20Cilandak%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1760406032442!5m2!1sid!2sid"
-                                frameborder="0" style="border: 0; width: 100%; height: 270px" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                frameborder="0" style="border: 0; width: 100%; height: 270px" allowfullscreen=""
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
 
                     <div class="col-lg-7">
-                        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
+
+                        @if (session('success'))
+                            <div class="alert alert-success" data-aos="fade-up" data-aos-delay="200"
+                                style="padding: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 20px;">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger" data-aos="fade-up" data-aos-delay="200"
+                                style="padding: 15px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px;">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <form action="{{ route('contact.submit') }}" method="post" data-aos="fade-up"
                             data-aos-delay="200">
+                            @csrf
                             <div class="row gy-4">
                                 <div class="col-md-6">
                                     <label for="name-field" class="pb-2">Nama Anda</label>
                                     <input type="text" name="name" id="name-field" class="form-control"
-                                        required="" />
+                                        value="{{ old('name') }}" required="" />
+                                    @error('name')
+                                        <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="email-field" class="pb-2">Email Anda</label>
                                     <input type="email" class="form-control" name="email" id="email-field"
-                                        required="" />
+                                        value="{{ old('email') }}" required="" />
+                                    @error('email')
+                                        <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12">
                                     <label for="subject-field" class="pb-2">Subjek Pesan</label>
                                     <input type="text" class="form-control" name="subject" id="subject-field"
-                                        required="" />
+                                        value="{{ old('subject') }}" required="" />
+                                    @error('subject')
+                                        <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12">
                                     <label for="message-field" class="pb-2">Pesan Anda</label>
-                                    <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
+                                    <textarea class="form-control" name="message" rows="10" id="message-field" required="">{{ old('message') }}</textarea>
+                                    @error('message')
+                                        <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-12 text-center">
-                                    <div class="loading">Loading</div>
-                                    <div class="error-message"></div>
-                                    <div class="sent-message">
+                                    <div class="loading" style="display: none;">Loading</div>
+                                    <div class="error-message" style="display: none;"></div>
+                                    <div class="sent-message" style="display: none;">
                                         Pesan Anda telah terkirim. Terima kasih!
                                     </div>
 
-                                    <button type="submit">Kirim Pesan</button>
+                                    <button type="submit"
+                                        style="background-color: #174272; /* Atau #2a3d45, sesuaikan birunya */ color: white; border: none; padding: 12px 30px; border-radius: 50px; /* Nilai besar untuk membuat bulat */ font-size: 16px; cursor: pointer; text-decoration: none; /* Jika itu sebenarnya link */ display: inline-block; /* Untuk padding dan radius */">
+                                        Kirim Pesan
+                                    </button>
                                 </div>
                             </div>
                         </form>
