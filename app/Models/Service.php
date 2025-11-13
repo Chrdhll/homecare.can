@@ -13,8 +13,14 @@ class Service extends Model
         'name',
         'description',
         'price',
+        'gallery',
+        'icon_class',
         'benefits',
         'image',
+    ];
+
+    protected $casts = [
+        'gallery' => 'array', 
     ];
 
     public function promotions()

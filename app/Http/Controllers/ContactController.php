@@ -17,7 +17,7 @@ class ContactController extends Controller
     public function showPage()
     {
         // Asumsi file blade utama Anda adalah 'welcome.blade.php'
-        return view('welcome'); 
+        return view('index'); 
     }
 
     /**
@@ -34,7 +34,7 @@ public function submitForm(Request $request)
         ]);
 
         // 2. Tentukan email admin (Penerima)
-        $adminEmail = "cobain679856@gmail.com"; // Email penerima Anda
+        $adminEmail = "cobain679856@gmail.com";
 
         // 3. Kirim email
         try {
@@ -47,7 +47,7 @@ public function submitForm(Request $request)
         } catch (\Exception $e) {
             
             // 5. JIKA GAGAL: Redirect kembali dengan pesan error
-            // (Baris di bawah ini untuk debugging jika perlu)
+
             // return redirect()->back()->withInput()->with('error', $e->getMessage()); 
             return redirect(url()->previous() . '#contact')
             ->withInput()->with('error', 'Oops! Terjadi kesalahan. Pesan Anda tidak dapat dikirim.');

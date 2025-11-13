@@ -20,6 +20,11 @@ class Promotion extends Model
         'is_active',
     ];
 
+    protected $casts = [
+        'start_date' => 'date', 
+        'end_date' => 'date',  
+    ];
+
     public function service()
     {
         return $this->belongsTo(Service::class);

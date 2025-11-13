@@ -40,7 +40,7 @@ class AuthenticatedSessionController extends Controller
 
         if ($user->role === 'pasien') {
             // Jika pasien, arahkan ke dashboard pasien (misal /profil)
-            return redirect()->intended('/home'); // Ganti dengan route pasien nanti
+            return redirect()->intended('/'); // Ganti dengan route pasien nanti
         }
 
         // Jika tidak punya role yang jelas, logout dan kembalikan

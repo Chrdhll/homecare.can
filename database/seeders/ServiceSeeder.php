@@ -13,101 +13,58 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
+        // 1. Booster Complex
         Service::create([
-            'name' => 'Immune Booster Platinum',
-            'description' => 'Mengandung: Vitamin A, Vitamin B1, B2, B3, B5, B6, B7, B8, B9, B12, Vitamin C
-Vitamin D3, Vitamin E, Asam Amino, Asam Gikolat, Asam Klorida, Soya Lechitin',
+            'name' => 'Booster Complex',
+            'description' => 'Contains : Vitamin B1, B6, B12',
+            'benefits' => "Meningkatkan energi dan stamina.\nMendukung fungsi sistem saraf.\nMembantu metabolisme tubuh.",
             'price' => 150000,
-            'benefits' => 'Vit.A > Menjaga kesehatan mata, kulit.
-Vit. B1 > Menjaga fungsi saraf, membantu mengubah makanan menjadi energi.
-Vit. B2 > Berperan pembentukan sel darah merah, membantu menjaga kesehatan mata, kulit, sistem saraf.
-Vit. B3 > Membantu menurunkan kadar kolestrol jahat dan meningkatkan kolestrol baik dalam tubuh.
-Vit. B6 > Berperan dalam metabolisme protein, lemak, karbohidrat.
-Vit. B7 > Menjaga kesehatan rambut, kulit, kuku dan berperan dalam fungsi saraf serta enzim tubuh.
-Vit. B8 > Berperan dalam pembentukan membran sel, regulasi insulin dan fungsi neurotransmitter.
-Vit. B9 > Berperan dalam pembentukan sel darah merah dan fungsi sel sehat.
-Vit. B12 > Menjaga fugsi saraf dan mendukung metabolisme energi.
-Vit.C > Meningkatkan kekebalan tubuh, melindungi sel dari radikal bebas.
-Vit. D3 > Membantu penyerapan kalsium dan fosfor untuk kesehatan tulang dan gigi.
-Vit. E > Menjaga kesehatan kulit, mata, jantung dan mengurangi risiko kanker.
-As. Amino > Membantu manjaga kesehatan jantung, kulit, membantu memperbaiki jaringan yang rusak.
-As. Gikolat > Membantu mengangkat sel kulit mati, merangsang pertumbuhan kulit baru.
-As. Klorida > Berperan dalam sistem pencernaan seperti membantu membunuh bakteri berbahaya.
-Soya Lecithin > Membantu menurunkan kadar kolestrol, menjaga kesehatan jantung, sebagai  antioksidan.
-',
-            'image' => 'images/default-service.png',
+            'image' => 'service-images/default-service.png', // Path di dalam storage/app/public/
         ]);
 
-        Service::create([
-            'name' => 'Immune Booster Premium',
-            'description' => 'Mengandung : Vitamin A, Vitamin B1, B2, B3, B5, B6, B7, B12, Vitamin C
-Vitamin D3, Vitamin E',
-            'price' => 250000,
-            'benefits' => 'Vit.A > Menjaga kesehatan mata, kulit.
-Vit. B1 > Menjaga fungsi saraf, membantu mengubah makanan menjadi energi.
-Vit. B2 > Berperan pembentukan sel darah merah, kesehatan mata, kulit, sistem saraf.
-Vit. B3 > Membantu menurunkan kadar kolestrol jahat dan meningkatkan kolestrol baik dalam tubuh.
-Vit. B6 > Berperan dalam metabolisme protein, lemak, karbohidrat.
-Vit. B7 > Menjaga kesehatan rambut, kulit, kuku dan berperan dalam fungsi saraf serta enzim tubuh.
-Vit. B9 > Berperan dalam pembentukan sel darah merah dan fungsi sel sehat.
-Vit. B12 > Menjaga fugsi saraf dan mendukung metabolisme energi.
-Vit.C > Meningkatkan kekebalan tubuh, melindungi sel dari radikal bebas.
-Vit. D3 > Membantu penyerapan kalsium dan fosfor untuk kesehatan tulang dan gigi.
-Vit. E > Menjaga kesehatan kulit, mata, jantung dan mengurangi risiko kanker.',
-            'image' => 'images/default-service.png',
-        ]);
-
-        Service::create([
-            'name' => 'Immune Booster Plus',
-            'description' => 'Mengandung : Vitamin B1, B2, B3, B5, B6, B7, B9, B12, Vitamin C',
-            'price' => 120000,
-            'benefits' => 'Vit. B1 > Menjaga fungsi saraf, membantu mengubah makanan menjadi energi.
-Vit. B2 > Berperan pembentukan sel darah merah, kesehatan mata, kulit, sistem saraf.
-Vit. B3 > Membantu menurunkan kadar kolestrol jahat dan meningkatkan kolestrol baik dalam tubuh.
-Vit. B6 > Berperan dalam metabolisme protein, lemak, karbohidrat.
-Vit. B7 > Menjaga kesehatan rambut, kulit, kuku dan berperan dalam fungsi saraf serta enzim tubuh.
-Vit. B9 > Berperan dalam pembentukan sel darah merah dan fungsi sel sehat.
-Vit. B12 > Menjaga fugsi saraf dan mendukung metabolisme energi.
-Vit.C > Meningkatkan kekebalan tubuh, melindungi sel dari radikal bebas.',
-            'image' => 'images/default-service.png',
-        ]);
-        Service::create([
-            'name' => 'Combo Booster',
-            'description' => 'Mengandung : Vitamin B1, B6, B12, Vitamin C 1000 mg',
-            'price' => 120000,
-            'benefits' => 'Sebagai anti oksidan
-Meningkatkan daya tahan tubuh
-Mencegah anemia
-Melindungi sel dari kerusakan akibat radikal bebas
-Berperan dalam menjaga kesehatan kulit, mata, gigi, tulang
-Membantu penyembuhan luka
-Vit. B1 > Menjaga fungsi saraf, membantu mengubah makanan menjadi energi
-Vit. B6 > Berperan dalam metabolisme protein, lemak, karbohidrat
-Vit. B12 > Menjaga fungsi saraf dan membantu metabolisme energi dalam tubuh',
-            'image' => 'images/default-service.png',
-        ]);
+        // 2. Booster Vitamin C
         Service::create([
             'name' => 'Booster Vitamin C',
-            'description' => 'Mengandung : Vitamin C 1000 mg',
-            'price' => 120000,
-            'benefits' => 'Sebagai anti oksidan
-Meningkatkan daya tahan tubuh
-Mencegah anemia
-Melindungi sel dari kerusakan akibat radikal bebas
-Berperan dalam menjaga kesehatan kulit, mata, gigi, tulang
-Membantu penyembuhan luka',
-            'image' => 'images/default-service.png',
+            'description' => 'Contains : Vitamin C 1000 mg',
+            'benefits' => "Meningkatkan daya tahan tubuh.\nSebagai antioksidan kuat.\nMembantu mencerahkan kulit.",
+            'price' => 200000,
+            'image' => 'service-images/default-service.png',
         ]);
+
+        // 3. Combo Booster
         Service::create([
-            'name' => 'Booster Complax',
-            'description' => 'Mengandung : Vitamin B1, B6, B12',
-            'price' => 120000,
-            'benefits' => 'Sebagai anti oksidan
-Meningkatkan daya tahan tubuh
-Vit. B1 > Menjaga fungsi saraf, membantu mengubah makanan menjadi energi
-Vit. B6 > Berperan dalam metabolisme protein, lemak, karbohidrat
-Vit. B12 > Menjaga fungsi saraf dan membantu metabolisme energi dalam tubuh',
-            'image' => 'images/default-service.png',
+            'name' => 'Combo Booster',
+            'description' => 'Contains : Vitamin B1, B6, B12, Vitamin C 1000 mg',
+            'benefits' => "Paket lengkap untuk imunitas dan energi.\nMendukung pemulihan pasca sakit.",
+            'price' => 300000,
+            'image' => 'service-images/default-service.png',
+        ]);
+
+        // 4. Immune Booster Plus
+        Service::create([
+            'name' => 'Immune Booster Plus',
+            'description' => 'Contains : Vitamin B1, B2, B3, B5, B6, B7, B9, B12, Vitamin C',
+            'benefits' => "Kombinasi Vitamin B Kompleks dan C dosis tinggi.\nSangat baik untuk yang aktivitas tinggi.",
+            'price' => 400000,
+            'image' => 'service-images/default-service.png',
+        ]);
+
+        // 5. Immune Booster Premium
+        Service::create([
+            'name' => 'Immune Booster Premium',
+            'description' => 'Contains : Vitamin A, B Complex, C, D3, E',
+            'benefits' => "Dilengkapi Vitamin A, D, dan E.\nMenjaga kesehatan mata, tulang, dan kulit.\nImunitas super lengkap.",
+            'price' => 500000,
+            'image' => 'service-images/default-service.png',
+        ]);
+
+        // 6. Immune Booster Platinum
+        Service::create([
+            'name' => 'Immune Booster Platinum',
+            'description' => 'Contains : Vitamin A, B Complex, C, D3, E, Asam Amino, dll.',
+            'benefits' => "Paket paling lengkap dengan Asam Amino.\nMempercepat regenerasi sel.\nUltimate booster untuk tubuh.",
+            'price' => 700000,
+            'image' => 'service-images/default-service.png',
         ]);
     }
 }

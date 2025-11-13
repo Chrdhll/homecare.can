@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+
+use App\Models\Banner;
+
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function home()
     {
-        $services = Service::with('promotions') // <-- Eager load relasi 'promotions'
+        $services = Service::with('promotions')
                        ->latest()
-                       ->take(6)
                        ->get();
 
-    return view('index', ['services' => $services]);
+        $banners = Banner::where('is_active', true)
+                         ->orderBy('order')
+                         ->get();
+
+        return view('index', ['services' => $services, 'banners' => $banners]);
     }
 
     public function showService(Service $service)

@@ -30,13 +30,15 @@
     <!-- Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="index-page">
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center">
-            <a href="index.html" class="logo d-flex align-items-center me-auto">
+            <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <img src="{{ asset('assets/img/logo_1.png') }}" alt="" />
             </a>
@@ -59,11 +61,60 @@
                     </li>
                     <li><a href="#portfolio">Promosi</a></li>
                     <li><a href="#contact">Kontak</a></li>
+
+                    <li class="d-lg-none nav-button-container">
+                        @auth
+                            {{-- Tombol Logout (versi mobile) --}}
+                            <a href="#" onclick="event.preventDefault(); confirmLogout();" class="nav-logout-button">
+                                <span>Keluar</span>
+                                <i class="bi bi-box-arrow-right"></i>
+                            </a>
+                        @else
+                            {{-- Tombol Masuk (versi mobile) --}}
+                            <a href="{{ route('login') }}" class="nav-login-button">
+                                <span>Masuk</span>
+                            </a>
+                        @endguest
+                    </li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="{{ route('login') }}">Masuk</a>
+            {{-- Cek apakah user sudah login --}}
+            @auth
+                {{-- Jika SUDAH LOGIN, tampilkan dropdown profil --}}
+                <div class="dropdown ms-3 d-none d-lg-flex"">
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                        id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center me-2"
+                            style="width: 32px; height: 32px; background-color: #eee; color: #666; font-weight: bold;">
+                            {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
+                        </div>
+
+                    </a>
+
+                    {{-- Isi Dropdown Menu --}}
+                    <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser">
+                        {{-- Tambahkan link ke profil nanti di sini --}}
+                        {{-- <li><a class="dropdown-item" href="#">Profil Saya</a></li> --}}
+                        {{-- <li><hr class="dropdown-divider"></li> --}}
+
+                        {{-- Tombol Logout --}}
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                            @csrf
+                            {{-- Ubah type jadi button, tambahkan onclick --}}
+                            <button type="button" class="dropdown-item" onclick="confirmLogout()">
+                                <i class="bi bi-box-arrow-right me-2"></i>Keluar
+                            </button>
+                        </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                {{-- Jika BELUM LOGIN, tampilkan tombol Masuk --}}
+                <a class="btn-getstarted ms-3 d-none d-lg-block" href="{{ route('login') }}">Masuk</a>
+
+            @endguest
         </div>
     </header>
 
@@ -203,7 +254,6 @@
     <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
@@ -211,6 +261,69 @@
     <script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
     <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+
+    <script>
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Yakin ingin keluar?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#0e4170',
+                cancelButtonColor: '#555555',
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cek pesan sukses dari session
+            @if (session('success'))
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Sukses!',
+                    text: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            @endif
+
+            @if (session('error'))
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Error!',
+                    text: "{{ session('error') }}",
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            @endif
+
+            @if ($errors->any())
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Error!',
+                    text: "{{ session('error') }}",
+                    showConfirmButton: false,
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            @endif
+        });
+    </script>
 
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

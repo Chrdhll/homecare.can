@@ -6,7 +6,7 @@
         <section id="hero" class="hero section light-background">
             <div class="container">
                 <div class="row gy-4 align-items-center">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+                    <div class="col-lg-6 order-1 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
                         <h1>INFUS IMMUNE BOOSTER</h1>
                         <p>
                             Nikmati layanan infus immune booster terbaik bersama
@@ -16,19 +16,11 @@
                             Home or office treatment 
                             <b>Always Fast & Always Safe</b>
                         </p> --}}
-                        <!-- <div class="d-flex">
-                                                            <a href="#about" class="btn-get-started">Get Started</a>
-                                                            <a
-                                                              href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
-                                                              class="glightbox btn-watch-video d-flex align-items-center"
-                                                              ><i class="bi bi-play-circle"></i><span>Watch Video</span></a
-                                                            >
-                                                          </div> -->
                     </div>
 
-                    <div class="col-lg-6 order-1 order-lg-2 d-flex flex-column align-items-center" data-aos="zoom-out"
+                    <div class="col-lg-6 order-2 order-lg-2 d-flex flex-column align-items-center" data-aos="zoom-out"
                         data-aos-delay="200">
-                        <form class="search-bar d-flex" style="width: 80%; max-width: 450px; height: 40px">
+                        <form class="search-bar d-flex">
                             <input type="search" placeholder="Search" aria-label="Search" />
                             <button type="submit">
                                 <i class="bi bi-search"></i>
@@ -37,33 +29,23 @@
 
                         <!-- LABEL / TRUST INDICATOR -->
                         <div class="trust-indicators mt-4">
-                            <div class="indicator">
-                                <i class="bi bi-clipboard2-check icon"></i>
-                                <div class="text">
-                                    <p class="title">Certified</p>
-                                    <p class="subtitle">Health Professional</p>
-                                </div>
-                            </div>
-                            <div class="indicator">
-                                <i class="bi bi-check2-circle icon"></i>
-                                <div class="text">
-                                    <p class="title">Personalized</p>
-                                    <p class="subtitle">Treatment</p>
-                                </div>
-                            </div>
-                        </div>
+    <div class="indicator">
+        <div class="icon-wrapper">
+            <i class="bi bi-clipboard2-check"></i>
+        </div>
+        <p class="title">Certified</p>
+        <p class="subtitle">Health Professional</p>
+    </div>
+
+    <div class="indicator">
+        <div class="icon-wrapper">
+            <i class="bi bi-check2-circle"></i>
+        </div>
+        <p class="title">Personalized</p>
+        <p class="subtitle">Treatment</p>
+    </div>
+</div>
                     </div>
-                    <!-- <div
-                                                          class="col-lg-6 order-1 order-lg-2 hero-img"
-                                                          data-aos="zoom-out"
-                                                          data-aos-delay="200"
-                                                        >
-                                                          <img
-                                                            src="assets/img/hero-img.png"
-                                                            class="img-fluid animated"
-                                                            alt=""
-                                                          />
-                                                        </div> -->
                 </div>
             </div>
         </section>
@@ -75,48 +57,56 @@
             <div class="container">
                 <div class="row gy-5 align-items-center">
                     <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="swiper init-swiper">
-                            <script type="application/json" class="swiper-config">
-                  {
-                    "effect": "coverflow",
-                    "grabCursor": true,
-                    "centeredSlides": true,
-                    "slidesPerView": "auto",
-                    "loop": true,
-                    "speed": 600,
-                    "autoplay": {
-                      "delay": 4000,
-                      "disableOnInteraction": false
-                    },
-                    "coverflowEffect": {
-                      "rotate": 0,
-                      "stretch": 0,
-                      "depth": 200,
-                      "modifier": 1.5,
-                      "slideShadows": true
-                    },
-                    "pagination": {
-                      "el": ".swiper-pagination",
-                      "clickable": true
-                    }
-                  }
-                </script>
+                        @if ($banners->isNotEmpty())
+                            <div class="swiper init-swiper">
+                                <script type="application/json" class="swiper-config">
+                            {
+                                "effect": "coverflow",
+                                "grabCursor": true,
+                                "centeredSlides": true,
+                                "slidesPerView": "auto",
+                                "loop": true,
+                                "speed": 600,
+                                "autoplay": {
+                                "delay": 4000,
+                                "disableOnInteraction": false
+                                },
+                                "coverflowEffect": {
+                                "rotate": 0,
+                                "stretch": 0,
+                                "depth": 200,
+                                "modifier": 1.5,
+                                "slideShadows": true
+                                },
+                                "pagination": {
+                                "el": ".swiper-pagination",
+                                "clickable": true
+                                },
+                                "navigation": { 
+                                    "nextEl": ".swiper-button-next", 
+                                    "prevEl": ".swiper-button-prev" 
+                                }
+                          
+                            }
+                        </script>
 
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="assets/img/services/service1.webp" alt="Galeri Layanan 1" loading="lazy" />
+                                <div class="swiper-wrapper">
+                                    @foreach ($banners as $banner)
+                                        <div class="swiper-slide">
+                                            <img src="{{ Storage::url($banner->image_path) }}" alt="Galeri Layanan"
+                                                loading="lazy" />
+                                        </div>
+                                    @endforeach
                                 </div>
-                                <div class="swiper-slide">
-                                    <img src="assets/img/services/service2.webp" alt="Galeri Layanan 2" loading="lazy" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="assets/img/services/service3.webp" alt="Galeri Layanan 3" loading="lazy" />
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="assets/img/services/service4.webp" alt="Galeri Layanan 4" loading="lazy" />
-                                </div>
+                                <div class="swiper-pagination"></div>
+
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
                             </div>
-                        </div>
+                        @else
+                            {{-- Tampilan jika tidak ada banner --}}
+                            <p class="text-white">Galeri belum tersedia.</p>
+                        @endif
                     </div>
                     <div class="col-lg-6 text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
                         <h3>Layanan Profesional Kami</h3>
@@ -131,144 +121,144 @@
             </div>
         </section>
 
-        <!-- About Section -->
+        {{-- ================================================== --}}
+        {{-- SECTION TENTANG KAMI --}}
+        {{-- ================================================== --}}
         <section id="about" class="about section">
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <h2>Tentang Kami</h2>
-            </div>
-            <!-- End Section Title -->
-
             <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-8 content" data-aos="fade-up" data-aos-delay="100">
-                        <p class="tentang-p">
-                            Homecare.can lahir dari sebuah visi sederhana yaitu menjadikan
-                            layanan kesehatan berkualitas lebih mudah diakses, praktis, dan
-                            personal. Kami memahami bahwa di tengah kesibukan sehari-hari,
-                            menjaga daya tahan tubuh adalah sebuah tantangan. Pergi ke
-                            klinik seringkali memakan waktu dan tenaga. Oleh karena itu,
-                            kami hadir untuk membawa layanan infus immune booster premium
-                            langsung ke kenyamanan rumah Anda. Ditangani oleh tim medis
-                            profesional yang bersertifikat, kami memastikan setiap sesi
-                            perawatan berjalan dengan aman, steril, dan nyaman, sehingga
-                            Anda bisa tetap sehat tanpa perlu repot.
-                        </p>
-                        <ul>
-                            <li>
-                                <i class="bi bi-check2-circle"></i>
-                                <span>Tenaga Medis Profesional & Bersertifikat</span>
-                            </li>
-                            <li>
-                                <i class="bi bi-check2-circle"></i>
-                                <span>Praktis, Hemat Waktu & Tenaga</span>
-                            </li>
-                            <li>
-                                <i class="bi bi-check2-circle"></i>
-                                <span>Produk Terjamin Kualitasnya</span>
-                            </li>
-                            <li>
-                                <i class="bi bi-check2-circle"></i>
-                                <span>Proses Mudah dan Transparan</span>
-                            </li>
-                        </ul>
+                <div class="row gy-5 gx-lg-5 align-items-center">
+
+                    {{-- Kolom kiri: Teks & Poin Keunggulan --}}
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="about-content">
+                            <div class="section-title">
+                                <p class="sub-title">Tentang Kami</p>
+                                <h2>Layanan Kesehatan Personal, Praktis, & Terpercaya</h2>
+                            </div>
+
+                            <p class="tentang-p fst-italic">
+                                Homecare.can lahir dari visi untuk menjadikan layanan kesehatan berkualitas lebih mudah
+                                diakses. Kami membawa layanan infus immune booster premium langsung ke kenyamanan rumah dan
+                                kantor
+                                Anda.
+                            </p>
+
+                            {{-- Poin Keunggulan (UI Baru) --}}
+                            <div class="about-features gy-4">
+                                <div class="feature-item d-flex align-items-center">
+                                    <i class="bi bi-patch-check-fill"></i>
+                                    <div>
+                                        <h5>Tenaga Medis Profesional</h5>
+                                        <p>Tim medis kami bersertifikat, berpengalaman, dan ramah.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item d-flex align-items-center">
+                                    <i class="bi bi-clock-history"></i>
+                                    <div>
+                                        <h5>Praktis & Hemat Waktu</h5>
+                                        <p>Tidak perlu antre atau macet di jalan. Kami yang datang ke Anda.</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item d-flex align-items-center">
+                                    <i class="bi bi-shield-lock-fill"></i>
+                                    <div>
+                                        <h5>Produk Steril & Terjamin</h5>
+                                        <p>Kami hanya menggunakan produk vitamin berkualitas tinggi dan steril.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <img src="assets/img/foto-1.png" class="img-fluid" alt="Tentang Kami" loading="lazy" />
+                    {{-- Kolom kanan: Gambar Profesional Baru --}}
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="about-image-container">
+                            {{-- Gambar baru yang lebih relevan dan profesional --}}
+                            <div class="about-image-blob"></div>
+                            <img src="{{ asset('assets/img/image_2.jpg') }}" class="img-fluid about-main-image"
+                                alt="Tenaga medis profesional Homecare.can" loading="lazy">
+                        </div>
                     </div>
+
+
                 </div>
             </div>
         </section>
-        <!-- /About Section -->
+        {{-- ================================================== --}}
+        {{-- SECTION WHY US / FAQ  --}}
+        {{-- ================================================== --}}
+        <section id="why-us" class="why-us section light-background">
+            <div class="container">
+                <div class="container section-title" data-aos="fade-up">
+                    <p class="sub-title">Kenapa Homecare.can?</p>
+                    <h2>Semua Tentang Immune Booster</h2>
+                </div>
 
-        <!-- Why Us Section -->
-        <section id="why-us" class="section why-us" data-builder="section">
-            <div class="container-fluid">
-                <div class="row gy-4">
-                    <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
-                        <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
-                            <h3>
-                                <span>Apa itu </span><strong>Infus Immune Booster</strong>
-                            </h3>
-                            <p>
-                                Infus Immune Booster merupakan prosedur medis dimana vitamin
-                                dan mineral diberikan lansung ke dalam aliran darah melalui
-                                infus intravena. Prosedur ini memungkinkan penyerapan nutrisi
-                                lebih cepat dibandingkan dengan konsumsi vitamin oral.
-                            </p>
-                        </div>
+                <div class="row gy-5 gx-lg-5 align-items-center">
 
-                        <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-container">
+
+                            {{-- Item 1: Apa itu? (faq-active = kebuka default) --}}
                             <div class="faq-item faq-active">
                                 <h3>
-                                    <span>Manfaat Immune Booster</span>
+                                    <i class="bi bi-question-circle me-2"></i>
+                                    <span>Apa itu Infus Immune Booster?</span>
                                 </h3>
                                 <div class="faq-content">
-                                    <ul>
-                                        <li>
-                                            <span>Meningkatkan daya tahan tubuh </span>
-                                        </li>
-                                        <li>
-                                            <span>Mengatasi kelelahan dan meningkatkan energi
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span>Mencegah kekurangan vitamin dan mineral dalam tubuh
-                                            </span>
-                                        </li>
-                                        <li>
-                                            <span>Meningkatkan kesehatan kulit </span>
-                                        </li>
-                                        <li>
-                                            <span>Mempercepat proses recovery pasca sakit </span>
-                                        </li>
-                                        <li>
-                                            <span>Sebagai antioksidan dalam tubuh </span>
-                                        </li>
-                                    </ul>
+                                    <div class="faq-content-inner">
+                                        <p>Prosedur medis dimana vitamin & mineral diberikan langsung ke aliran darah. Ini
+                                            memungkinkan penyerapan nutrisi 100% lebih cepat dan efektif dibanding konsumsi
+                                            oral.</p>
+                                    </div>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
-                            </div>
-                            <!-- End Faq item-->
-
+                            </div>{{-- Item 2: Manfaat --}}
                             <div class="faq-item">
                                 <h3>
-                                    <span>Kapan sih waktu yang tepat untuk INFUS VITAMIN ?</span>
+                                    <i class="bi bi-gem me-2"></i>
+                                    <span>Apa Saja Manfaat Utamanya?</span>
                                 </h3>
                                 <div class="faq-content">
-                                    <ul>
-                                        <li>
-                                            <span>Saat aktivitas padat</span>
-                                        </li>
-                                        <li>
-                                            <span>Pergantian cuaca extreme </span>
-                                        </li>
-                                        <li>
-                                            <span>Setelah sembuh dari sakit </span>
-                                        </li>
-                                        <li>
-                                            <span>Saat daya tahan tubuh mulai menurun</span>
-                                        </li>
-                                        <li>
-                                            <span>Sebelum dan sesudah bepergian jauh</span>
-                                        </li>
-                                    </ul>
+                                    <div class="faq-content-inner">
+                                        <ul class="faq-list">
+                                            <li>Meningkatkan daya tahan tubuh</li>
+                                            <li>Mengatasi kelelahan dan meningkatkan energi</li>
+                                            <li>Mencegah kekurangan vitamin & mineral</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <i class="faq-toggle bi bi-chevron-right"></i>
+                            </div>{{-- Item 3: Waktu Tepat --}}
+                            <div class="faq-item">
+                                <h3>
+                                    <i class="bi bi-clock me-2"></i>
+                                    <span>Kapan Waktu Terbaik Untuk Infus?</span>
+                                </h3>
+                                <div class="faq-content">
+                                    <div class="faq-content-inner">
+                                        <ul class="faq-list">
+                                            <li>Saat aktivitas sedang padat.</li>
+                                            <li>Ketika pergantian cuaca ekstrem.</li>
+                                            <li>Setelah sembuh dari sakit.</li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
                             </div>
-                            <!-- End Faq item-->
                         </div>
                     </div>
 
-                    <div class="col-lg-5 order-1 order-lg-2 why-us-img">
-                        <img src="assets/img/immune.jpg" class="img-fluid" alt=""
-                            data-aos="zoom-in loading="lazy"" data-aos-delay="100" />
+                    {{-- Kolom Kanan: Gambar (Biarkan) --}}
+                    <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="why-us-image-container">
+                            <img src="{{ asset('assets/img/image.png') }}" class="img-fluid" alt="Botol infus vitamin"
+                                loading="lazy">
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- /Why Us Section -->
 
         <!-- Services Section -->
         <section id="services" class="services section light-background">
@@ -280,22 +270,47 @@
                 </p>
             </div>
             <div class="container">
+                {{-- Kita tidak pakai slider dulu, pakai grid responsif --}}
                 <div class="row gy-4 align-items-stretch">
 
                     @forelse ($services as $service)
+                        {{-- Ambil 6 layanan saja --}}
                         <div class="col-xl-4 col-md-6 d-flex" data-aos="fade-up"
                             data-aos-delay="{{ $loop->iteration * 100 }}">
-                            <div class="service-item position-relative">
-                                <div class="icon"><img src="{{ asset('assets/img/logoKecil.png') }}" alt=""
-                                        loading="lazy"></div>
 
-                                {{-- Link mengarah ke halaman detail service yang sesuai --}}
-                                <h4><a href="{{ route('services.show', $service) }}"
-                                        class="stretched-link">{{ $service->name }}</a></h4>
+                            {{-- KITA UBAH TOTAL STRUKTUR KARTU DI DALAM SINI --}}
+                            <div class="service-item position-relative w-100">
 
-                                {{-- Menampilkan deskripsi singkat (dibatasi 50 karakter) --}}
-                                <p>{{ Str::limit($service->description, 50) }}</p>
+                                {{-- 1. GAMBAR LAYANAN (Menggantikan ikon) --}}
+                                <div class="service-image-wrapper">
+                                    {{-- Logika untuk ambil gambar thumbnail --}}
+                                    @php
+                                        // Cek apakah 'gallery' ada DAN tidak kosong
+                                        $thumbnail =
+                                            $service->gallery && count($service->gallery) > 0
+                                                ? $service->gallery[0] // Ambil gambar pertama dari galeri
+                                                : $service->image; // Pakai gambar lama sebagai cadangan
+                                    @endphp
+
+                                    <img src="{{ Storage::url($thumbnail) }}" alt="{{ $service->name }}" loading="lazy">
+                                </div>
+
+                                {{-- 2. KONTEN TEKS --}}
+                                <div class="service-content-wrapper">
+                                    <h4>
+                                        <a href="{{ route('services.show', $service) }}">{{ $service->name }}</a>
+                                    </h4>
+                                    <p>{{ Str::limit($service->description, 75) }}</p>
+
+                                    {{-- 3. TOMBOL CTA (Call to Action) BARU --}}
+                                    <a href="{{ route('services.show', $service) }}" class="read-more-btn">
+                                        Lihat Detail <i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+
                             </div>
+                            {{-- AKHIR DARI KARTU BARU --}}
+
                         </div>
                     @empty
                         <div class="col-12">
@@ -312,111 +327,111 @@
         <!-- <section id="pricing" class="pricing section light-background"> -->
         <!-- Section Title -->
         <!-- <div class="container section-title" data-aos="fade-up">
-                                                      <h2>Pricing</h2>
-                                                      <p>
-                                                        Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-                                                        consectetur velit
-                                                      </p>
-                                                    </div> -->
+                                                                                                                                                      <h2>Pricing</h2>
+                                                                                                                                                      <p>
+                                                                                                                                                        Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+                                                                                                                                                        consectetur velit
+                                                                                                                                                      </p>
+                                                                                                                                                    </div> -->
         <!-- End Section Title -->
 
         <!-- <div class="container">
-                                                      <div class="row gy-4">
-                                                        <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                                                          <div class="pricing-item">
-                                                            <h3>Free Plan</h3>
-                                                            <h4><sup>$</sup>0<span> / month</span></h4>
-                                                            <ul>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Quam adipiscing vitae proin</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Nec feugiat nisl pretium</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Nulla at volutpat diam uteera</span>
-                                                              </li>
-                                                              <li class="na">
-                                                                <i class="bi bi-x"></i>
-                                                                <span>Pharetra massa massa ultricies</span>
-                                                              </li>
-                                                              <li class="na">
-                                                                <i class="bi bi-x"></i>
-                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                              </li>
-                                                            </ul>
-                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                          </div>
-                                                        </div> -->
+                                                                                                                                                      <div class="row gy-4">
+                                                                                                                                                        <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                                                                                                                                                          <div class="pricing-item">
+                                                                                                                                                            <h3>Free Plan</h3>
+                                                                                                                                                            <h4><sup>$</sup>0<span> / month</span></h4>
+                                                                                                                                                            <ul>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li class="na">
+                                                                                                                                                                <i class="bi bi-x"></i>
+                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li class="na">
+                                                                                                                                                                <i class="bi bi-x"></i>
+                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                                                                                                                              </li>
+                                                                                                                                                            </ul>
+                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                                                                                                                          </div>
+                                                                                                                                                        </div> -->
         <!-- End Pricing Item -->
 
         <!-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                                                          <div class="pricing-item featured">
-                                                            <h3>Business Plan</h3>
-                                                            <h4><sup>$</sup>29<span> / month</span></h4>
-                                                            <ul>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Quam adipiscing vitae proin</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Nec feugiat nisl pretium</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Nulla at volutpat diam uteera</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Pharetra massa massa ultricies</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                              </li>
-                                                            </ul>
-                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                          </div>
-                                                        </div> -->
+                                                                                                                                                          <div class="pricing-item featured">
+                                                                                                                                                            <h3>Business Plan</h3>
+                                                                                                                                                            <h4><sup>$</sup>29<span> / month</span></h4>
+                                                                                                                                                            <ul>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                                                                                                                              </li>
+                                                                                                                                                            </ul>
+                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                                                                                                                          </div>
+                                                                                                                                                        </div> -->
         <!-- End Pricing Item -->
 
         <!-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-                                                          <div class="pricing-item">
-                                                            <h3>Developer Plan</h3>
-                                                            <h4><sup>$</sup>49<span> / month</span></h4>
-                                                            <ul>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Quam adipiscing vitae proin</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Nec feugiat nisl pretium</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Nulla at volutpat diam uteera</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Pharetra massa massa ultricies</span>
-                                                              </li>
-                                                              <li>
-                                                                <i class="bi bi-check"></i>
-                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                              </li>
-                                                            </ul>
-                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                          </div>
-                                                        </div> -->
+                                                                                                                                                          <div class="pricing-item">
+                                                                                                                                                            <h3>Developer Plan</h3>
+                                                                                                                                                            <h4><sup>$</sup>49<span> / month</span></h4>
+                                                                                                                                                            <ul>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
+                                                                                                                                                              </li>
+                                                                                                                                                              <li>
+                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                                                                                                                              </li>
+                                                                                                                                                            </ul>
+                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                                                                                                                          </div>
+                                                                                                                                                        </div> -->
         <!-- End Pricing Item -->
         <!-- </div>
-                                                    </div>
-                                                  </section> -->
+                                                                                                                                                    </div>
+                                                                                                                                                  </section> -->
         <!-- /Pricing Section -->
 
         <!-- Testimonials Section -->
@@ -624,17 +639,26 @@
                     <div class="col-lg-7">
 
                         @if (session('success'))
-                            <div class="alert alert-success" data-aos="fade-up" data-aos-delay="200"
+                            <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                data-aos="fade-up" data-aos-delay="200"
                                 style="padding: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 20px;">
                                 {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
                         @endif
+
                         @if (session('error'))
-                            <div class="alert alert-danger" data-aos="fade-up" data-aos-delay="200"
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert" data-aos="fade-up"
+                                data-aos-delay="200"
                                 style="padding: 15px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px;">
                                 {{ session('error') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
                         @endif
+
+
                         <form action="{{ route('contact.submit') }}" method="post" data-aos="fade-up"
                             data-aos-delay="200">
                             @csrf
@@ -682,7 +706,7 @@
                                     </div>
 
                                     <button type="submit"
-                                        style="background-color: #174272; /* Atau #2a3d45, sesuaikan birunya */ color: white; border: none; padding: 12px 30px; border-radius: 50px; /* Nilai besar untuk membuat bulat */ font-size: 16px; cursor: pointer; text-decoration: none; /* Jika itu sebenarnya link */ display: inline-block; /* Untuk padding dan radius */">
+                                        style="background-color: #174272; color: white; border: none; padding: 12px 30px; border-radius: 50px; /* Nilai besar untuk membuat bulat */ font-size: 16px; cursor: pointer; text-decoration: none; /* Jika itu sebenarnya link */ display: inline-block; /* Untuk padding dan radius */">
                                         Kirim Pesan
                                     </button>
                                 </div>

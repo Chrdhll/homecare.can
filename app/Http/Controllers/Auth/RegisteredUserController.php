@@ -45,6 +45,8 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        session()->flash('success', 'Registrasi berhasil! Selamat datang, ' . $user->name . '.');
+
+        return redirect(route('home', absolute: false));
     }
 }

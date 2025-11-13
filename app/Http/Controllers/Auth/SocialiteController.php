@@ -37,7 +37,7 @@ class SocialiteController extends Controller
                 return redirect()->intended('/admin');
             }
 
-            return redirect()->intended('/home'); // Ganti ke dashboard pasien nanti
+            return redirect()->intended('/'); // Ganti ke dashboard pasien nanti
 
         } catch (\Exception $e) {
             // Kembali ke halaman login jika ada error
