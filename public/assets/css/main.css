@@ -5,7 +5,7 @@
         sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
     --heading-font: "Poppins", sans-serif;
-    --nav-font: "Open Sans", sans-serif;
+    --nav-font: "Poppins", sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
@@ -895,7 +895,6 @@ section,
     max-width: 450px;
 }
 
-
 .search-bar:hover {
     box-shadow: 0 6px 20px rgba(0, 91, 170, 0.35);
 }
@@ -924,49 +923,49 @@ section,
 }
 
 .hero .trust-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    margin-top: 20px;
 }
 
 .hero .indicator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 150px; /* bikin simetris */
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px; /* bikin simetris */
+    text-align: center;
 }
 
 /* ICON WRAPPER – bulat premium-style */
 .hero .indicator .icon-wrapper {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #e7f1ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #e7f1ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
 }
 
 .hero .indicator .icon-wrapper i {
-  font-size: 22px;
-  color: #005baa;
+    font-size: 22px;
+    color: #005baa;
 }
 
 /* Text styling */
 .hero .indicator .title {
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 2px;
-  color: #1f3c88;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+    color: #1f3c88;
 }
 
 .hero .indicator .subtitle {
-  font-size: 12px;
-  color: #1f3c88;
-  margin: 0;
+    font-size: 12px;
+    color: #1f3c88;
+    margin: 0;
 }
 
 /* ============================
@@ -974,33 +973,25 @@ section,
 ============================ */
 
 @media (max-width: 575.98px) {
+    .trust-indicators {
+        gap: 15px !important;
+        padding: 0 20px;
+    }
 
-  .hero .trust-indicators {
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
+    .trust-indicators .indicator {
+        width: 35%;
+        justify-content: space-between !important;
+        min-width: unset;
+    }
 
-  .hero .indicator {
-    width: 130px; /* biar presisi 2 item */
-  }
+    .trust-indicators .title {
+        font-size: 13px;
+    }
 
-  .hero .indicator .icon-wrapper {
-    width: 44px;
-    height: 44px;
-  }
-
-  .hero .indicator .icon-wrapper i {
-    font-size: 20px;
-  }
-
-  .hero .indicator .title {
-    font-size: 13px;
-  }
-
-  .hero .indicator .subtitle {
-    font-size: 12px;
-  }
+    .trust-indicators .subtitle {
+        font-size: 12px;
+        white-space: nowrap;
+    }
 }
 
 .hero {
@@ -1103,7 +1094,6 @@ section,
 }
 
 @media (max-width: 991.98px) {
-
     .hero {
         /* Bikin tinggi section otomatis & padding lebih pendek */
         height: auto;
@@ -3897,59 +3887,453 @@ section,
 }
 
 body.mobile-nav-active .navmenu .nav-button-container > a.nav-login-button {
-  background: var(--accent-color, #0d6efd) !important;
-  border: 1px solid var(--accent-color, #0d6efd) !important;
-  color: #fff !important;
+    background: var(--accent-color, #0d6efd) !important;
+    border: 1px solid var(--accent-color, #0d6efd) !important;
+    color: #fff !important;
 }
 
 @media (max-width: 991.98px) {
+    /* 1. Perbaikan Hero Section */
+    .hero {
+        /* Hapus tinggi paksa, biarkan konten yg ngatur */
+        height: auto;
+        min-height: auto;
 
-  /* 1. Perbaikan Hero Section */
-  .hero {
-    /* Hapus tinggi paksa, biarkan konten yg ngatur */
-    height: auto;
-    min-height: auto;
+        /* Kasih padding yang pas buat HP */
+        padding: 80px 0 40px 0;
 
-    /* Kasih padding yang pas buat HP */
-    padding: 80px 0 40px 0; 
+        /* Bikin teks rata tengah di HP */
+        text-align: center;
+    }
 
-    /* Bikin teks rata tengah di HP */
-    text-align: center;
-  }
+    .header {
+        margin-bottom: 100px;
+    }
 
-  .header{
-    margin-bottom: 100px;
-  }
+    /* 2. Perbaikan Call-to-Action Section */
+    .call-to-action {
+        /* Hapus tinggi paksa, biarkan konten yg ngatur */
+        height: auto;
+        min-height: auto;
 
-  /* 2. Perbaikan Call-to-Action Section */
-  .call-to-action {
-    /* Hapus tinggi paksa, biarkan konten yg ngatur */
-    height: auto;
-    min-height: auto;
+        /* Padding standar section di HP */
+        padding: 60px 0;
+    }
 
-    /* Padding standar section di HP */
-    padding: 60px 0; 
-  }
+    /* 3. Perbaikan Background Image (PENTING) */
+    /* Hentikan efek parallax 'fixed' di HP (boros & bikin aneh) */
+    .call-to-action img {
+        position: absolute; /* Ganti dari 'fixed' jadi 'absolute' */
+        height: 100%; /* Cover 100% section-nya aja */
+    }
 
-  /* 3. Perbaikan Background Image (PENTING) */
-  /* Hentikan efek parallax 'fixed' di HP (boros & bikin aneh) */
-  .call-to-action img {
-    position: absolute; /* Ganti dari 'fixed' jadi 'absolute' */
-    height: 100%; /* Cover 100% section-nya aja */
-  }
+    /* 4. Perbaikan Teks CTA di HP */
+    .call-to-action .col-lg-6 {
+        text-align: center; /* Bikin teks rata tengah */
+    }
 
-  /* 4. Perbaikan Teks CTA di HP */
-  .call-to-action .col-lg-6 {
-    text-align: center; /* Bikin teks rata tengah */
-  }
-
-  /* 5. Perbaikan Posisi Panah Slider Coverflow di HP */
-  /* Biar nggak terlalu ke tengah */
-  #call-to-action .swiper-button-prev {
-    left: 10px; 
-  }
-  #call-to-action .swiper-button-next {
-    right: 10px;
-  }
+    /* 5. Perbaikan Posisi Panah Slider Coverflow di HP */
+    /* Biar nggak terlalu ke tengah */
+    #call-to-action .swiper-button-prev {
+        left: 10px;
+    }
+    #call-to-action .swiper-button-next {
+        right: 10px;
+    }
 }
 
+/* ============================
+   CTA BUTTONS
+============================ */
+.hero-cta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Tombol Biru (Primary) */
+.btn-hero-primary {
+    background: #0e4170; /* warna biru existing */
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 50px; /* SAMA dengan button Masuk */
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-hero-primary:hover {
+    background: #0b3256;
+    color: #fff;
+}
+
+/* Tombol Outline WhatsApp */
+.btn-hero-outline {
+    border: 2px solid #25d366;
+    color: #25d366;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+}
+
+.btn-hero-outline:hover {
+    background: #25d366;
+    color: #fff;
+}
+
+@media (max-width: 575.98px) {
+    .hero-cta {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 12px;
+        justify-content: center !important;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .hero-cta .btn-cta a {
+        flex: 1 !important;
+        text-align: center !important;
+        padding: 12px 0 !important;
+        border-radius: 50px !important;
+    }
+
+    #hero .search-bar {
+        display: none !important;
+    }
+
+    #hero h1 {
+        text-align: center;
+    }
+    #hero p {
+        text-align: center;
+    }
+    .trust-indicators {
+        justify-content: center !important;
+        margin-top: 20px !important;
+    }
+
+    .mobile-search-trigger {
+        font-size: 20px;
+        margin-left: 10px;
+        cursor: pointer;
+        color: #0e4170;
+    }
+
+    /* Search Panel */
+    .mobile-search-panel {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 60px; /* tepat di bawah navbar */
+        background: transparent;
+        padding: 15px 20px;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: all 0.35s ease;
+        z-index: 999;
+    }
+
+    /* Saat terbuka */
+    .mobile-search-panel.show {
+        max-height: 200px;
+        opacity: 1;
+    }
+
+    .mobile-search-panel input {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .mobile-search-panel input:focus {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Search bar content */
+    .search-slide-inner {
+        background: white;
+        border-radius: 50px;
+        padding: 10px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .search-slide-inner input {
+        border: none;
+        outline: none;
+        flex: 1;
+        font-size: 15px;
+    }
+
+    .search-slide-inner button {
+        border: none;
+        background: none;
+        font-size: 20px;
+        color: #0e4170;
+        cursor: pointer;
+    }
+}
+
+/* =====================================
+   MOBILE SEARCH ICON IN NAVBAR
+===================================== */
+.mobile-search-trigger {
+    font-size: 20px;
+    color: #0e4170;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
+/* =====================================
+   MOBILE SEARCH PANEL (HIDDEN BY DEFAULT)
+===================================== */
+.mobile-search-panel {
+    width: 100%;
+    background: transparent;
+    padding: 12px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: none; /* hidden */
+    position: relative;
+    z-index: 999;
+}
+
+.mobile-search-panel .search-inner {
+    display: flex;
+    background: #fff;
+    border: 1px solid #0e4170;
+    border-radius: 50px;
+    align-items: center;
+    padding: 8px 18px;
+}
+
+.mobile-search-panel input {
+    border: none;
+    outline: none;
+    flex: 1;
+}
+
+.mobile-search-panel button {
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: #0e4170;
+}
+
+/* Smooth slide animation */
+.mobile-search-panel.show {
+    display: block;
+    animation: slideDown 0.3s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.call-to-action .swiper {
+    padding-bottom: 30px !important;
+}
+
+/* ====== MOBILE + TABLET 0–1024px ====== */
+@media (max-width: 1024px) {
+    /* HERO STRUCTURE */
+    #hero .row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #hero h1 {
+        font-size: 1.9rem;
+        line-height: 1.3;
+    }
+
+    #hero p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    #hero .search-bar {
+        display: none !important;
+    }
+
+    /* CTA BUTTONS → FULL MOBILE STYLE */
+    .hero-cta {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 12px;
+        justify-content: center !important;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .hero-cta a {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+        white-space: nowrap;
+    }
+
+    .mobile-search-trigger {
+        font-size: 20px;
+        margin-left: 10px;
+        cursor: pointer;
+        color: #0e4170;
+    }
+
+    /* Search Panel */
+    .mobile-search-panel {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 60px; /* tepat di bawah navbar */
+        background: transparent;
+        padding: 15px 20px;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: all 0.35s ease;
+        z-index: 999;
+    }
+
+    /* Saat terbuka */
+    .mobile-search-panel.show {
+        max-height: 200px;
+        opacity: 1;
+    }
+
+    .mobile-search-panel input {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .mobile-search-panel input:focus {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Search bar content */
+    .search-slide-inner {
+        background: white;
+        border-radius: 50px;
+        padding: 10px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .search-slide-inner input {
+        border: none;
+        outline: none;
+        flex: 1;
+        font-size: 15px;
+    }
+
+    .search-slide-inner button {
+        border: none;
+        background: none;
+        font-size: 20px;
+        color: #0e4170;
+        cursor: pointer;
+    }
+
+    /* TRUST INDICATORS - 3 kolom rapi */
+    .trust-indicators {
+        gap: 15px !important;
+        padding: 0 20px;
+    }
+
+    .trust-indicators .indicator {
+        width: 35%;
+        justify-content: space-between !important;
+        min-width: unset;
+    }
+
+    .trust-indicators .title {
+        font-size: 13px;
+    }
+
+    .trust-indicators .subtitle {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    /* CALL TO ACTION SECTION (SWIPER) MOBILE/TABLET FIX */
+    .call-to-action .swiper {
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 30px !important;
+    }
+
+    .swiper-pagination {
+        bottom: 5px !important;
+    }
+}
+
+/* ====== DESKTOP 1025px+ — PAKAI DESKTOP VERSION NORMAL ====== */
+@media (min-width: 1025px) {
+    /* Desktop maintain default layout */
+    #hero .row {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .search-bar {
+        max-width: 550px;
+        margin-left: 0;
+    }
+
+    .hero-cta {
+        justify-content: flex-start;
+    }
+
+    .trust-indicators {
+        justify-content: flex-start;
+        gap: 40px;
+    }
+}
+
+@media (min-width: 574px) and (max-width: 1024px) {
+    .trust-indicators {
+        gap: 40px !important; /* lebih longgar */
+        padding: 0 40px; /* tambah padding samping */
+        margin-top: 15px;
+    }
+
+    .trust-indicators .indicator {
+        width: auto; /* jangan fixed biar fleksibel */
+        min-width: 120px; /* biar ga kekecilan */
+        text-align: center;
+    }
+
+    .trust-indicators .icon-wrapper i {
+        font-size: 30px; /* icon sedikit lebih besar */
+    }
+
+    .trust-indicators .title {
+        font-size: 15px;
+    }
+
+    .trust-indicators .subtitle {
+        font-size: 13px;
+        white-space: nowrap;
+    }
+}

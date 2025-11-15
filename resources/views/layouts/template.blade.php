@@ -77,7 +77,7 @@
                         @endguest
                     </li>
                 </ul>
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
             </nav>
 
             {{-- Cek apakah user sudah login --}}
@@ -116,7 +116,22 @@
 
             @endguest
         </div>
+
+        <div class="mobile-search-trigger d-lg-none">
+            <i class="bi bi-search"></i>
+        </div>
+
+        <i class="mobile-nav-toggle d-xl-none bi bi-list ml-3"></i>
+
     </header>
+    <!-- MOBILE SEARCH BAR SLIDE DOWN -->
+    <div id="mobile-search-panel" class="mobile-search-panel d-lg-none">
+        <form id="mobileSearchForm" class="search-slide-inner">
+            <input type="text" id="mobileSearchInput" placeholder="Ketik lalu tekan enter…" />
+            <button type="button" id="closeSearch"><i class="bi bi-x-lg"></i></button>
+        </form>
+    </div>
+
 
     @yield('content')
 
@@ -322,6 +337,39 @@
                     timerProgressBar: true
                 });
             @endif
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const trigger = document.querySelector(".mobile-search-trigger");
+            const panel = document.getElementById("mobile-search-panel");
+            const closeBtn = document.getElementById("closeSearch");
+            const form = document.getElementById("mobileSearchForm");
+            const input = document.getElementById("mobileSearchInput");
+
+            // Open search
+            trigger?.addEventListener("click", () => {
+                panel.classList.toggle("show");
+                input.focus(); // otomatis focus
+            });
+
+            // Close search
+            closeBtn?.addEventListener("click", () => {
+                panel.classList.remove("show");
+            });
+
+            // Enter / Submit
+            form?.addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                const query = input.value.trim();
+
+                if (query.length === 0) return;
+
+                // Redirect ke route pencarian (ubah sesuai kebutuhan)
+                window.location.href = `/search?q=${encodeURIComponent(query)}`;
+            });
+
         });
     </script>
 

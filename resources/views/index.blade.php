@@ -6,49 +6,69 @@
         <section id="hero" class="hero section light-background">
             <div class="container">
                 <div class="row gy-4 align-items-center">
-                    <div class="col-lg-6 order-1 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
+
+                    <!-- ================= LEFT SIDE ================= -->
+                    <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="zoom-out">
                         <h1>INFUS IMMUNE BOOSTER</h1>
+
                         <p>
                             Nikmati layanan infus immune booster terbaik bersama
                             Homecare.can. Praktis, cepat, aman, dan nyaman langsung di rumah atau dikantor Anda
                         </p>
-                        {{-- <p>
-                            Home or office treatment 
-                            <b>Always Fast & Always Safe</b>
-                        </p> --}}
+
+                        <!-- CTA BUTTONS -->
+                        <div class="hero-cta mt-3 d-flex gap-3 flex-wrap">
+                            <a href="#services" class="btn-hero-primary">Pesan Sekarang</a>
+                            <a href="https://wa.me/6282287339437" class="btn-hero-outline btn-cta">
+                                <i class="bi bi-whatsapp"></i> Hubungi kami
+                            </a>
+                        </div>
                     </div>
 
-                    <div class="col-lg-6 order-2 order-lg-2 d-flex flex-column align-items-center" data-aos="zoom-out"
-                        data-aos-delay="200">
-                        <form class="search-bar d-flex">
+                    <!-- ================= RIGHT SIDE ================= -->
+                    <div class="col-lg-6 d-flex flex-column align-items-center" data-aos="zoom-out" data-aos-delay="200">
+
+                        <!-- SEARCH BAR -->
+                        <form class="search-bar d-flex mb-4 mt-3 mt-lg-0">
                             <input type="search" placeholder="Search" aria-label="Search" />
                             <button type="submit">
                                 <i class="bi bi-search"></i>
                             </button>
                         </form>
 
-                        <!-- LABEL / TRUST INDICATOR -->
-                        <div class="trust-indicators mt-4">
-    <div class="indicator">
-        <div class="icon-wrapper">
-            <i class="bi bi-clipboard2-check"></i>
-        </div>
-        <p class="title">Certified</p>
-        <p class="subtitle">Health Professional</p>
-    </div>
+                        <!-- TRUST INDICATOR -->
+                        <div class="trust-indicators mt-3 d-flex gap-4">
+                            <div class="indicator text-center">
+                                <div class="icon-wrapper">
+                                    <i class="bi bi-clipboard2-check"></i>
+                                </div>
+                                <p class="title">Certified</p>
+                                <p class="subtitle">Health Professional</p>
+                            </div>
 
-    <div class="indicator">
-        <div class="icon-wrapper">
-            <i class="bi bi-check2-circle"></i>
-        </div>
-        <p class="title">Personalized</p>
-        <p class="subtitle">Treatment</p>
-    </div>
-</div>
+                            <div class="indicator text-center">
+                                <div class="icon-wrapper">
+                                    <i class="bi bi-check2-circle"></i>
+                                </div>
+                                <p class="title">Personalized</p>
+                                <p class="subtitle">Treatment</p>
+                            </div>
+
+                            <div class="indicator">
+                                <div class="icon-wrapper">
+                                    <i class="bi bi-lightning-charge"></i>
+                                </div>
+                                <p class="title">Fast & Safe</p>
+                                <p class="subtitle">Home Service</p>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
             </div>
         </section>
+
         <!-- /Hero Section -->
 
         <!-- Call To Action Section -->
@@ -327,111 +347,111 @@
         <!-- <section id="pricing" class="pricing section light-background"> -->
         <!-- Section Title -->
         <!-- <div class="container section-title" data-aos="fade-up">
-                                                                                                                                                      <h2>Pricing</h2>
-                                                                                                                                                      <p>
-                                                                                                                                                        Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-                                                                                                                                                        consectetur velit
-                                                                                                                                                      </p>
-                                                                                                                                                    </div> -->
+                                                                                                                                                                      <h2>Pricing</h2>
+                                                                                                                                                                      <p>
+                                                                                                                                                                        Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
+                                                                                                                                                                        consectetur velit
+                                                                                                                                                                      </p>
+                                                                                                                                                                    </div> -->
         <!-- End Section Title -->
 
         <!-- <div class="container">
-                                                                                                                                                      <div class="row gy-4">
-                                                                                                                                                        <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                                                                                                                                                          <div class="pricing-item">
-                                                                                                                                                            <h3>Free Plan</h3>
-                                                                                                                                                            <h4><sup>$</sup>0<span> / month</span></h4>
-                                                                                                                                                            <ul>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li class="na">
-                                                                                                                                                                <i class="bi bi-x"></i>
-                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li class="na">
-                                                                                                                                                                <i class="bi bi-x"></i>
-                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                                                                                                                              </li>
-                                                                                                                                                            </ul>
-                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                                                                                                                          </div>
-                                                                                                                                                        </div> -->
+                                                                                                                                                                      <div class="row gy-4">
+                                                                                                                                                                        <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                                                                                                                                                                          <div class="pricing-item">
+                                                                                                                                                                            <h3>Free Plan</h3>
+                                                                                                                                                                            <h4><sup>$</sup>0<span> / month</span></h4>
+                                                                                                                                                                            <ul>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li class="na">
+                                                                                                                                                                                <i class="bi bi-x"></i>
+                                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li class="na">
+                                                                                                                                                                                <i class="bi bi-x"></i>
+                                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                            </ul>
+                                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                                                                                                                                          </div>
+                                                                                                                                                                        </div> -->
         <!-- End Pricing Item -->
 
         <!-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                                                                                                                                                          <div class="pricing-item featured">
-                                                                                                                                                            <h3>Business Plan</h3>
-                                                                                                                                                            <h4><sup>$</sup>29<span> / month</span></h4>
-                                                                                                                                                            <ul>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                                                                                                                              </li>
-                                                                                                                                                            </ul>
-                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                                                                                                                          </div>
-                                                                                                                                                        </div> -->
+                                                                                                                                                                          <div class="pricing-item featured">
+                                                                                                                                                                            <h3>Business Plan</h3>
+                                                                                                                                                                            <h4><sup>$</sup>29<span> / month</span></h4>
+                                                                                                                                                                            <ul>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                            </ul>
+                                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                                                                                                                                          </div>
+                                                                                                                                                                        </div> -->
         <!-- End Pricing Item -->
 
         <!-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-                                                                                                                                                          <div class="pricing-item">
-                                                                                                                                                            <h3>Developer Plan</h3>
-                                                                                                                                                            <h4><sup>$</sup>49<span> / month</span></h4>
-                                                                                                                                                            <ul>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
-                                                                                                                                                              </li>
-                                                                                                                                                              <li>
-                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                                                                                                                              </li>
-                                                                                                                                                            </ul>
-                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                                                                                                                          </div>
-                                                                                                                                                        </div> -->
+                                                                                                                                                                          <div class="pricing-item">
+                                                                                                                                                                            <h3>Developer Plan</h3>
+                                                                                                                                                                            <h4><sup>$</sup>49<span> / month</span></h4>
+                                                                                                                                                                            <ul>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                              <li>
+                                                                                                                                                                                <i class="bi bi-check"></i>
+                                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
+                                                                                                                                                                              </li>
+                                                                                                                                                                            </ul>
+                                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
+                                                                                                                                                                          </div>
+                                                                                                                                                                        </div> -->
         <!-- End Pricing Item -->
         <!-- </div>
-                                                                                                                                                    </div>
-                                                                                                                                                  </section> -->
+                                                                                                                                                                    </div>
+                                                                                                                                                                  </section> -->
         <!-- /Pricing Section -->
 
         <!-- Testimonials Section -->
