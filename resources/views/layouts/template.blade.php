@@ -26,13 +26,15 @@
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" defer rel="stylesheet" />
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Main CSS File -->
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/main.css') }}?v={{ filemtime(public_path('assets/css/main.css')) }}"
+        rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="index-page">
