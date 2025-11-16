@@ -1,4 +1,7 @@
 /* Fonts */
+html {
+    zoom: 90%;
+}
 :root {
     --default-font: "Poppins", "Open Sans", system-ui, -apple-system, "Segoe UI",
         Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
