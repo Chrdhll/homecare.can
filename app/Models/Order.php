@@ -15,13 +15,21 @@ class Order extends Model
         'promotion_id',
         'service_schedule',
         'address',
+        'notes',
+
         'base_price',
         'discount_amount',
         'transport_cost',
         'total_price',
+
+        'latitude',
+        'longitude',
+        'distance',
+
         'payment_status',
         'payment_method',
         'status',
+
         'created_at',
         'updated_at',
     ];

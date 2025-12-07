@@ -18,6 +18,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
+use Illuminate\Support\HtmlString;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -29,13 +30,14 @@ class AdminPanelProvider extends PanelProvider
             ->spa()
             ->path('admin')
             // ->login()
-            ->brandLogo(asset('assets/img/logo_1.png'))
-            ->brandLogoHeight('3rem')
+            // ->brandLogo(asset('assets/img/logo_1.png'))
+            // ->brandLogoHeight('3rem')
+            
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Zinc,
                 'info' => Color::Blue,
-                'primary' => Color::Teal,
+                'primary' => Color::Green,
                 'success' => Color::Green,
                 'warning' => Color::Amber,
             ])
@@ -60,7 +62,6 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([
                 Pages\Dashboard::class,
-                \App\Filament\Admin\Pages\PengaturanUmum::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
             ->widgets([

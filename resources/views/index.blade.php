@@ -9,17 +9,21 @@
 
                     <!-- ================= LEFT SIDE ================= -->
                     <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="zoom-out">
-                        <h1>INFUS IMMUNE BOOSTER</h1>
+                        <h1>{{ settings('hero_title', 'INFUS IMMUNE BOOSTER') }}</h1>
 
                         <p>
-                            Nikmati layanan infus immune booster terbaik bersama
-                            Homecare.can. Praktis, cepat, aman, dan nyaman langsung di rumah atau dikantor Anda
+                            {{ settings(
+                                'hero_subtitle',
+                                'Nikmati layanan infus immune booster terbaik bersama
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Homecare.can. Praktis, cepat, aman, dan nyaman langsung di rumah atau dikantor Anda',
+                            ) }}
                         </p>
 
                         <!-- CTA BUTTONS -->
                         <div class="hero-cta mt-3 d-flex gap-3 flex-wrap">
                             <a href="#services" class="btn-hero-primary">Pesan Sekarang</a>
-                            <a href="https://wa.me/6282287339437" class="btn-hero-outline btn-cta">
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', settings('contact_phone', '6282287339437')) }}"
+                                class="btn-hero-outline btn-cta">
                                 <i class="bi bi-whatsapp"></i> Hubungi kami
                             </a>
                         </div>
@@ -42,24 +46,24 @@
                                 <div class="icon-wrapper">
                                     <i class="bi bi-clipboard2-check"></i>
                                 </div>
-                                <p class="title">Certified</p>
-                                <p class="subtitle">Health Professional</p>
+                                <p class="title">{{ settings('hero_indicator1_title', 'Certified') }}</p>
+                                <p class="subtitle">{{ settings('hero_indicator1_subtitle', 'Health Professional') }}</p>
                             </div>
 
                             <div class="indicator text-center">
                                 <div class="icon-wrapper">
                                     <i class="bi bi-check2-circle"></i>
                                 </div>
-                                <p class="title">Personalized</p>
-                                <p class="subtitle">Treatment</p>
+                                <p class="title">{{ settings('hero_indicator2_title', 'Personalized') }}</p>
+                                <p class="subtitle">{{ settings('hero_indicator2_subtitle', 'Treatment') }}</p>
                             </div>
 
                             <div class="indicator">
                                 <div class="icon-wrapper">
                                     <i class="bi bi-lightning-charge"></i>
                                 </div>
-                                <p class="title">Fast & Safe</p>
-                                <p class="subtitle">Home Service</p>
+                                <p class="title">{{ settings('hero_indicator3_title', 'Fast & Safe') }}</p>
+                                <p class="subtitle">{{ settings('hero_indicator3_subtitle', 'Home Service') }}</p>
                             </div>
                         </div>
 
@@ -129,11 +133,14 @@
                         @endif
                     </div>
                     <div class="col-lg-6 text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
-                        <h3>Layanan Profesional Kami</h3>
+                        <h3>{{ settings('cta_title', 'Layanan Profesional Kami') }}</h3>
                         <p>
-                            Lihat beberapa dokumentasi dari layanan infus immune booster
-                            yang telah kami berikan. Ditangani oleh tenaga medis profesional
-                            untuk memastikan kenyamanan dan keamanan Anda.
+                            {{ settings(
+                                'cta_text',
+                                'Lihat beberapa dokumentasi dari layanan infus immune booster
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            yang telah kami berikan. Ditangani oleh tenaga medis profesional
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            untuk memastikan kenyamanan dan keamanan Anda.',
+                            ) }}
                         </p>
                         <a class="cta-btn" href="#services">Lihat Semua Layanan</a>
                     </div>
@@ -152,15 +159,18 @@
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="about-content">
                             <div class="section-title">
-                                <p class="sub-title">Tentang Kami</p>
-                                <h2>Layanan Kesehatan Personal, Praktis, & Terpercaya</h2>
+                                <p class="sub-title">{{ settings('about_subtitle', 'Tentang Kami') }}</p>
+                                <h2>{{ settings('about_title', 'Layanan Kesehatan Personal, Praktis, & Terpercaya') }}</h2>
                             </div>
 
                             <p class="tentang-p fst-italic">
-                                Homecare.can lahir dari visi untuk menjadikan layanan kesehatan berkualitas lebih mudah
-                                diakses. Kami membawa layanan infus immune booster premium langsung ke kenyamanan rumah dan
-                                kantor
-                                Anda.
+                                {{ settings(
+                                    'about_text',
+                                    'Homecare.can lahir dari visi untuk menjadikan layanan kesehatan berkualitas lebih mudah
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                diakses. Kami membawa layanan infus immune booster premium langsung ke kenyamanan rumah dan
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                kantor
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Anda.',
+                                ) }}
                             </p>
 
                             {{-- Poin Keunggulan (UI Baru) --}}
@@ -168,22 +178,25 @@
                                 <div class="feature-item d-flex align-items-center">
                                     <i class="bi bi-patch-check-fill"></i>
                                     <div>
-                                        <h5>Tenaga Medis Profesional</h5>
-                                        <p>Tim medis kami bersertifikat, berpengalaman, dan ramah.</p>
+                                        <h5>{{ settings('about_point1_title', 'Tenaga Medis Profesional') }}</h5>
+                                        <p>{{ settings('about_point1_text', 'Tim medis kami bersertifikat, berpengalaman, dan ramah.') }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="feature-item d-flex align-items-center">
                                     <i class="bi bi-clock-history"></i>
                                     <div>
-                                        <h5>Praktis & Hemat Waktu</h5>
-                                        <p>Tidak perlu antre atau macet di jalan. Kami yang datang ke Anda.</p>
+                                        <h5>{{ settings('about_point2_title', 'Praktis & Hemat Waktu') }}</h5>
+                                        <p>{{ settings('about_point2_text', 'Tidak perlu antre atau macet di jalan. Kami yang datang ke Anda.') }}
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="feature-item d-flex align-items-center">
                                     <i class="bi bi-shield-lock-fill"></i>
                                     <div>
-                                        <h5>Produk Steril & Terjamin</h5>
-                                        <p>Kami hanya menggunakan produk vitamin berkualitas tinggi dan steril.</p>
+                                        <h5>{{ settings('about_point3_title', 'Produk Steril & Terjamin') }}</h5>
+                                        <p>{{ settings('about_point3_text', 'Kami hanya menggunakan produk vitamin berkualitas tinggi dan steril.') }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -195,8 +208,9 @@
                         <div class="about-image-container">
                             {{-- Gambar baru yang lebih relevan dan profesional --}}
                             <div class="about-image-blob"></div>
-                            <img src="{{ asset('assets/img/image_2.jpg') }}" class="img-fluid about-main-image"
-                                alt="Tenaga medis profesional Homecare.can" loading="lazy">
+                            <img src="{{ settings('about_image') ? Storage::url(settings('about_image')) : asset('assets/img/image_2.jpg') }}"
+                                class="img-fluid about-main-image" alt="Tenaga medis profesional Homecare.can"
+                                loading="lazy">
                         </div>
                     </div>
 
@@ -210,8 +224,8 @@
         <section id="why-us" class="why-us section light-background">
             <div class="container">
                 <div class="container section-title" data-aos="fade-up">
-                    <p class="sub-title">Kenapa Homecare.can?</p>
-                    <h2>Semua Tentang Immune Booster</h2>
+                    <p class="sub-title">{{ settings('whyus_subtitle', 'Kenapa Homecare.can?') }}</p>
+                    <h2>{{ settings('whyus_title', 'Semua Tentang Immune Booster') }}</h2>
                 </div>
 
                 <div class="row gy-5 gx-lg-5 align-items-center">
@@ -223,13 +237,22 @@
                             <div class="faq-item faq-active">
                                 <h3>
                                     <i class="bi bi-question-circle me-2"></i>
-                                    <span>Apa itu Infus Immune Booster?</span>
+                                    <span>{{ settings('faq1_q', 'Apa itu Infus Immune Booster?') }}</span>
                                 </h3>
                                 <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <p>Prosedur medis dimana vitamin & mineral diberikan langsung ke aliran darah. Ini
-                                            memungkinkan penyerapan nutrisi 100% lebih cepat dan efektif dibanding konsumsi
-                                            oral.</p>
+                                    <div>
+                                        <div class="faq-content-inner">
+                                            <p>{!! nl2br(
+                                                e(
+                                                    settings(
+                                                        'faq1_a',
+                                                        'Prosedur medis dimana vitamin & mineral diberikan langsung ke aliran darah. Ini
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            memungkinkan penyerapan nutrisi 100% lebih cepat dan efektif dibanding konsumsi
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            oral.',
+                                                    ),
+                                                ),
+                                            ) !!}</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
@@ -237,15 +260,19 @@
                             <div class="faq-item">
                                 <h3>
                                     <i class="bi bi-gem me-2"></i>
-                                    <span>Apa Saja Manfaat Utamanya?</span>
+                                    <span>{{ settings('faq2_q', 'Apa Saja Manfaat Utamanya?') }}</span>
                                 </h3>
                                 <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <ul class="faq-list">
-                                            <li>Meningkatkan daya tahan tubuh</li>
-                                            <li>Mengatasi kelelahan dan meningkatkan energi</li>
-                                            <li>Mencegah kekurangan vitamin & mineral</li>
-                                        </ul>
+                                    <div>
+                                        <div class="faq-content-inner">
+                                            <ul class="faq-list">
+                                                @foreach (explode("\n", settings('faq2_a', "Meningkatkan daya tahan tubuh\nMengatasi kelelahan dan meningkatkan energi\nMencegah kekurangan vitamin & mineral")) as $item)
+                                                    @if (strlen(trim($item)) > 0)
+                                                        <li>{{ trim($item) }}</li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
@@ -253,15 +280,19 @@
                             <div class="faq-item">
                                 <h3>
                                     <i class="bi bi-clock me-2"></i>
-                                    <span>Kapan Waktu Terbaik Untuk Infus?</span>
+                                    <span>{{ settings('faq3_q', 'Kapan Waktu Terbaik Untuk Infus?') }}</span>
                                 </h3>
                                 <div class="faq-content">
-                                    <div class="faq-content-inner">
-                                        <ul class="faq-list">
-                                            <li>Saat aktivitas sedang padat.</li>
-                                            <li>Ketika pergantian cuaca ekstrem.</li>
-                                            <li>Setelah sembuh dari sakit.</li>
-                                        </ul>
+                                    <div>
+                                        <div class="faq-content-inner">
+                                            <ul class="faq-list">
+                                                @foreach (explode("\n", settings('faq3_a', "Saat aktivitas sedang padat.\nKetika pergantian cuaca ekstrem.\nSetelah sembuh dari sakit.")) as $item)
+                                                    @if (strlen(trim($item)) > 0)
+                                                        <li>{{ trim($item) }}</li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                                 <i class="faq-toggle bi bi-chevron-right"></i>
@@ -272,8 +303,8 @@
                     {{-- Kolom Kanan: Gambar (Biarkan) --}}
                     <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
                         <div class="why-us-image-container">
-                            <img src="{{ asset('assets/img/image.png') }}" class="img-fluid" alt="Botol infus vitamin"
-                                loading="lazy">
+                            <img src="{{ settings('whyus_image') ? Storage::url(settings('whyus_image')) : asset('assets/img/image.png') }}"
+                                class="img-fluid" alt="Botol infus vitamin" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -281,12 +312,11 @@
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="services section light-background">
+        <section id="services" class="services section">
 
             <div class="container section-title" data-aos="fade-up">
-                <h2>Layanan Kami</h2>
-                <p>
-                    Kami menyediakan berbagai layanan kesehatan profesional langsung di kenyamanan rumah Anda.
+                <h2>{{ settings('services_title', 'Layanan Kami') }}</h2>
+                <p>{{ settings('services_subtitle', 'Kami menyediakan berbagai layanan kesehatan profesional langsung di kenyamanan rumah Anda.') }}
                 </p>
             </div>
             <div class="container">
@@ -300,6 +330,21 @@
 
                             {{-- KITA UBAH TOTAL STRUKTUR KARTU DI DALAM SINI --}}
                             <div class="service-item position-relative w-100">
+                                @php
+                                    // Cek apakah service ini ada di daftar promo aktif
+                                    $promo = $activePromos->get($service->id);
+                                @endphp
+
+                                @if ($promo)
+                                    <div
+                                        style="position: absolute; top: 15px; right: 15px; z-index: 10; background: #dc3545; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                                        @if ($promo->discount_type == 'percentage')
+                                            HEMAT {{ intval($promo->discount_value) }}%
+                                        @else
+                                            HEMAT Rp {{ number_format($promo->discount_value / 1000, 0) }}K
+                                        @endif
+                                    </div>
+                                @endif
 
                                 {{-- 1. GAMBAR LAYANAN (Menggantikan ikon) --}}
                                 <div class="service-image-wrapper">
@@ -312,7 +357,8 @@
                                                 : $service->image; // Pakai gambar lama sebagai cadangan
                                     @endphp
 
-                                    <img src="{{ Storage::url($thumbnail) }}" alt="{{ $service->name }}" loading="lazy">
+                                    <img src="{{ Storage::url($thumbnail) }}" alt="{{ $service->name }}"
+                                        loading="lazy">
                                 </div>
 
                                 {{-- 2. KONTEN TEKS --}}
@@ -342,117 +388,6 @@
             </div>
         </section>
         <!-- /Services Section -->
-
-        <!-- Pricing Section -->
-        <!-- <section id="pricing" class="pricing section light-background"> -->
-        <!-- Section Title -->
-        <!-- <div class="container section-title" data-aos="fade-up">
-                                                                                                                                                                      <h2>Pricing</h2>
-                                                                                                                                                                      <p>
-                                                                                                                                                                        Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-                                                                                                                                                                        consectetur velit
-                                                                                                                                                                      </p>
-                                                                                                                                                                    </div> -->
-        <!-- End Section Title -->
-
-        <!-- <div class="container">
-                                                                                                                                                                      <div class="row gy-4">
-                                                                                                                                                                        <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-                                                                                                                                                                          <div class="pricing-item">
-                                                                                                                                                                            <h3>Free Plan</h3>
-                                                                                                                                                                            <h4><sup>$</sup>0<span> / month</span></h4>
-                                                                                                                                                                            <ul>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li class="na">
-                                                                                                                                                                                <i class="bi bi-x"></i>
-                                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li class="na">
-                                                                                                                                                                                <i class="bi bi-x"></i>
-                                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                            </ul>
-                                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                                                                                                                                          </div>
-                                                                                                                                                                        </div> -->
-        <!-- End Pricing Item -->
-
-        <!-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-                                                                                                                                                                          <div class="pricing-item featured">
-                                                                                                                                                                            <h3>Business Plan</h3>
-                                                                                                                                                                            <h4><sup>$</sup>29<span> / month</span></h4>
-                                                                                                                                                                            <ul>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                            </ul>
-                                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                                                                                                                                          </div>
-                                                                                                                                                                        </div> -->
-        <!-- End Pricing Item -->
-
-        <!-- <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-                                                                                                                                                                          <div class="pricing-item">
-                                                                                                                                                                            <h3>Developer Plan</h3>
-                                                                                                                                                                            <h4><sup>$</sup>49<span> / month</span></h4>
-                                                                                                                                                                            <ul>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Quam adipiscing vitae proin</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Nec feugiat nisl pretium</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Nulla at volutpat diam uteera</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Pharetra massa massa ultricies</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                              <li>
-                                                                                                                                                                                <i class="bi bi-check"></i>
-                                                                                                                                                                                <span>Massa ultricies mi quis hendrerit</span>
-                                                                                                                                                                              </li>
-                                                                                                                                                                            </ul>
-                                                                                                                                                                            <a href="#" class="buy-btn">Buy Now</a>
-                                                                                                                                                                          </div>
-                                                                                                                                                                        </div> -->
-        <!-- End Pricing Item -->
-        <!-- </div>
-                                                                                                                                                                    </div>
-                                                                                                                                                                  </section> -->
-        <!-- /Pricing Section -->
 
         <!-- Testimonials Section -->
         {{-- <section id="testimonials" class="testimonials section"> --}}
@@ -609,10 +544,12 @@
         <section id="contact" class="contact section">
             <!-- Section Title -->
             <div class="container section-title" data-aos="fade-up">
-                <h2>Kontak Kami</h2>
-                <p>
-                    Punya pertanyaan atau siap untuk memesan? Jangan ragu untuk
-                    menghubungi kami. Kami siap membantu Anda.
+                <h2>{{ settings('contact_title', 'Kontak Kami') }}</h2>
+                <p>{{ settings(
+                    'contact_subtitle',
+                    'Punya pertanyaan atau siap untuk memesan? Jangan ragu untuk
+                                                                                                                                                                                                                                                                                    menghubungi kami. Kami siap membantu Anda.',
+                ) }}
                 </p>
             </div>
             <!-- End Section Title -->
@@ -624,9 +561,9 @@
                             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                                 <i class="bi bi-geo-alt flex-shrink-0"></i>
                                 <div>
-                                    <h3>Lokasi Kami</h3>
+                                    <h3>{{ settings('contact_address_label', 'Lokasi Kami') }}</h3>
                                     <p>
-                                        Kemang, Jakarta Selatan
+                                        {{ settings('contact_address', 'Kemang, Jakarta Selatan') }}
                                     </p>
                                 </div>
                             </div>
@@ -635,8 +572,8 @@
                             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                                 <i class="bi bi-telephone flex-shrink-0"></i>
                                 <div>
-                                    <h3>WhatsApp</h3>
-                                    <p>+62 822-8733-94375</p>
+                                    <h3>{{ settings('contact_phone_label', 'WhatsApp') }}</h3>
+                                    <p>{{ settings('contact_phone', '+62 822-8733-94375') }}</p>
                                 </div>
                             </div>
                             <!-- End Info Item -->
@@ -644,99 +581,139 @@
                             <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                                 <i class="bi bi-envelope flex-shrink-0"></i>
                                 <div>
-                                    <h3>Email Kami</h3>
-                                    <p>Mrican.ac@gmail.com</p>
+                                    <h3>{{ settings('contact_email_label', 'Email Kami') }}</h3>
+                                    <p>{{ settings('contact_email', 'Mrican.ac@gmail.com') }}</p>
                                 </div>
                             </div>
                             <!-- End Info Item -->
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32808.60953306585!2d106.79017025065507!3d-6.277541035477562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f18ca27987dd%3A0x6a032aaca638c397!2sKemang%2C%20Cipete%20Sel.%2C%20Kec.%20Cilandak%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1760406032442!5m2!1sid!2sid"
-                                frameborder="0" style="border: 0; width: 100%; height: 270px" allowfullscreen=""
-                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                            <div class="gmaps-responsive-wrapper">
+                                {!! settings(
+                                    'gmaps_link',
+                                    '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32808.60953306585!2d106.79017025065507!3d-6.277541035477562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f18ca27987dd%3A0x6a032aaca638c397!2sKemang%2C%20Cipete%20Sel.%2C%20Kec.%20Cilandak%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1760406032442!5m2!1sid!2sid"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    frameborder="0" style="border: 0; width: 100%; height: 270px" allowfullscreen=""
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+                                ) !!}
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-lg-7">
+                        <div class="info-wrap">
 
-                        @if (session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert"
-                                data-aos="fade-up" data-aos-delay="200"
-                                style="padding: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 20px;">
-                                {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
-
-                        @if (session('error'))
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert" data-aos="fade-up"
-                                data-aos-delay="200"
-                                style="padding: 15px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px;">
-                                {{ session('error') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                    aria-label="Close"></button>
-                            </div>
-                        @endif
-
-
-                        <form action="{{ route('contact.submit') }}" method="post" data-aos="fade-up"
-                            data-aos-delay="200">
-                            @csrf
-                            <div class="row gy-4">
-                                <div class="col-md-6">
-                                    <label for="name-field" class="pb-2">Nama Anda</label>
-                                    <input type="text" name="name" id="name-field" class="form-control"
-                                        value="{{ old('name') }}" required="" />
-                                    @error('name')
-                                        <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
-                                    @enderror
+                            @if (session('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert"
+                                    data-aos="fade-up" data-aos-delay="200"
+                                    style="padding: 15px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 4px; margin-bottom: 20px;">
+                                    {{ session('success') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
                                 </div>
+                            @endif
 
-                                <div class="col-md-6">
-                                    <label for="email-field" class="pb-2">Email Anda</label>
-                                    <input type="email" class="form-control" name="email" id="email-field"
-                                        value="{{ old('email') }}" required="" />
-                                    @error('email')
-                                        <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
-                                    @enderror
+                            @if (session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                    data-aos="fade-up" data-aos-delay="200"
+                                    style="padding: 15px; background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; border-radius: 4px; margin-bottom: 20px;">
+                                    {{ session('error') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
                                 </div>
+                            @endif
 
-                                <div class="col-md-12">
-                                    <label for="subject-field" class="pb-2">Subjek Pesan</label>
-                                    <input type="text" class="form-control" name="subject" id="subject-field"
-                                        value="{{ old('subject') }}" required="" />
-                                    @error('subject')
-                                        <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
-                                    @enderror
-                                </div>
 
-                                <div class="col-md-12">
-                                    <label for="message-field" class="pb-2">Pesan Anda</label>
-                                    <textarea class="form-control" name="message" rows="10" id="message-field" required="">{{ old('message') }}</textarea>
-                                    @error('message')
-                                        <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-12 text-center">
-                                    <div class="loading" style="display: none;">Loading</div>
-                                    <div class="error-message" style="display: none;"></div>
-                                    <div class="sent-message" style="display: none;">
-                                        Pesan Anda telah terkirim. Terima kasih!
+                            <form action="{{ route('contact.submit') }}" method="post" data-aos="fade-up"
+                                data-aos-delay="200">
+                                @csrf
+                                <div class="row gy-4">
+                                    <div class="col-md-6">
+                                        <label for="name-field" class="pb-2">Nama Anda</label>
+                                        <input type="text" name="name" id="name-field" class="form-control"
+                                            value="{{ old('name') }}" required="" />
+                                        @error('name')
+                                            <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
 
-                                    <button type="submit"
-                                        style="background-color: #174272; color: white; border: none; padding: 12px 30px; border-radius: 50px; /* Nilai besar untuk membuat bulat */ font-size: 16px; cursor: pointer; text-decoration: none; /* Jika itu sebenarnya link */ display: inline-block; /* Untuk padding dan radius */">
-                                        Kirim Pesan
-                                    </button>
+                                    <div class="col-md-6">
+                                        <label for="email-field" class="pb-2">Email Anda</label>
+                                        <input type="email" class="form-control" name="email" id="email-field"
+                                            value="{{ old('email') }}" required="" />
+                                        @error('email')
+                                            <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label for="subject-field" class="pb-2">Subjek Pesan</label>
+                                        <input type="text" class="form-control" name="subject" id="subject-field"
+                                            value="{{ old('subject') }}" required="" />
+                                        @error('subject')
+                                            <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label for="message-field" class="pb-2">Pesan Anda</label>
+                                        <textarea class="form-control" name="message" rows="10" id="message-field" required="">{{ old('message') }}</textarea>
+                                        @error('message')
+                                            <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="col-md-12 text-center">
+                                        <div class="loading" style="display: none;">Loading</div>
+                                        <div class="error-message" style="display: none;"></div>
+                                        <div class="sent-message" style="display: none;">
+                                            Pesan Anda telah terkirim. Terima kasih!
+                                        </div>
+
+                                        <button type="submit"
+                                            style="background-color: #174272; color: white; border: none; padding: 12px 30px; border-radius: 50px; /* Nilai besar untuk membuat bulat */ font-size: 16px; cursor: pointer; text-decoration: none; /* Jika itu sebenarnya link */ display: inline-block; /* Untuk padding dan radius */">
+                                            Kirim Pesan
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+
+                        </div>
                     </div>
                     <!-- End Contact Form -->
                 </div>
             </div>
         </section>
+
         <!-- /Contact Section -->
     </main>
+@endsection
+
+@section('footer-newsletter')
+    <section class="light-background">
+        <div class="footer-newsletter">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                    <div class="col-lg-8">
+                        <div class="consultation-box">
+                            <i class="bi bi-headset mb-3" style="font-size: 48px; color: var(--accent-color);"></i>
+                            <h4>{{ settings('consultation_title', 'Bingung Pilih Layanan yang Tepat?') }}</h4>
+                            <p>
+                                {{ settings('consultation_text', 'Jangan ragu untuk berkonsultasi dengan tim medis kami. Kami siap membantu Anda menentukan layanan kesehatan terbaik sesuai kondisi Anda.') }}
+                            </p>
+
+                            {{-- Tombol WA Konsultasi --}}
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', settings('contact_phone', '6282287339437')) }}?text=Halo%20Admin,%20saya%20ingin%20konsultasi%20layanan%20kesehatan"
+                                target="_blank" class="btn-consultation">
+                                <i class="bi bi-whatsapp me-2"></i>
+                                {{ settings('consultation_btn_text', 'Konsultasi Gratis Sekarang') }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

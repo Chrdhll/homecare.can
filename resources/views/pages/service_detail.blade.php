@@ -6,7 +6,6 @@
 
     <section class="section_gap mt5">
         <main class="main">
-
             <div class="page-title" data-aos="fade">
                 <div class="container">
                     <nav class="breadcrumbs">
@@ -95,26 +94,75 @@
                             <div class="service-booking-card" data-aos="fade-up" data-aos-delay="200">
 
                                 {{-- Tombol CTA ditaruh di paling atas --}}
-                                <a href="#" class="btn btn-primary w-100 btn-lg mb-3">Pesan Sekarang</a>
+                                <a href="{{ route('orders.create', $service) }}"
+                                    class="btn btn-primary w-100 btn-lg mb-3">Pesan Sekarang</a>
 
                                 <div class="service-info-box">
                                     <h3 class="h5 mb-3">Ringkasan Layanan</h3>
                                     <ul class="list-unstyled service-info-list">
-                                        <li>
-                                            <strong>Harga Mulai</strong>
-                                            <span>Rp {{ number_format($service->price, 0, ',', '.') }}</span>
+                                        <li class="align-items-start flex-column">
+                                            <div class="d-flex justify-content-between w-100 mb-2 align-items-center">
+                                                <strong>Harga Mulai</strong>
+                                                <div class="text-end">
+                                                    @if (isset($activePromo) && $activePromo)
+                                                        {{-- 1. TAMPILAN JIKA ADA PROMO --}}
+
+                                                        {{-- Badge Hemat --}}
+                                                        <div class="mb-1">
+                                                            <span class="badge bg-danger"
+                                                                style="font-size: 0.75rem; color: #fff;">
+                                                                @if ($activePromo->discount_type == 'percentage')
+                                                                    Hemat {{ intval($activePromo->discount_value) }}%
+                                                                @else
+                                                                    Hemat Rp
+                                                                    {{ number_format($activePromo->discount_value / 1000, 0) }}K
+                                                                @endif
+                                                            </span>
+                                                        </div>
+
+                                                        {{-- Harga Coret (Abu-abu) --}}
+                                                        <small class="text-decoration-line-through text-muted d-block"
+                                                            style="font-size: 13px;">
+                                                            Rp {{ number_format($service->price, 0, ',', '.') }}
+                                                        </small>
+
+                                                        {{-- Harga Akhir (Hijau & Besar) --}}
+                                                        <span class="fw-bold text-success fs-5">
+                                                            Rp {{ number_format($discountedPrice, 0, ',', '.') }}
+                                                        </span>
+                                                    @else
+                                                        {{-- 2. TAMPILAN NORMAL (GAK ADA PROMO) --}}
+                                                        <span class="fw-bold text-primary fs-5">
+                                                            Rp {{ number_format($service->price, 0, ',', '.') }}
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
                                         </li>
-                                        @if ($service->kategori ?? false)
-                                            <li>
-                                                <strong>Kategori</strong>
-                                                <span>{{ $service->kategori }}</span>
-                                            </li>
-                                        @endif
-                                        @if ($service->durasi_menit ?? false)
-                                            <li>
-                                                <strong>Estimasi Durasi</strong>
-                                                <span>{{ $service->durasi_menit }} menit</span>
-                                            </li>
+                                        @if (isset($activePromo) && $activePromo)
+                                            <div class="promo-info-box w-100">
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <i class="bi bi-ticket-perforated-fill text-danger me-2 fs-5"></i>
+                                                    <h6 class="m-0 fw-bold text-dark">{{ $activePromo->name }}</h6>
+                                                </div>
+
+                                                @if ($activePromo->description)
+                                                    <p class="promo-desc mb-2">
+                                                        {{ $activePromo->description }}
+                                                    </p>
+                                                @endif
+
+                                                <div class="promo-meta d-flex align-items-center justify-content-between">
+                                                    <small class="text-muted">
+                                                        <i class="bi bi-calendar-check me-1"></i>
+                                                        Berlaku s/d
+                                                        {{ date('d M Y', strtotime($activePromo->end_date)) }}
+                                                    </small>
+                                                    <small class="text-danger fw-bold" style="font-size: 11px;">
+                                                        Terbatas!
+                                                    </small>
+                                                </div>
+                                            </div>
                                         @endif
                                     </ul>
                                 </div>

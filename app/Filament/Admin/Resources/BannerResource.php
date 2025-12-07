@@ -18,6 +18,8 @@ class BannerResource extends Resource
     protected static ?string $navigationLabel = 'Banner Utama';
     protected static ?int $navigationSort = 1;
 
+    protected static ?string $modelLabel = 'Banner Utama';
+    protected static ?string $pluralModelLabel = 'Banner Utama';
 
     public static function form(Form $form): Form
     {

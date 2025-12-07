@@ -35,6 +35,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
+    @stack('styles')
 </head>
 
 <body class="index-page">
@@ -53,19 +54,23 @@
                         <a href="#services"><span>Layanan</span>
                             <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
-                            <li><a href="#">Booster Complex</a></li>
-                            <li><a href="#">Booster Vitamin</a></li>
-                            <li><a href="#">Combo Booster</a></li>
-                            <li><a href="#">Immune Booster Plus</a></li>
-                            <li><a href="#">Immune Booster Premium</a></li>
-                            <li><a href="#">Immune Booster Platinum</a></li>
+                            @foreach ($navServices as $service)
+                                <li><a href="{{ route('services.show', $service) }}">{{ $service->name }}</a></li>
+                            @endforeach
+                            {{-- <li><a href="#services">Lihat Semua...</a></li> --}}
                         </ul>
                     </li>
-                    <li><a href="#portfolio">Promosi</a></li>
+                    <li><a href="#call-to-action">Galeri</a></li>
                     <li><a href="#contact">Kontak</a></li>
 
                     <li class="d-lg-none nav-button-container">
                         @auth
+                            <div class="mb-2">
+                                <a href="{{ route('my-orders.index') }}" class="nav-login-button"
+                                    style="background: #fff !important; color: #333 !important; border: 1px solid #ddd !important;">
+                                    <i class="bi bi-clock-history me-2"></i> Riwayat Pesanan
+                                </a>
+                            </div>
                             {{-- Tombol Logout (versi mobile) --}}
                             <a href="#" onclick="event.preventDefault(); confirmLogout();" class="nav-logout-button">
                                 <span>Keluar</span>
@@ -100,15 +105,25 @@
                         {{-- Tambahkan link ke profil nanti di sini --}}
                         {{-- <li><a class="dropdown-item" href="#">Profil Saya</a></li> --}}
                         {{-- <li><hr class="dropdown-divider"></li> --}}
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-2" href="{{ route('my-orders.index') }}">
+                                <i class="bi bi-clock-history"></i> Riwayat Pesanan
+                            </a>
+                        </li>
 
-                        {{-- Tombol Logout --}}
-                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
-                            @csrf
-                            {{-- Ubah type jadi button, tambahkan onclick --}}
-                            <button type="button" class="dropdown-item" onclick="confirmLogout()">
-                                <i class="bi bi-box-arrow-right me-2"></i>Keluar
-                            </button>
-                        </form>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            {{-- Tombol Logout --}}
+                            <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                                @csrf
+                                {{-- Ubah type jadi button, tambahkan onclick --}}
+                                <button type="button" class="dropdown-item" onclick="confirmLogout()">
+                                    <i class="bi bi-box-arrow-right me-2"></i>Keluar
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -138,30 +153,7 @@
     @yield('content')
 
     <footer id="footer" class="footer">
-        {{-- <div class="footer-newsletter">
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-6">
-                        <h4>Dapatkan Info & Promo Terbaru</h4>
-                        <p>
-                            Berlangganan untuk mendapatkan informasi seputar kesehatan dan
-                            penawaran khusus langsung ke email Anda.
-                        </p>
-                        <form action="forms/newsletter.php" method="post" class="php-email-form">
-                            <div class="newsletter-form">
-                                <input type="email" name="email" /><input type="submit" value="Subscribe" />
-                            </div>
-                            <div class="loading">Loading</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">
-                                Permintaan langganan Anda telah terkirim. Terima kasih!
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
+        @yield('footer-newsletter')
         <div class="container footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
@@ -169,12 +161,14 @@
                         <span class="sitename">Homecare.can</span>
                     </a>
                     <div class="footer-contact pt-3">
-                        <p>Kemang, </p>
-                        <p>Jakarta Selatan</p>
+                        {!! nl2br(e(settings('contact_address', "Kemang,\nJakarta Selatan"))) !!}
                         <p class="mt-3">
-                            <strong>WhatsApp:</strong> <span>+62 822-8733-9437</span>
+                            <strong>{{ settings('contact_phone_label', 'WhatsApp') }}:</strong>
+                            <span>{{ settings('contact_phone', '+62 822-8733-9437') }}</span>
                         </p>
-                        <p><strong>Email:</strong> <span>Mrican.ac@gmail.com</span></p>
+                        <p><strong>{{ settings('contact_email_label', 'Email') }}:</strong>
+                            <span>{{ settings('contact_email', 'Mrican.ac@gmail.com') }}</span>
+                        </p>
                     </div>
                 </div>
 
@@ -194,7 +188,7 @@
                         </li>
                         <li>
                             <i class="bi bi-chevron-right"></i>
-                            <a href="#portfolio">Promosi</a>
+                            <a href="#call-to-action">Galeri</a>
                         </li>
                         <li>
                             <i class="bi bi-chevron-right"></i>
@@ -206,44 +200,29 @@
                 <div class="col-lg-2 col-md-3 footer-links">
                     <h4>Layanan Kami</h4>
                     <ul>
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">Booster Complex</a>
-                        </li>
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">Booster Vitamin</a>
-                        </li>
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">Combo Booster</a>
-                        </li>
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">Immune Booster Plus</a>
-                        </li>
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">Immune Booster Premium</a>
-                        </li>
-                        <li>
-                            <i class="bi bi-chevron-right"></i>
-                            <a href="#">Immune Booster Platinum</a>
-                        </li>
+                        @foreach ($navServices as $service)
+                            <li>
+                                <i class="bi bi-chevron-right"></i>
+                                <a href="{{ route('services.show', $service) }}">{{ $service->name }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
                 <div class="col-lg-4 col-md-12">
                     <h4>Ikuti Kami</h4>
                     <p>
-                        Ikuti kami di media sosial untuk mendapatkan update terbaru, tips
-                        kesehatan, dan melihat testimoni dari pelanggan kami.
+                        {{ settings('footer_social_text', 'Ikuti kami di media sosial untuk mendapatkan update terbaru, tips kesehatan, dan melihat testimoni dari pelanggan kami.') }}
                     </p>
-                    <div class="social-links d-flex">
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
+                    <div class="social-links d-flex mt-2">
+                        <a href="{{ settings('footer_link_twitter', '#') }}" target="_blank"><i
+                                class="bi bi-twitter-x"></i></a>
+                        <a href="{{ settings('footer_link_facebook', '#') }}" target="_blank"><i
+                                class="bi bi-facebook"></i></a>
+                        <a href="{{ settings('footer_link_instagram', '#') }}" target="_blank"><i
+                                class="bi bi-instagram"></i></a>
+                        <a href="{{ settings('footer_link_linkedin', '#') }}" target="_blank"><i
+                                class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
             </div>
@@ -255,11 +234,11 @@
                 <strong class="px-1 sitename">Homecare.can 2025</strong>
                 <span>All Rights Reserved</span>
             </p>
-            <!-- <div class="credits">
-          Designed by
-          <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by
-          <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-        </div> -->
+            {{-- <div class="credits">
+                Designed by
+                <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by
+                <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+            </div> --}}
         </div>
     </footer>
 
@@ -377,6 +356,7 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    @stack('scripts')
 </body>
 
 </html>

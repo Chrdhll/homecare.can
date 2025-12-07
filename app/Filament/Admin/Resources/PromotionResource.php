@@ -18,6 +18,8 @@ class PromotionResource extends Resource
     protected static ?string $navigationLabel = 'Promosi';
     protected static ?int $navigationSort = 3; // Urutan ke-3
 
+    protected static ?string $modelLabel = 'Promosi';
+    protected static ?string $pluralModelLabel = 'Promosi';
 
     public static function form(Form $form): Form
     {

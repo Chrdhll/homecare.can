@@ -18,6 +18,9 @@ class ServiceAreaResource extends Resource
     protected static ?string $navigationLabel = 'Area Layanan';
     protected static ?int $navigationSort = 2;
 
+    protected static ?string $modelLabel = 'Area Layanan';
+    protected static ?string $pluralModelLabel = 'Area Layanan';
+
 
     public static function form(Form $form): Form
     {

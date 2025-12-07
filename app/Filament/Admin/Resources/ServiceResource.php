@@ -25,6 +25,9 @@ class ServiceResource extends Resource
     protected static ?string $navigationLabel = 'Layanan';
     protected static ?int $navigationSort = 1;
 
+    protected static ?string $modelLabel = 'Layanan';
+    protected static ?string $pluralModelLabel = 'Layanan';
+
     public static function form(Form $form): Form
     {
         return $form

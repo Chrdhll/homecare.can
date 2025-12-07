@@ -1,6 +1,11 @@
 /* Fonts */
 html {
     zoom: 90%;
+    height: 111.11vh;
+    width: 111.11vw;
+
+    /* Mencegah scrollbar horizontal aneh */
+    overflow-x: hidden;
 }
 :root {
     --default-font: "Poppins", "Open Sans", system-ui, -apple-system, "Segoe UI",
@@ -38,7 +43,11 @@ html {
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
 
 .light-background {
-    --background-color: #f5f6f8;
+    --background-color: color-mix(
+        in srgb,
+        var(--default-color),
+        transparent 96%
+    );
     --surface-color: #f5f6f8;
 }
 
@@ -62,6 +71,7 @@ body {
     color: var(--default-color);
     background-color: var(--background-color);
     font-family: var(--default-font);
+    min-height: 100%;
 }
 
 a {
@@ -173,7 +183,7 @@ h6 {
 }
 
 .header .logo img {
-    max-height: 36px;
+    max-height: 40px;
     margin-right: 8px;
 }
 
@@ -537,7 +547,6 @@ h6 {
 }
 
 .footer .footer-newsletter {
-    background-color: color-mix(in srgb, var(--heading-color), transparent 95%);
     padding: 50px 0;
 }
 
@@ -999,8 +1008,8 @@ section,
 
 .hero {
     width: 100%;
-    height: 50vh;
-    min-height: 50vh;
+    height: 55.55vh;
+    min-height: 55.55vh;
     position: relative;
     padding: 120px 0 60px 0;
     display: flex;
@@ -1398,8 +1407,8 @@ section,
 }
 
 .call-to-action {
-    min-height: 50vh; /* 1. Atur tinggi minimal menjadi 50% dari tinggi layar */
-    height: 50vh;
+    min-height: 55.55vh; /* 1. Atur tinggi minimal menjadi 50% dari tinggi layar */
+    height: 55.55vh;
     display: flex; /* 2. Aktifkan Flexbox */
     align-items: center; /* 3. Posisikan konten di tengah secara vertikal */
     position: relative;
@@ -2195,7 +2204,8 @@ section,
     align-items: center;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    border-bottom: 1px dashed #eee;
+    border-bottom: 1px dashed #e0e0e0;
+    opacity: 1;
 }
 
 .service-booking-card .service-info-list li:last-child {
@@ -3663,153 +3673,6 @@ section,
     }
 }
 
-/* ------ Bagian Why Us (FAQ) (V3) ------ */
-.why-us .faq-container {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    transition: all 0.4s ease;
-}
-
-.why-us .faq-item {
-    padding: 20px 25px;
-    border-bottom: 1px solid #f0f0f0;
-    position: relative;
-    overflow: hidden;
-}
-
-.why-us .faq-item:last-child {
-    border-bottom: none;
-}
-
-.why-us .faq-item:hover {
-    background-color: #fafafa;
-}
-
-.why-us .faq-item h3 {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--heading-color);
-    margin-bottom: 0;
-    cursor: pointer;
-    user-select: none;
-    transition: color 0.3s ease;
-    padding-right: 30px;
-}
-
-.why-us .faq-content {
-    max-height: 0;
-    overflow: hidden;
-    padding-top: 0; /* Lebih spesifik */
-    padding-bottom: 0; /* Lebih spesifik */
-    font-size: 15px;
-    line-height: 1.6;
-    opacity: 0;
-    transform: translateY(-8px);
-    transition: max-height 0.5s cubic-bezier(0.19, 1, 0.22, 1),
-        opacity 0.4s ease, transform 0.4s ease;
-    padding-left: 25px;
-    padding-right: 25px;
-}
-
-.why-us .faq-content-inner {
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-
-.why-us .faq-list {
-    padding-left: 25px; /* Atur padding biar nggak kepotong */
-    margin-top: 15px;
-    margin-bottom: 0;
-}
-.why-us .faq-list li {
-    position: relative;
-    padding-left: 10px;
-    margin-bottom: 8px;
-}
-
-.why-us .faq-list li::before {
-    content: "\F26A";
-    font-family: "bootstrap-icons";
-    position: absolute;
-    left: -25px;
-    top: 1px;
-    color: var(--accent-color);
-    font-size: 16px;
-}
-
-/* Style untuk ikon panah toggle */
-.why-us .faq-toggle {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 16px;
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.why-us .faq-icon {
-    font-size: 20px;
-    color: var(--accent-color);
-    margin-right: 10px;
-}
-
-/* KETIKA AKTIF (class 'faq-active' ditambah oleh main.js) */
-.why-us .faq-item.faq-active {
-    background-color: #fdfdfd;
-    box-shadow: inset 0 0 0 1px
-        var(--accent-color-light, rgba(0, 150, 255, 0.15));
-}
-
-.why-us .faq-item.faq-active h3 {
-    color: var(--accent-color);
-}
-
-.why-us .faq-item.faq-active .faq-content {
-    max-height: 800px; /* Naikkan biar cukup */
-    opacity: 1;
-    transform: translateY(0);
-}
-.why-us .faq-item.faq-active .faq-toggle {
-    transform: rotate(90deg); /* Putar panahnya */
-}
-
-/* Gambar 'Why Us' (Sudah termasuk efek hover) */
-.why-us .why-us-image-container {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    min-height: 400px;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.why-us .why-us-image-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
-}
-
-.why-us .why-us-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.8s ease;
-}
-
-.why-us .why-us-image-container:hover img {
-    transform: scale(1.05);
-}
-
-.why-us .why-us-content {
-    padding-right: 1rem;
-}
-.why-us .why-us-content p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #555;
-    margin-bottom: 25px;
-    transition: color 0.3s ease;
-}
-
 /* 1. Reset <li> container-nya (biarin) */
 .mobile-nav-active .navmenu ul .nav-button-container {
     padding: 0;
@@ -4339,4 +4202,229 @@ body.mobile-nav-active .navmenu .nav-button-container > a.nav-login-button {
         font-size: 13px;
         white-space: nowrap;
     }
+}
+
+/* ======================================================
+   PERBAIKAN RESPONSIVE: GOOGLE MAPS IFRAME
+   ====================================================== */
+
+/* 1. Bikin 'div' pembungkusnya jadi "bingkai" */
+.gmaps-responsive-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* Rasio aspek 4:3 (ketinggian 75% dari lebar) */
+    /* Kalau mau rasio 16:9, ganti jadi 56.25% */
+    height: 0;
+    overflow: hidden;
+    margin-top: 15px; /* Kasih jarak dari info kontak di atasnya */
+}
+
+/* 2. "Paksa" iframe di dalamnya buat ngisi bingkai */
+.gmaps-responsive-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important; /* <-- 'Maksa' lebar jadi 100% */
+    height: 100% !important; /* <-- 'Maksa' tinggi jadi 100% */
+    border: 0;
+}
+
+[data-aos] {
+    /* Pastikan elemen beneran sembunyi sebelum animasi jalan */
+    pointer-events: none;
+}
+[data-aos].aos-animate {
+    /* Aktifkan lagi pas animasi jalan */
+    pointer-events: auto;
+}
+
+[data-aos] {
+    /* Gunakan GPU biar smooth */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+
+    /* Paksa transisi lebih halus */
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+.footer .consultation-box h4 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-bottom: 15px;
+}
+
+.footer .consultation-box p {
+    color: color-mix(in srgb, var(--default-color), transparent 20%);
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+/* Tombol Konsultasi yang Stand Out */
+.footer .btn-consultation {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-color);
+    color: var(--contrast-color);
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(14, 65, 112, 0.2); /* Sesuaikan warna bayangan */
+    text-decoration: none;
+}
+
+.footer .btn-consultation:hover {
+    transform: translateY(-3px); /* Efek naik dikit pas hover */
+    box-shadow: 0 8px 20px rgba(14, 65, 112, 0.3);
+    color: var(--contrast-color);
+    background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+/*--------------------------------------------------------------
+# Why Us Section (FAQ) – versi Arsha disesuaikan
+--------------------------------------------------------------*/
+
+.why-us {
+    padding: 30px 0;
+}
+
+.why-us .content h3 {
+    font-weight: 400;
+    font-size: 34px;
+}
+
+.why-us .content p {
+    color: color-mix(in srgb, var(--default-color), transparent 30%);
+}
+
+/* Card FAQ */
+.why-us .faq-container .faq-item {
+    background-color: var(--surface-color);
+    position: relative;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.why-us .faq-container .faq-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Judul FAQ */
+.why-us .faq-container .faq-item h3 {
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 24px;
+    margin: 0 30px 0 0;
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.why-us .faq-container .faq-item h3 span {
+    /* nomor / teks utama */
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.why-us .faq-container .faq-item h3:hover {
+    color: var(--accent-color);
+}
+
+/* ===== ANIMASI CONTENT (GRID TRICK) ===== */
+.why-us .faq-container .faq-item .faq-content {
+    display: grid;
+    grid-template-rows: 0fr; /* tertutup */
+    transition: grid-template-rows 0.35s ease, opacity 0.3s ease,
+        padding-top 0.35s ease;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* supaya isi di dalam nggak “gepeng” pas 0fr */
+.why-us .faq-container .faq-item .faq-content > div {
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* paragraf / list di dalam */
+.why-us .faq-container .faq-item .faq-content p {
+    margin-bottom: 0;
+}
+
+/* STATE AKTIF (KEBuka) */
+.why-us .faq-container .faq-item.faq-active .faq-content {
+    grid-template-rows: 1fr; /* kebuka mulus */
+    opacity: 1;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+/* Icon toggle (chevron) */
+.why-us .faq-container .faq-item .faq-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 16px;
+    line-height: 0;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.why-us .faq-container .faq-item .faq-toggle:hover {
+    color: var(--accent-color);
+}
+
+/* warna judul & rotasi icon saat aktif */
+.why-us .faq-container .faq-item.faq-active h3 {
+    color: var(--accent-color);
+}
+
+.why-us .faq-container .faq-item.faq-active .faq-toggle {
+    transform: rotate(90deg);
+    color: var(--accent-color);
+}
+
+/* Gambar kanan tetap sama */
+.why-us .why-us-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.why-us .why-us-img img {
+    max-height: 70%;
+}
+
+/* ===== CUSTOM BULLET FAQ LIST (BALIKIN YANG HILANG) ===== */
+
+.why-us .faq-list {
+    list-style: none; /* Hilangin bullet default */
+    padding-left: 25px; /* Jarak dari kiri biar nggak kepotong */
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.why-us .faq-list li {
+    position: relative;
+    padding-left: 14px; /* Jarak teks dari icon */
+    margin-bottom: 8px;
+}
+
+/* Icon bullet pakai Bootstrap Icons */
+.why-us .faq-list li::before {
+    content: "\F26A"; /* contoh: check-circle (bi-check-circle / bi-check2) */
+    font-family: "bootstrap-icons";
+    position: absolute;
+    left: -18px; /* Geser ke kiri dikit */
+    top: 2px;
+    color: var(--accent-color);
+    font-size: 16px;
 }

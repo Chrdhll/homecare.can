@@ -18,6 +18,8 @@ class ReviewResource extends Resource
     protected static ?string $navigationLabel = 'Ulasan';
     protected static ?int $navigationSort = 2;
 
+    protected static ?string $modelLabel = 'Ulasan';
+    protected static ?string $pluralModelLabel = 'Ulasan';
 
     /**
      * Admin tidak bisa membuat review
