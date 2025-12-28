@@ -101,27 +101,6 @@
         body.modal-open {
             padding-right: 0 !important;
         }
-
-        /* .modal,
-                            .modal-backdrop {
-                                zoom: 1.112 !important;
-                            } */
-
-        /* .modal-dialog {
-                                zoom: 0.9 !important;
-                                display: flex;
-                                align-items: center;
-                                min-height: calc(100% - 3.5rem);
-                            } */
-
-        /* Memaksa Modal tampil paling depan (Z-Index Perang) */
-        .modal-backdrop {
-            z-index: 2000 !important;
-        }
-
-        .modal {
-            z-index: 2050 !important;
-        }
     </style>
 
     <section class="section_gap mt5">
