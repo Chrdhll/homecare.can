@@ -4,7 +4,7 @@
     <main class="main">
         <!-- Hero Section -->
         <section id="hero" class="hero section light-background">
-            <div class="container">
+            <div class="container-boxed">
                 <div class="row gy-4 align-items-center">
 
                     <!-- ================= LEFT SIDE ================= -->
@@ -15,16 +15,15 @@
                             {{ settings(
                                 'hero_subtitle',
                                 'Nikmati layanan infus immune booster terbaik bersama
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Homecare.can. Praktis, cepat, aman, dan nyaman langsung di rumah atau dikantor Anda',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Homecare.can. Praktis, cepat, aman, dan nyaman langsung di rumah atau dikantor Anda',
                             ) }}
                         </p>
-
-                        <!-- CTA BUTTONS -->
-                        <div class="hero-cta mt-3 d-flex gap-3 flex-wrap">
-                            <a href="#services" class="btn-hero-primary">Pesan Sekarang</a>
-                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', settings('contact_phone', '6282287339437')) }}"
-                                class="btn-hero-outline btn-cta">
-                                <i class="bi bi-whatsapp"></i> Hubungi kami
+                        
+                        <div class="hero-cta mt-2 d-flex justify-content-center justify-content-lg-start">
+                            <a href="#services"
+                                class="btn-hero-primary btn-hero-animated d-inline-flex align-items-center gap-2">
+                                <span>Pesan Sekarang</span>
+                                <i class="bi bi-arrow-right"></i>
                             </a>
                         </div>
                     </div>
@@ -33,8 +32,8 @@
                     <div class="col-lg-6 d-flex flex-column align-items-center" data-aos="zoom-out" data-aos-delay="200">
 
                         <!-- SEARCH BAR -->
-                        <form class="search-bar d-flex mb-4 mt-3 mt-lg-0">
-                            <input type="search" placeholder="Search" aria-label="Search" />
+                        <form class="search-bar d-flex mb-4 mt-3 mt-lg-0" method="GET" action="{{route('search')}}">
+                            <input type="search" placeholder="Cari layanan kesehatan" name="q" value="{{request('q')}}" required />
                             <button type="submit">
                                 <i class="bi bi-search"></i>
                             </button>
@@ -77,8 +76,8 @@
 
         <!-- Call To Action Section -->
         <section id="call-to-action" class="call-to-action section dark-background">
-            <img src="assets/img/infus_room.webp" alt="" loading="lazy" />
-            <div class="container">
+            <img src="assets/img/infus_room.webp" alt="" loading="lazy" style="opacity: 0.3" />
+            <div class="container-boxed cta-container">
                 <div class="row gy-5 align-items-center">
                     <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="200">
                         @if ($banners->isNotEmpty())
@@ -138,11 +137,11 @@
                             {{ settings(
                                 'cta_text',
                                 'Lihat beberapa dokumentasi dari layanan infus immune booster
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            yang telah kami berikan. Ditangani oleh tenaga medis profesional
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            untuk memastikan kenyamanan dan keamanan Anda.',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        yang telah kami berikan. Ditangani oleh tenaga medis profesional
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        untuk memastikan kenyamanan dan keamanan Anda.',
                             ) }}
                         </p>
-                        <a class="cta-btn" href="#services">Lihat Semua Layanan</a>
+                        <a class="cta-btn" href="#services">Cek Daftar Harga & Layanan</a>
                     </div>
                 </div>
             </div>
@@ -152,7 +151,7 @@
         {{-- SECTION TENTANG KAMI --}}
         {{-- ================================================== --}}
         <section id="about" class="about section">
-            <div class="container">
+            <div class="container-boxed">
                 <div class="row gy-5 gx-lg-5 align-items-center">
 
                     {{-- Kolom kiri: Teks & Poin Keunggulan --}}
@@ -167,9 +166,9 @@
                                 {{ settings(
                                     'about_text',
                                     'Homecare.can lahir dari visi untuk menjadikan layanan kesehatan berkualitas lebih mudah
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                diakses. Kami membawa layanan infus immune booster premium langsung ke kenyamanan rumah dan
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                kantor
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Anda.',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                diakses. Kami membawa layanan infus immune booster premium langsung ke kenyamanan rumah dan
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                kantor
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Anda.',
                                 ) }}
                             </p>
 
@@ -222,8 +221,8 @@
         {{-- SECTION WHY US / FAQ  --}}
         {{-- ================================================== --}}
         <section id="why-us" class="why-us section light-background">
-            <div class="container">
-                <div class="container section-title" data-aos="fade-up">
+            <div class="container-boxed">
+                <div class="container-boxed section-title" data-aos="fade-up">
                     <p class="sub-title">{{ settings('whyus_subtitle', 'Kenapa Homecare.can?') }}</p>
                     <h2>{{ settings('whyus_title', 'Semua Tentang Immune Booster') }}</h2>
                 </div>
@@ -247,8 +246,8 @@
                                                     settings(
                                                         'faq1_a',
                                                         'Prosedur medis dimana vitamin & mineral diberikan langsung ke aliran darah. Ini
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            memungkinkan penyerapan nutrisi 100% lebih cepat dan efektif dibanding konsumsi
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            oral.',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        memungkinkan penyerapan nutrisi 100% lebih cepat dan efektif dibanding konsumsi
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        oral.',
                                                     ),
                                                 ),
                                             ) !!}</p>
@@ -314,12 +313,12 @@
         <!-- Services Section -->
         <section id="services" class="services section">
 
-            <div class="container section-title" data-aos="fade-up">
+            <div class="container-boxed section-title" data-aos="fade-up">
                 <h2>{{ settings('services_title', 'Layanan Kami') }}</h2>
                 <p>{{ settings('services_subtitle', 'Kami menyediakan berbagai layanan kesehatan profesional langsung di kenyamanan rumah Anda.') }}
                 </p>
             </div>
-            <div class="container">
+            <div class="container-boxed">
                 {{-- Kita tidak pakai slider dulu, pakai grid responsif --}}
                 <div class="row gy-4 align-items-stretch">
 
@@ -389,172 +388,109 @@
         </section>
         <!-- /Services Section -->
 
-        <!-- Testimonials Section -->
-        {{-- <section id="testimonials" class="testimonials section"> --}}
-        <!-- Section Title -->
-        {{-- <div class="container section-title" data-aos="fade-up">
-                    <h2>Testimonials</h2>
-                    <p>
-                        Necessitatibus eius consequatur ex aliquid fuga eum quidem sint
-                        consectetur velit
-                    </p>
-                </div> --}}
-        <!-- End Section Title -->
-
-        {{-- <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <section id="testimonials" class="testimonials section light-background">
+            <div class="container-boxed section-title" data-aos="fade-up">
+                <h2>Apa Kata Mereka?</h2>
+                <p>
+                    Testimoni asli dari pelanggan yang telah merasakan manfaat layanan Homecare.can
+                </p>
+            </div>
+            <div class="container-boxed" data-aos="fade-up" data-aos-delay="100">
+                @if ($testimonials->isEmpty())
+                    <div class="text-center">
+                        <p class="text-muted">Belum ada testimonial yang ditampilkan.</p>
+                    </div>
+                @else
                     <div class="swiper init-swiper">
                         <script type="application/json" class="swiper-config">
-              {
-                "loop": true,
-                "speed": 600,
-                "autoplay": {
-                  "delay": 5000
-                },
-                "slidesPerView": "auto",
-                "pagination": {
-                  "el": ".swiper-pagination",
-                  "type": "bullets",
-                  "clickable": true
-                }
-              } --}}
-            {{-- </script>
+                        {
+                            "loop": true,
+                            "speed": 600,
+                            "autoplay": {
+                                "delay": 5000
+                            },
+                            "slidesPerView": "auto",
+                            "pagination": {
+                                "el": ".swiper-pagination",
+                                "type": "bullets",
+                                "clickable": true
+                            },
+                            "breakpoints": {
+                                "320": {
+                                    "slidesPerView": 1,
+                                    "spaceBetween": 40
+                                },
+                                "1200": {
+                                    "slidesPerView": 1,
+                                    "spaceBetween": 20
+                                }
+                            }
+                        }
+                        </script>
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <img src="assets/img/person/person-m-9.webp" class="testimonial-img"
-                                        alt="" />
-                                    <h3>Saul Goodman</h3>
-                                    <h4>Ceo &amp; Founder</h4>
-                                    <div class="stars">
-                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i>
-                                    </div>
-                                    <p>
-                                        <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Proin iaculis purus consequat sem cure digni ssim donec
-                                            porttitora entum suscipit rhoncus. Accusantium quam,
-                                            ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                            risus at semper.</span>
-                                        <i class="bi bi-quote quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div> --}}
-        <!-- End testimonial item -->
+                            @foreach ($testimonials as $review)
+                                <div class="swiper-slide">
+                                    <div class="testimonial-item">
 
-        {{-- <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <img src="assets/img/person/person-f-5.webp" class="testimonial-img"
-                                        alt="" />
-                                    <h3>Sara Wilsson</h3>
-                                    <h4>Designer</h4>
-                                    <div class="stars">
-                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i>
-                                    </div>
-                                    <p>
-                                        <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Export tempor illum tamen malis malis eram quae irure
-                                            esse labore quem cillum quid cillum eram malis quorum
-                                            velit fore eram velit sunt aliqua noster fugiat irure amet
-                                            legam anim culpa.</span>
-                                        <i class="bi bi-quote quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div> --}}
-        <!-- End testimonial item -->
+                                        {{-- AREA FOTO USER (KONSISTEN BULAT) --}}
+                                        <div class="testimonial-img-wrapper mx-auto mb-3"
+                                            style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 1px solid var(--background-color); box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
 
-        {{-- <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <img src="assets/img/person/person-f-12.webp" class="testimonial-img"
-                                        alt="" />
-                                    <h3>Jena Karlis</h3>
-                                    <h4>Store Owner</h4>
-                                    <div class="stars">
-                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i>
-                                    </div>
-                                    <p>
-                                        <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Enim nisi quem export duis labore cillum quae magna enim
-                                            sint quorum nulla quem veniam duis minim tempor labore
-                                            quem eram duis noster aute amet eram fore quis sint
-                                            minim.</span>
-                                        <i class="bi bi-quote quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div> --}}
-        <!-- End testimonial item -->
+                                            @if ($review->user?->avatar)
+                                                <img src="{{ Storage::url($review->user?->avatar) }}"
+                                                    alt="{{ $review->user?->name }}"
+                                                    style="width: 100%; height: 100%; object-fit: cover;">
+                                            @else
+                                                <div class="d-flex align-items-center justify-content-center text-white fw-bold h-100 w-100"
+                                                    style="background-color: var(--accent-color); font-size: 28px;">
+                                                    {{ strtoupper(substr($review->user?->name, 0, 2)) }}
+                                                </div>
+                                            @endif
+                                        </div>
 
-        {{-- <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <img src="assets/img/person/person-m-12.webp" class="testimonial-img"
-                                        alt="" />
-                                    <h3>Matt Brandon</h3>
-                                    <h4>Freelancer</h4>
-                                    <div class="stars">
-                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i>
-                                    </div>
-                                    <p>
-                                        <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Fugiat enim eram quae cillum dolore dolor amet nulla
-                                            culpa multos export minim fugiat minim velit minim dolor
-                                            enim duis veniam ipsum anim magna sunt elit fore quem
-                                            dolore labore illum veniam.</span>
-                                        <i class="bi bi-quote quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div> --}}
-        <!-- End testimonial item -->
+                                        <h3>{{ $review->user?->name }}</h3>
+                                        <h4>Pelanggan Terverifikasi</h4>
 
-        {{-- <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <img src="assets/img/person/person-m-13.webp" class="testimonial-img"
-                                        alt="" />
-                                    <h3>John Larson</h3>
-                                    <h4>Entrepreneur</h4>
-                                    <div class="stars">
-                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                            class="bi bi-star-fill"></i>
+                                        <div class="stars">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($i <= $review->rating)
+                                                    <i class="bi bi-star-fill"></i>
+                                                @else
+                                                    <i class="bi bi-star text-muted opacity-25"></i>
+                                                @endif
+                                            @endfor
+                                        </div>
+
+                                        <p>
+                                            <i class="bi bi-quote quote-icon-left"></i>
+                                            <span>{{ $review->comment }}</span>
+                                            <i class="bi bi-quote quote-icon-right"></i>
+                                        </p>
                                     </div>
-                                    <p>
-                                        <i class="bi bi-quote quote-icon-left"></i>
-                                        <span>Quis quorum aliqua sint quem legam fore sunt eram irure
-                                            aliqua veniam tempor noster veniam enim culpa labore duis
-                                            sunt culpa nulla illum cillum fugiat legam esse veniam
-                                            culpa fore nisi cillum quid.</span>
-                                        <i class="bi bi-quote quote-icon-right"></i>
-                                    </p>
                                 </div>
-                            </div> --}}
-        <!-- End testimonial item -->
-        {{-- </div>
+                            @endforeach
+                        </div>
                         <div class="swiper-pagination"></div>
                     </div>
-                </div>
-            </section> --}}
-        <!-- /Testimonials Section -->
+                @endif
+            </div>
+        </section>
 
         <!-- Contact Section -->
         <section id="contact" class="contact section">
             <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
+            <div class="container-boxed section-title" data-aos="fade-up">
                 <h2>{{ settings('contact_title', 'Kontak Kami') }}</h2>
                 <p>{{ settings(
                     'contact_subtitle',
                     'Punya pertanyaan atau siap untuk memesan? Jangan ragu untuk
-                                                                                                                                                                                                                                                                                    menghubungi kami. Kami siap membantu Anda.',
+                                                                                                                                                                                                                                                                                                                                                                                                                                    menghubungi kami. Kami siap membantu Anda.',
                 ) }}
                 </p>
             </div>
             <!-- End Section Title -->
 
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
+            <div class="container-boxed" data-aos="fade-up" data-aos-delay="100">
                 <div class="row gy-4">
                     <div class="col-lg-5">
                         <div class="info-wrap">
@@ -591,8 +527,8 @@
                                 {!! settings(
                                     'gmaps_link',
                                     '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d32808.60953306585!2d106.79017025065507!3d-6.277541035477562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f18ca27987dd%3A0x6a032aaca638c397!2sKemang%2C%20Cipete%20Sel.%2C%20Kec.%20Cilandak%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1760406032442!5m2!1sid!2sid"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    frameborder="0" style="border: 0; width: 100%; height: 270px" allowfullscreen=""
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    frameborder="0" style="border: 0; width: 100%; height: 270px" allowfullscreen=""
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>',
                                 ) !!}
                             </div>
                         </div>
@@ -694,7 +630,7 @@
 @section('footer-newsletter')
     <section class="light-background">
         <div class="footer-newsletter">
-            <div class="container">
+            <div class="container-boxed">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8">
                         <div class="consultation-box">

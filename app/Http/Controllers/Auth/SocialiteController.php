@@ -19,29 +19,44 @@ class SocialiteController extends Controller
     public function handleGoogleCallback()
     {
         try {
+
             $googleUser = Socialite::driver('google')->user();
+            // Email Google itu TRUSTED
+            $user = User::where('email', $googleUser->getEmail())->first();
 
-            // Cari user berdasarkan google_id, atau buat user baru jika tidak ada
-            $user = User::updateOrCreate([
-                'google_id' => $googleUser->id,
-            ], [
-                'name' => $googleUser->name,
-                'email' => $googleUser->email,
-                'password' => bcrypt(Str::random(16)), // Buat password acak
-            ]);
-
-            Auth::login($user);
-            
-            // Di sini kita bisa terapkan logika redirect berdasarkan role
-            if ($user->role === 'admin') {
-                return redirect()->intended('/admin');
+            if (!$user) {
+                // === USER BARU ===
+                $user = User::create([
+                    'name' => $googleUser->getName(),
+                    'email' => $googleUser->getEmail(),
+                    'google_id' => $googleUser->getId(),
+                    'google_token' => $googleUser->token,
+                    'google_refresh_token' => $googleUser->refreshToken,
+                    'password' => null,
+                    'email_verified_at' => now(),
+                    'role' => 'pasien',
+                ]);
+            } else {
+                $user->update([
+                    'google_id' => $googleUser->getId(),
+                    'google_token' => $googleUser->token,
+                    'google_refresh_token' => $googleUser->refreshToken,
+                    'email_verified_at' => $user->email_verified_at ?? now(),
+                ]);
             }
 
-            return redirect()->intended('/'); // Ganti ke dashboard pasien nanti
+            Auth::login($user, true);
 
-        } catch (\Exception $e) {
-            // Kembali ke halaman login jika ada error
-            return redirect('/login')->withErrors(['email' => 'Gagal login dengan Google.']);
+            return redirect()->intended(
+                $user->role === 'admin' ? '/admin' : '/'
+            );
+
+        } catch (\Throwable $e) {
+            report($e);
+            return redirect('/login')->withErrors([
+                'email' => 'Gagal login dengan Google.',
+            ]);
         }
     }
+
 }

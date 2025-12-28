@@ -13,6 +13,7 @@ class Review extends Model
         'order_id',
         'user_id',
         'rating',
+        'service_id',
         'comment',
         'is_featured',
     ];
@@ -22,6 +23,11 @@ class Review extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+    
     public function order()
     {
         return $this->belongsTo(Order::class);

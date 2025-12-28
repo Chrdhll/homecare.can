@@ -7,7 +7,7 @@
     <section class="section_gap mt5">
         <main class="main">
             <div class="page-title" data-aos="fade">
-                <div class="container">
+                <div class="container-boxed">
                     <nav class="breadcrumbs">
                         <ol>
                             <li><a href="{{ route('home') }}">Home</a></li>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <section id="service-details" class="portfolio-details section">
-                <div class="container" data-aos="fade-up" data-aos-delay="100">
+                <div class="container-boxed" data-aos="fade-up" data-aos-delay="100">
                     <div class="row gy-4 gy-lg-5">
 
                         {{-- ============================================= --}}
@@ -180,6 +180,110 @@
 
                     </div>
                     {{-- HAPUS SECTION FULL-WIDTH YANG LAMA --}}
+                </div>
+            </section>
+
+            {{-- ============================================================ --}}
+            {{-- BAGIAN ULASAN & RATING --}}
+            {{-- ============================================================ --}}
+            <section id="reviews" class="section bg-light py-5">
+                <div class="container-boxed" data-aos="fade-up">
+
+                    <div class="section-title text-center mb-4">
+                        <h2>Ulasan Pelanggan</h2>
+                        <p>Apa kata mereka yang sudah menggunakan layanan {{ $service->name }}?</p>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+
+                            {{-- 1. RINGKASAN RATING (SCORE CARD) --}}
+                            <div class="card border-0 shadow-sm rounded-4 mb-4">
+                                <div class="card-body p-4 text-center">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-4 border-end-md">
+                                            <h1 class="fw-bold text-primary display-3 mb-0">{{ $averageRating }}</h1>
+                                            <div class="text-warning mb-2">
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= round($averageRating))
+                                                        <i class="bi bi-star-fill fs-5"></i>
+                                                    @else
+                                                        <i class="bi bi-star text-muted fs-5 opacity-25"></i>
+                                                    @endif
+                                                @endfor
+                                            </div>
+                                            <p class="text-muted small mb-0">Dari
+                                                <strong>{{ $totalReviews }}</strong> ulasan</p>
+                                        </div>
+                                        <div class="col-md-8 text-start ps-md-4 mt-3 mt-md-0">
+                                            <h5 class="fw-bold">Kepuasan Pelanggan</h5>
+                                            <p class="text-muted small">
+                                                Rating ini dikumpulkan murni dari pelanggan yang telah menyelesaikan
+                                                pemesanan layanan melalui platform Homecare.can.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- 2. DAFTAR ULASAN --}}
+                            @if ($reviews->isEmpty())
+                                <div class="text-center py-5">
+                                    <i class="bi bi-chat-square-quote text-muted opacity-25" style="font-size: 3rem;"></i>
+                                    <p class="text-muted mt-3">Belum ada ulasan untuk layanan ini.</p>
+                                </div>
+                            @else
+                                <div class="d-flex flex-column gap-3">
+                                    @foreach ($reviews as $review)
+                                        <div class="card border-0 shadow-sm rounded-4">
+                                            <div class="card-body p-4">
+                                                <div class="d-flex justify-content-between align-items-start">
+
+                                                    {{-- User Info --}}
+                                                    <div class="d-flex align-items-center">
+                                                        {{-- Avatar (Inisial Nama) --}}
+                                                        <div class="rounded-circle bg-primary bg-opacity-10 text-primary d-flex align-items-center justify-content-center fw-bold me-3"
+                                                            style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                                            {{ strtoupper(substr($review->user?->name ?? 'P', 0, 2)) }}
+                                                        </div>
+                                                        <div>
+                                                            <h6 class="fw-bold mb-0">{{ $review->user?->name ?? 'Pengguna Tidak Diketahui'}}</h6>
+                                                            <small
+                                                                class="text-muted">{{ $review->created_at->diffForHumans() }}</small>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- Bintang Review --}}
+                                                    <div class="text-warning bg-light px-2 py-1 rounded-pill border">
+                                                        <small
+                                                            class="fw-bold text-dark me-1">{{ $review->rating }}.0</small>
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            @if ($i <= $review->rating)
+                                                                <i class="bi bi-star-fill small"></i>
+                                                            @else
+                                                                <i class="bi bi-star text-muted small opacity-25"></i>
+                                                            @endif
+                                                        @endfor
+                                                    </div>
+                                                </div>
+
+                                                {{-- Isi Komentar --}}
+                                                <div class="mt-3">
+                                                    @if ($review->comment)
+                                                        <p class="text-muted mb-0">"{{ $review->comment }}"</p>
+                                                    @else
+                                                        <p class="text-muted fst-italic mb-0 small">(Tidak ada komentar
+                                                            tertulis)</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Models\Banner;
 use App\Models\Promotion;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -27,11 +28,39 @@ class PageController extends Controller
                     ->keyBy('service_id');
 
 
-        return view('index', ['services' => $services, 'banners' => $banners, 'activePromos' => $activePromos]);
+        $testimonials = Review::with('user')
+                                  ->where('is_featured', true)
+                                  ->latest()
+                                  ->take(6)
+                                  ->get();
+
+
+
+        return view('index', ['services' => $services, 'banners' => $banners, 'activePromos' => $activePromos, 'testimonials' => $testimonials]);
     }
 
     public function showService(Service $service)
     {
+
+        // $service->load(['reviews.user' => function ($query) {
+        //     $query->select('id', 'name', 'avatar'); 
+        // }]);
+
+        // 2. Ambil review terbaru (misal limit 10 biar gak kepanjangan)
+        
+$reviews = $service->reviews()
+                           ->with('user')
+                           ->latest()
+                           ->get();
+
+
+        // 3. Hitung Statistik
+        $totalReviews = $reviews->count();
+        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
+
+        // Format rata-rata jadi 1 desimal (contoh: 4.5)
+        $averageRating = number_format($averageRating, 1);
+
 
         $today = now()->toDateString();
         $activePromo = \App\Models\Promotion::where('service_id', $service->id)
@@ -56,6 +85,9 @@ class PageController extends Controller
 
         return view('pages.service_detail', [
             'service' => $service,
+            'reviews' => $reviews,
+            'totalReviews' => $totalReviews,
+            'averageRating' => $averageRating,
             'activePromo' => $activePromo,
             'discountedPrice' => $discountedPrice,
             'discountValue' => $discountValue

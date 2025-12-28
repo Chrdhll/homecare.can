@@ -4,7 +4,7 @@
 
 @section('content')
     <main class="main" style="padding-top: 120px; padding-bottom: 60px;">
-        <div class="container">
+        <div class="container-boxed">
             <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
 
                 <div class="container text-center" data-aos="fade-up">

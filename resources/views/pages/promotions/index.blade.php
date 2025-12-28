@@ -6,7 +6,7 @@
     <main class="main" style="padding-top: 120px; padding-bottom: 60px; background-color: #f9f9f9;">
 
         <div class="page-title" data-aos="fade">
-            <div class="container">
+            <div class="container-boxed">
                 <nav class="breadcrumbs">
                     <ol>
                         <li><a href="{{ route('home') }}">Home</a></li>
@@ -18,7 +18,7 @@
         </div>
 
         <section id="promo-list" class="pricing section">
-            <div class="container">
+            <div class="container-boxed">
 
                 @if ($promotions->isEmpty())
                     {{-- Tampilan Kosong --}}

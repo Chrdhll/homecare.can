@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -36,7 +37,20 @@ class ServiceResource extends Resource
                     ->label('Nama Layanan')
                     ->required()
                     ->maxLength(255)
+                    ->live(onBlur: true) // Biar gak berat, generate pas pindah kolom aja
+    ->afterStateUpdated(
+        fn (string $operation, $state, Forms\Set $set) =>
+        $operation === 'create' ? $set('slug', Str::slug($state)) : null
+    )
                     ->columnSpanFull(), // Bikin input ini jadi lebar penuh
+
+                Forms\Components\TextInput::make('slug')
+    ->label('URL Slug')
+    ->disabled() // Admin gak perlu edit manual
+    ->dehydrated() // Tetap dikirim ke database walau disabled
+    ->required()
+    ->maxLength(255)
+    ->unique(ignoreRecord: true),
 
                 Forms\Components\Textarea::make('description')
                     ->label('Deskripsi')
@@ -45,7 +59,7 @@ class ServiceResource extends Resource
                     ->columnSpanFull(),
 
                 Forms\Components\Textarea::make('benefits')
-                    ->label('Manfaat (Benefits)')
+                    ->label('Manfaat')
                     ->helperText('Tulis satu manfaat per baris (tekan Enter agar jadi list di halaman detail).')
                     ->rows(5)
                     ->columnSpanFull(),

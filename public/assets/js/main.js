@@ -100,17 +100,17 @@
      */
     function aosInit() {
         AOS.init({
-            duration: 600,
-            easing: "ease-in-out",
-            delay: 0,
+            duration: 700,
+            easing: "ease-out-cubic",
             once: true,
             mirror: false,
-            offset: -160,
-            disable: false,
-            anchorPlacement: "top-bottom",
+            offset: 120,
+            disableMutationObserver: true,
         });
     }
-    window.addEventListener("load", aosInit);
+
+   document.addEventListener("DOMContentLoaded", aosInit);
+
 
     /**
      * Initiate glightbox
@@ -141,6 +141,10 @@
     }
 
     window.addEventListener("load", initSwiper);
+
+    window.addEventListener("load", () => {
+        AOS.refreshHard();
+    });
 
     /**
      * Frequently Asked Questions Toggle

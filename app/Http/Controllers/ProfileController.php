@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -26,35 +28,77 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $data = $request->validated();
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // 1. CEK APAKAH USER MINTA HAPUS FOTO
+        if ($request->boolean('delete_avatar')) {
+            // Hapus file fisik jika ada
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            // Set data avatar jadi null
+            $data['avatar'] = null;
+        }
+        // 2. JIKA TIDAK HAPUS, CEK APAKAH ADA UPLOAD BARU
+        elseif ($request->hasFile('avatar')) {
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $data['avatar'] = $path;
         }
 
-        $request->user()->save();
+        $user->fill($data);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profil berhasil diperbarui.');
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
         $user = $request->user();
 
+        // 🔐 Kalau user PUNYA password (login manual)
+        if (!is_null($user->password)) {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required'],
+            ]);
+
+            if (!Hash::check($request->password, $user->password)) {
+                return back()
+                    ->withErrors(['password' => 'Password tidak sesuai'], 'userDeletion');
+            }
+        }
+
+        // 🧾 ANONIMKAN DATA USER (AMAN UNTUK ADMIN & AUDIT)
+        $user->update([
+            'name'  => 'Akun Dihapus',
+            'email' => 'deleted_' . $user->id . '@example.com',
+            'phone_number' => null,
+            'address' => null,
+            'avatar' => null,
+        ]);
+
+        // 🚪 Logout dulu
         Auth::logout();
 
-        $user->delete();
-
+        // 🧹 Hapus session
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        // 🗑️ Soft delete user
+        $user->delete();
+
+        return redirect('/')
+            ->with('status', 'Akun berhasil dihapus.');
     }
 }

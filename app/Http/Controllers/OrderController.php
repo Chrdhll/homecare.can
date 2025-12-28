@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Service;
+use App\Models\User;
+use App\Notifications\NewOrderReceived;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Promotion;
+use Illuminate\Support\Facades\Notification;
 
 class OrderController extends Controller
 {
@@ -65,26 +68,26 @@ class OrderController extends Controller
     public function store(Request $request, Service $service)
     {
         // 1. Validasi Input
-       $request->validate([
-            'phone_number' => 'required|string|max:20',
-            'schedule_date' => 'required|date|after_or_equal:today',
-            'schedule_time' => 'required',
-            'address' => 'required|string',
-            'notes' => 'nullable|string',
-            // Validasi data dari hidden input map
-            'transport_cost' => 'required|numeric|min:0',
-            'distance' => 'nullable|numeric',
-            'latitude' => 'nullable',
-            'longitude' => 'nullable',
-        ]);
+        $request->validate([
+             'phone_number' => 'required|string|max:20',
+             'schedule_date' => 'required|date|after_or_equal:today',
+             'schedule_time' => 'required',
+             'address' => 'required|string',
+             'notes' => 'nullable|string',
+             // Validasi data dari hidden input map
+             'transport_cost' => 'required|numeric|min:0',
+             'distance' => 'nullable|numeric',
+             'latitude' => 'nullable',
+             'longitude' => 'nullable',
+         ]);
 
-        
-$maxDistance = settings('max_distance_km', 20);
-if ($request->distance > $maxDistance) {
-    return back()
-        ->withInput()
-        ->with('error', 'Maaf, lokasi Anda terlalu jauh dari jangkauan kami (Maksimal ' . $maxDistance . ' km).');
-}
+
+        $maxDistance = settings('max_distance_km', 20);
+        if ($request->distance > $maxDistance) {
+            return back()
+                ->withInput()
+                ->with('error', 'Maaf, lokasi Anda terlalu jauh dari jangkauan kami (Maksimal ' . $maxDistance . ' km).');
+        }
 
 
         try {
@@ -135,7 +138,11 @@ if ($request->distance > $maxDistance) {
 
             // 3. Simpan Pesanan ke Database
             $order = Order::create([
-                'user_id' => Auth::id(),
+                'user_id' => $user->id,
+                'patient_name'  => $user->name,
+                'patient_email' => $user->email,
+                'patient_phone' => $user->phone_number,
+                
                 'service_id' => $service->id,
                 'promotion_id' => $promotionId,
                 'service_schedule' => $fullSchedule,
@@ -157,6 +164,15 @@ if ($request->distance > $maxDistance) {
             ]);
 
             DB::commit();
+
+
+            $admins = User::where('role', 'admin')->get();
+
+
+            if ($admins->count() > 0) {
+                Notification::send($admins, new NewOrderReceived($order));
+            }
+
 
             // 4. Generate Link WhatsApp
             $waLink = $this->generateWhatsAppLink($order, $service, $request->phone_number, $request->distance);
@@ -192,7 +208,7 @@ if ($request->distance > $maxDistance) {
         $message .= "Saya ingin konfirmasi pesanan baru:\n\n";
 
         $message .= "*ID Pesanan:* #ORD-" . str_pad($order->id, 5, '0', STR_PAD_LEFT) . "\n";
-        $message .= "*Nama Pasien:* " . Auth::user()->name . "\n";
+        $message .= "*Nama Pasien:* {$order->patient_name}\n";
         $message .= "*Layanan:* " . $service->name . "\n";
 
         $message .= "*Pengajuan Jadwal:* " . $jadwalLengkap . "\n";
@@ -230,5 +246,17 @@ if ($request->distance > $maxDistance) {
 
         // Return URL lengkap
         return "https://wa.me/{$adminPhone}?text={$encodedMessage}";
+    }
+
+    public function show(Order $order)
+    {
+        // Security: Pastikan user cuma bisa liat order punya dia sendiri
+        if ($order->user_id !== Auth::id()) {
+            abort(403, 'Akses ditolak');
+        }
+
+        return view('pages.orders.show', [
+            'order' => $order
+        ]);
     }
 }

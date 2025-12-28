@@ -32,7 +32,7 @@ class AdminPanelProvider extends PanelProvider
             // ->login()
             // ->brandLogo(asset('assets/img/logo_1.png'))
             // ->brandLogoHeight('3rem')
-            
+
             ->colors([
                 'danger' => Color::Red,
                 'gray' => Color::Zinc,
@@ -41,6 +41,7 @@ class AdminPanelProvider extends PanelProvider
                 'success' => Color::Green,
                 'warning' => Color::Amber,
             ])
+            ->databaseNotifications()
             ->navigationGroups([
                 NavigationGroup::make()
                     ->label('Manajemen Katalog'),
@@ -53,9 +54,6 @@ class AdminPanelProvider extends PanelProvider
 
                 NavigationGroup::make()
                     ->label('Manajemen Pengguna'),
-
-                NavigationGroup::make()
-                    ->label('Pengaturan'),
             ])
 
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
@@ -65,8 +63,12 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                \App\Filament\Widgets\StatsOverview::class,
+                \App\Filament\Widgets\RevenueChart::class,
+                \App\Filament\Widgets\TopServicesChart::class,
+
+                \App\Filament\Widgets\OrdersStatusChart::class,
+                \App\Filament\Widgets\RecentOrders::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -78,6 +80,10 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
+                'web',
+                'auth',
+                'verified',
+                'admin',
             ])
             ->authMiddleware([
                 Authenticate::class,

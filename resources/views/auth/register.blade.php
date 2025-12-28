@@ -16,42 +16,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        html {
-            zoom: 90%;
-            height: 111.11vh;
-            width: 111.11vw;
-            overflow-x: hidden;
-        }
-
         body {
-            min-height: 100%;
+            min-height: 100vh;
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
 
         .main-container {
             position: relative;
-            min-height: 111.11vh;
+            min-height: 100vh;
+            overflow: hidden;
+            width: 100%;
             background-color: #f8f9fa;
             background-image:
-                linear-gradient(to bottom, white 50%, transparent 50%),
+                linear-gradient(to bottom, white 50%, rgba(6, 41, 55, 0.7) 50%),
                 url('{{ asset('assets/img/login_bg.jpg') }}');
             background-repeat: no-repeat;
             background-size: 100% 100%, cover;
             background-position: center, center;
         }
 
-        .main-container::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background-color: rgba(6, 41, 55, 0.7);
-        }
 
         .register-card {
             border-radius: 1.5rem;
+            max-width: 420px;
         }
 
         .form-control.custom-input {
@@ -86,7 +74,7 @@
         }
 
         .logo-image {
-            max-width: 200px;
+            max-width: 180px;
             height: auto;
         }
 
@@ -98,6 +86,14 @@
             cursor: pointer;
             color: #6c757d;
             z-index: 5;
+        }
+
+        .register-card .form-control {
+            font-size: 0.9rem;
+        }
+
+        .register-card button {
+            font-size: 0.9rem;
         }
     </style>
 </head>

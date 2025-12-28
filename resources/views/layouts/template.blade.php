@@ -36,110 +36,482 @@
 
 
     @stack('styles')
+    
+    <style>
+        /* HILANGKAN PANAH DROPDOWN BAWAAN BOOTSTRAP */
+        /* .no-arrow::after {
+            display: none !important;
+        } */
+
+        .profile-nav-container {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+            /* border: 2px solid var(--accent-color); */
+
+            /* Trik CSS biar border-radius gak bergerigi (Anti-aliasing) */
+            transform: translateZ(0);
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+        }
+
+        .profile-img-small {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* STYLE SAMA KAYAK DI HALAMAN PROFIL */
+        .dropdown-menu-modern {
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 10px !important;
+        }
+
+        .dropdown-item-modern {
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .dropdown-item-modern:hover {
+            background-color: #f8f9fa;
+            color: var(--accent-color);
+        }
+
+        .dropdown-item-modern.text-danger:hover {
+            background-color: #fff5f5;
+            color: #dc3545 !important;
+        }
+
+        /* KHUSUS MOBILE */
+        @media (max-width: 1200px) {
+            .mobile-user-info {
+                background: #ffffff;
+                padding: 0;
+                /* Hapus padding container biar full */
+                margin: 15px 0;
+                border-radius: 12px;
+                border: 1px solid #eee;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                /* Shadow halus */
+                overflow: hidden;
+            }
+
+            /* Header Profil di Mobile */
+            .mobile-profile-header {
+                background: #f8f9fa;
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid #eee;
+            }
+
+            /* Style Tombol Mobile ala List Menu */
+            .mobile-user-btn {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                /* Ikon+Teks di Kiri, Panah di Kanan */
+                width: 100%;
+                padding: 12px 20px;
+                /* Padding yang nyaman buat jempol */
+                background: white;
+                border: none;
+                border-bottom: 1px solid #f0f0f0;
+                color: #444;
+                text-decoration: none;
+                transition: 0.2s;
+                font-weight: 500;
+                font-size: 14px;
+            }
+
+            /* Hapus border di item terakhir */
+            .mobile-user-btn:last-child {
+                border-bottom: none;
+            }
+
+            .mobile-user-btn:active {
+                background-color: #f2f2f2;
+            }
+
+            /* Wrapper buat Ikon + Teks biar nempel rapi */
+            .btn-content-left {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            /* Lingkaran Ikon Biar Estetik */
+            .icon-circle {
+                width: 32px;
+                height: 32px;
+                background: #f0f4ff;
+                /* Biru muda banget */
+                color: var(--accent-color);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+            }
+
+            /* Khusus Logout */
+            .btn-logout-mobile .icon-circle {
+                background: #fff5f5;
+                color: #dc3545;
+            }
+
+            .btn-logout-mobile {
+                color: #dc3545 !important;
+            }
+
+            /* Tombol Masuk Besar */
+            .btn-login-mobile-block {
+                background: var(--accent-color);
+                color: white !important;
+                text-align: center;
+                padding: 12px;
+                border-radius: 8px;
+                display: block;
+                font-weight: 600;
+                margin: 15px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            }
+        }
+
+        /* MOBILE RIGHT FIX */
+        .mobile-right-actions {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 9999;
+        }
+
+        /* ICON SIZE & TEBAL */
+        .mobile-right-actions i {
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        /* BADGE NOTIF */
+        .mobile-right-actions .badge {
+            position: absolute;
+            top: -4px;
+            right: -6px;
+
+            min-width: 18px;
+            height: 18px;
+            padding: 0 5px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: #dc3545;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 1;
+
+            border-radius: 999px;
+
+        }
+    </style>
 </head>
 
 <body class="index-page">
     <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container container-xl position-relative d-flex align-items-center">
+        <div class="container-boxed container-xl position-relative d-flex align-items-center">
+
             <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto">
-                <!-- Uncomment the line below if you also wish to use an image logo -->
                 <img src="{{ asset('assets/img/logo_1.png') }}" alt="" />
             </a>
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="active">Beranda</a></li>
-                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="{{ route('home') }}#hero" class="{{ Request::is('/') ? 'active' : '' }}">Beranda</a>
+                    </li>
+                    <li><a href="{{ route('home') }}#about">Tentang</a></li>
                     <li class="dropdown">
-                        <a href="#services"><span>Layanan</span>
-                            <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <a href="{{ route('home') }}#services"><span>Layanan</span> <i
+                                class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul>
                             @foreach ($navServices as $service)
                                 <li><a href="{{ route('services.show', $service) }}">{{ $service->name }}</a></li>
                             @endforeach
-                            {{-- <li><a href="#services">Lihat Semua...</a></li> --}}
                         </ul>
                     </li>
-                    <li><a href="#call-to-action">Galeri</a></li>
-                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href="{{ route('home') }}#testimonials">Testimoni</a></li>
+                    <li><a href="{{ route('home') }}#contact">Kontak</a></li>
 
-                    <li class="d-lg-none nav-button-container">
+                    {{-- TAMPILAN KHUSUS MOBILE (D-LG-NONE) --}}
+                    <li class="d-xl-none mt-3">
                         @auth
-                            <div class="mb-2">
-                                <a href="{{ route('my-orders.index') }}" class="nav-login-button"
-                                    style="background: #fff !important; color: #333 !important; border: 1px solid #ddd !important;">
-                                    <i class="bi bi-clock-history me-2"></i> Riwayat Pesanan
+                            <div class="mobile-user-info mx-3">
+
+                                {{-- HEADER PROFIL --}}
+                                <div class="mobile-profile-header">
+                                    <div class="rounded-circle overflow-hidden me-3 flex-shrink-0"
+                                        style="width: 45px; height: 45px; border: 2px solid var(--accent-color);">
+                                        @if (Auth::user()->avatar)
+                                            <img src="{{ Storage::url(Auth::user()->avatar) }}"
+                                                class="w-100 h-100 object-fit-cover">
+                                        @else
+                                            <div class="w-100 h-100 d-flex align-items-center justify-content-center text-white fw-bold"
+                                                style="background: var(--accent-color); font-size: 18px;">
+                                                {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="overflow-hidden">
+                                        <div class="fw-bold text-dark text-truncate">
+                                            {{ Str::limit(Auth::user()->name, 20) }}</div>
+                                        <small class="text-muted" style="font-size: 12px;">
+                                            {{ Auth::user()->role === 'admin' ? 'Administrator' : Auth::user()->email }}
+                                        </small>
+                                    </div>
+                                </div>
+
+                                {{-- MENU LIST ITEMS --}}
+                                @if (Auth::user()->role === 'admin')
+                                    <a href="{{ url('/admin') }}" class="mobile-user-btn">
+                                        <div class="btn-content-left">
+                                            <div class="icon-circle" style="background: #333; color: white;">
+                                                <i class="bi bi-speedometer2"></i>
+                                            </div>
+                                            <span>Dashboard Admin</span>
+                                        </div>
+                                        <i class="bi bi-chevron-right text-muted" style="font-size: 12px;"></i>
+                                    </a>
+                                @endif
+
+                                <a href="{{ route('profile.edit') }}" class="mobile-user-btn">
+                                    <div class="btn-content-left">
+                                        <div class="icon-circle">
+                                            <i class="bi bi-person-gear"></i>
+                                        </div>
+                                        <span>Edit Profil</span>
+                                    </div>
+                                    <i class="bi bi-chevron-right text-muted" style="font-size: 12px;"></i>
                                 </a>
+
+                                <a href="{{ route('my-orders.index') }}" class="mobile-user-btn">
+                                    <div class="btn-content-left">
+                                        <div class="icon-circle">
+                                            <i class="bi bi-clock-history"></i>
+                                        </div>
+                                        <span>Riwayat Pesanan</span>
+                                    </div>
+                                    <i class="bi bi-chevron-right text-muted" style="font-size: 12px;"></i>
+                                </a>
+
+                                <form method="POST" action="{{ route('logout') }}" class="m-0">
+                                    @csrf
+                                    <button type="submit" class="mobile-user-btn btn-logout-mobile">
+                                        <div class="btn-content-left">
+                                            <div class="icon-circle">
+                                                <i class="bi bi-box-arrow-right"></i>
+                                            </div>
+                                            <span>Keluar</span>
+                                        </div>
+                                    </button>
+                                </form>
                             </div>
-                            {{-- Tombol Logout (versi mobile) --}}
-                            <a href="#" onclick="event.preventDefault(); confirmLogout();" class="nav-logout-button">
-                                <span>Keluar</span>
-                                <i class="bi bi-box-arrow-right"></i>
-                            </a>
                         @else
-                            {{-- Tombol Masuk (versi mobile) --}}
-                            <a href="{{ route('login') }}" class="nav-login-button">
-                                <span>Masuk</span>
+                            {{-- TOMBOL LOGIN BESAR --}}
+                            <a href="{{ route('login') }}" class="btn-login-mobile-block">
+                                Masuk Sekarang
                             </a>
                         @endguest
                     </li>
                 </ul>
-
+                {{-- <i class="mobile-nav-toggle d-xl-none bi bi-list"></i> --}}
             </nav>
 
-            {{-- Cek apakah user sudah login --}}
+            <div class="mobile-right-actions d-xl-none">
+                @auth
+                    <div class="dropdown d-xl-none">
+                        <a href="#" class="position-relative text-secondary" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+
+                            {{-- ICON LONCENG TEBAL --}}
+                            <i class="bi bi-bell fs-5 fw-bold"></i>
+
+                            @if (Auth::user()->unreadNotifications->count() > 0)
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                    style="font-size: 9px; padding: 4px 6px;">
+                                    {{ Auth::user()->unreadNotifications->count() }}
+                                </span>
+                            @endif
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0"
+                            style="width: 92vw; max-height: 65vh; overflow-y: auto;">
+                            <li class="px-3 py-2 border-bottom fw-bold small text-muted">
+                                Notifikasi
+                            </li>
+
+                            @forelse(Auth::user()->notifications->take(5) as $notification)
+                                <li>
+                                    <a class="dropdown-item py-3 {{ $notification->read_at ? '' : 'bg-light' }}"
+                                        href="{{ route('notification.read', $notification->id) }}">
+                                        <strong class="d-block small">
+                                            {{ $notification->data['title'] ?? 'Info' }}
+                                        </strong>
+                                        <small class="text-muted">
+                                            {{ $notification->data['message'] ?? '' }}
+                                        </small>
+                                    </a>
+                                </li>
+                            @empty
+                                <li class="text-center py-4 text-muted small">
+                                    <i class="bi bi-bell-slash fs-4 d-block mb-2"></i>
+                                    Belum ada notifikasi
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
+                @endauth
+                <i class="mobile-nav-toggle bi bi-list"></i>
+            </div>
+
+            {{-- ========================================== --}}
+            {{-- TAMPILAN KHUSUS DESKTOP (D-NONE D-LG-FLEX) --}}
+            {{-- ========================================== --}}
             @auth
-                {{-- Jika SUDAH LOGIN, tampilkan dropdown profil --}}
-                <div class="dropdown ms-3 d-none d-lg-flex"">
-                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
-                        id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center me-2"
-                            style="width: 32px; height: 32px; background-color: #eee; color: #666; font-weight: bold;">
-                            {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
-                        </div>
+                {{-- Dropdown Profil Desktop --}}
+                <div class="d-flex align-items-center ms-3 d-none d-xl-flex gap-3">
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-secondary position-relative no-arrow"
+                            id="dropdownNotif" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-bell" style="font-size: 22px;"></i>
 
-                    </a>
+                            {{-- Badge Merah (Hanya muncul jika ada notif belum dibaca) --}}
+                            @if (Auth::user()->unreadNotifications->count() > 0)
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                    style="font-size: 10px; padding: 3px 6px;">
+                                    {{ Auth::user()->unreadNotifications->count() }}
+                                </span>
+                            @endif
+                        </a>
 
-                    {{-- Isi Dropdown Menu --}}
-                    <ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser">
-                        {{-- Tambahkan link ke profil nanti di sini --}}
-                        {{-- <li><a class="dropdown-item" href="#">Profil Saya</a></li> --}}
-                        {{-- <li><hr class="dropdown-divider"></li> --}}
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center gap-2" href="{{ route('my-orders.index') }}">
-                                <i class="bi bi-clock-history"></i> Riwayat Pesanan
-                            </a>
-                        </li>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-modern shadow border-0"
+                            aria-labelledby="dropdownNotif"
+                            style="min-width: 320px; max-height: 400px; overflow-y: auto;">
 
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            <li class="d-flex justify-content-between align-items-center px-3 py-2 border-bottom">
+                                <span class="fw-bold small text-muted">Notifikasi</span>
+                                @if (Auth::user()->unreadNotifications->count() > 0)
+                                    <a href="{{ route('notification.read.all') }}"
+                                        class="text-decoration-none small text-primary">Tandai semua dibaca</a>
+                                @endif
+                            </li>
 
-                        <li>
-                            {{-- Tombol Logout --}}
-                            <form method="POST" action="{{ route('logout') }}" id="logout-form">
-                                @csrf
-                                {{-- Ubah type jadi button, tambahkan onclick --}}
-                                <button type="button" class="dropdown-item" onclick="confirmLogout()">
-                                    <i class="bi bi-box-arrow-right me-2"></i>Keluar
-                                </button>
-                            </form>
-                        </li>
-                    </ul>
+                            @forelse(Auth::user()->notifications->take(5) as $notification)
+                                <li>
+                                    <a class="dropdown-item dropdown-item-modern d-flex align-items-start gap-3 py-3 {{ $notification->read_at ? '' : 'bg-light' }}"
+                                        href="{{ route('notification.read', $notification->id) }}">
+
+                                        {{-- Ikon Bulat --}}
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="width: 35px; height: 35px; background-color: var(--accent-color); color: white;">
+                                            <i class="bi {{ $notification->data['icon'] ?? 'bi-bell' }}"></i>
+                                        </div>
+
+                                        <div class="w-100">
+                                            <div class="d-flex justify-content-between align-items-start gap-2">
+                                                <strong
+                                                    class="text-dark small d-block pe-2">{{ $notification->data['title'] ?? 'Info' }}</strong>
+                                                <small class="text-muted text-nowrap"
+                                                    style="font-size: 10px;">{{ $notification->created_at->diffForHumans() }}</small>
+                                            </div>
+                                            <p class="text-muted small mb-0 text-truncate" style="max-width: 200px;">
+                                                {{ $notification->data['message'] ?? '' }}
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            @empty
+                                <li class="text-center py-4 text-muted small">
+                                    <i class="bi bi-bell-slash fs-4 d-block mb-2"></i>
+                                    Belum ada notifikasi
+                                </li>
+                            @endforelse
+
+                            {{-- Link ke semua (opsional) --}}
+                            {{-- <li class="text-center border-top p-2">
+                                <a href="#" class="small text-decoration-none fw-bold">Lihat Semua</a>
+                            </li> --}}
+                        </ul>
+                    </div>
+
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle no-arrow"
+                            id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-nav-container me-1">
+                                @if (Auth::user()->avatar)
+                                    <img src="{{ Storage::url(Auth::user()->avatar) }}" class="profile-img-small">
+                                @else
+                                    <div class="w-100 h-100 d-flex align-items-center justify-content-center fw-bold"
+                                        style="background-color: #eee; color: #666;">
+                                        {{ strtoupper(substr(Auth::user()->name, 0, 2)) }}
+                                    </div>
+                                @endif
+                            </div>
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-modern" aria-labelledby="dropdownUser"
+                            style="min-width: 220px;">
+                            <li class="px-3 py-2 border-bottom mb-2">
+                                <div class="fw-bold text-dark">{{ Str::limit(Auth::user()->name, 18) }}</div>
+                                <small class="text-muted" style="font-size: 11px;">{{ Auth::user()->email }}</small>
+                            </li>
+
+                            @if (Auth::user()->role === 'admin')
+                                <li>
+                                    <a class="dropdown-item dropdown-item-modern fw-bold text-primary"
+                                        href="{{ url('/admin') }}">
+                                        <i class="bi bi-speedometer2 me-2"></i> Dashboard Admin
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider my-1">
+                                </li>
+                            @endif
+
+                            <li><a class="dropdown-item dropdown-item-modern" href="{{ route('profile.edit') }}"><i
+                                        class="bi bi-person me-2 opacity-50"></i> Profil Saya</a></li>
+                            <li><a class="dropdown-item dropdown-item-modern" href="{{ route('my-orders.index') }}"><i
+                                        class="bi bi-clock-history me-2 opacity-50"></i> Riwayat Pesanan</a></li>
+                            <li>
+                                <hr class="dropdown-divider my-1">
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item dropdown-item-modern text-danger"><i
+                                            class="bi bi-box-arrow-right me-2"></i> Keluar</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             @else
-                {{-- Jika BELUM LOGIN, tampilkan tombol Masuk --}}
+                {{-- Tombol Login Desktop --}}
                 <a class="btn-getstarted ms-3 d-none d-lg-block" href="{{ route('login') }}">Masuk</a>
-
             @endguest
+
         </div>
-
-        <div class="mobile-search-trigger d-lg-none">
-            <i class="bi bi-search"></i>
-        </div>
-
-        <i class="mobile-nav-toggle d-xl-none bi bi-list ml-3"></i>
-
     </header>
     <!-- MOBILE SEARCH BAR SLIDE DOWN -->
     <div id="mobile-search-panel" class="mobile-search-panel d-lg-none">
@@ -154,7 +526,7 @@
 
     <footer id="footer" class="footer">
         @yield('footer-newsletter')
-        <div class="container footer-top">
+        <div class="container-boxed footer-top">
             <div class="row gy-4">
                 <div class="col-lg-4 col-md-6 footer-about">
                     <a href="index.html" class="d-flex align-items-center">
@@ -228,7 +600,7 @@
             </div>
         </div>
 
-        <div class="container copyright text-center mt-4">
+        <div class="container-boxed copyright text-center mt-4">
             <p>
                 © <span>Copyright</span>
                 <strong class="px-1 sitename">Homecare.can 2025</strong>
@@ -259,27 +631,9 @@
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
     <script>
-        function confirmLogout() {
-            Swal.fire({
-                title: 'Yakin ingin keluar?',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#0e4170',
-                cancelButtonColor: '#555555',
-                confirmButtonText: 'Ya',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-
-                if (result.isConfirmed) {
-                    document.getElementById('logout-form').submit();
-                }
-            });
-        }
-    </script>
-
-    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Cek pesan sukses dari session
+
+            // 1. HANDLE SUCCESS (Custom Kita)
             @if (session('success'))
                 Swal.fire({
                     toast: true,
@@ -293,12 +647,13 @@
                 });
             @endif
 
+            // 2. HANDLE ERROR (Custom Kita)
             @if (session('error'))
                 Swal.fire({
                     toast: true,
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Error!',
+                    title: 'Gagal!',
                     text: "{{ session('error') }}",
                     showConfirmButton: false,
                     timer: 5000,
@@ -306,57 +661,138 @@
                 });
             @endif
 
+            // 3. HANDLE VALIDATION ERROR (Form Kosong dll)
             @if ($errors->any())
                 Swal.fire({
                     toast: true,
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Error!',
-                    text: "{{ session('error') }}",
+                    title: 'Periksa Inputan!',
+                    text: "Ada kolom wajib yang belum diisi.",
                     showConfirmButton: false,
                     timer: 5000,
                     timerProgressBar: true
                 });
             @endif
-        });
 
-        document.addEventListener("DOMContentLoaded", function() {
+            // ============================================================
+            // 4. HANDLE STATUS (Bawaan Laravel Breeze / Profil / Password)
+            // ============================================================
+            @if (session('status'))
+                // Kita translate pesan bawaan Laravel biar user friendly
+                let message = "{{ session('status') }}";
+                let title = 'Info';
+                let icon = 'info';
 
-            const trigger = document.querySelector(".mobile-search-trigger");
-            const panel = document.getElementById("mobile-search-panel");
-            const closeBtn = document.getElementById("closeSearch");
-            const form = document.getElementById("mobileSearchForm");
-            const input = document.getElementById("mobileSearchInput");
+                if (message === 'profile-updated') {
+                    title = 'Berhasil';
+                    message = 'Profil berhasil diperbarui.';
+                    icon = 'success';
+                } else if (message === 'password-updated') {
+                    title = 'Berhasil';
+                    message = 'Password berhasil diubah.';
+                    icon = 'success';
+                } else if (message === 'verification-link-sent') {
+                    message = 'Link verifikasi baru telah dikirim.';
+                }
 
-            // Open search
-            trigger?.addEventListener("click", () => {
-                panel.classList.toggle("show");
-                input.focus(); // otomatis focus
-            });
-
-            // Close search
-            closeBtn?.addEventListener("click", () => {
-                panel.classList.remove("show");
-            });
-
-            // Enter / Submit
-            form?.addEventListener("submit", function(e) {
-                e.preventDefault();
-
-                const query = input.value.trim();
-
-                if (query.length === 0) return;
-
-                // Redirect ke route pencarian (ubah sesuai kebutuhan)
-                window.location.href = `/search?q=${encodeURIComponent(query)}`;
-            });
-
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: icon,
+                    title: title,
+                    text: message,
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                });
+            @endif
         });
     </script>
+
+    @stack('modals')
 
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @stack('scripts')
+
+    {{-- SCRIPT PENGHILANG HASH URL (BIAR URL TETAP BERSIH) --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // 1. TANGKAP SEMUA LINK NAVIGASI YANG PAKE PAGAR (#)
+            const navLinks = document.querySelectorAll('a[href^="#"], a[href^="{{ route('home') }}#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Cek apakah kita sedang berada di halaman home
+                    const isHomePage = window.location.pathname === '/' || window.location
+                        .pathname === '{{ parse_url(route('home'), PHP_URL_PATH) }}';
+
+                    // Ambil target hash (misal: #services)
+                    let href = this.getAttribute('href');
+                    let hash = href.includes('#') ? href.substring(href.indexOf('#')) : '';
+
+                    if (isHomePage && hash) {
+                        e.preventDefault(); // STOP browser ganti URL
+
+                        const targetSection = document.querySelector(hash);
+
+                        if (targetSection) {
+                            // Hitung tinggi header biar scroll gak ketutupan navbar
+                            const header = document.querySelector('#header');
+                            const headerOffset = header ? header.offsetHeight : 0;
+                            const elementPosition = targetSection.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                            // Scroll manual yang mulus
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+
+                            // Opsional: Tutup menu mobile kalo lagi kebuka
+                            if (document.querySelector('body').classList.contains(
+                                    'mobile-nav-active')) {
+                                document.querySelector('body').classList.remove(
+                                    'mobile-nav-active');
+                                document.querySelector('.mobile-nav-toggle').classList.toggle(
+                                    'bi-list');
+                                document.querySelector('.mobile-nav-toggle').classList.toggle(
+                                    'bi-x');
+                            }
+                        }
+                    }
+                });
+            });
+
+            // 2. BERSIHKAN URL KALAU USER DATANG DARI HALAMAN LAIN
+            // Misal user dari Profil klik "Riwayat", pas nyampe Home hash-nya dihapus
+            if (window.location.hash) {
+                // Tunggu scroll selesai dikit, baru hapus hash
+                setTimeout(() => {
+                    history.replaceState(null, null, ' '); // Hapus #hash dari address bar
+                }, 100);
+
+                // Fix scroll position biar pas (karena kadang meleset pas load awal)
+                const hash = window.location.hash;
+                const targetSection = document.querySelector(hash);
+                if (targetSection) {
+                    setTimeout(() => {
+                        const header = document.querySelector('#header');
+                        const headerOffset = header ? header.offsetHeight : 0;
+                        const elementPosition = targetSection.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }, 100);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

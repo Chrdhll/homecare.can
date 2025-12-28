@@ -17,8 +17,8 @@ class PengaturanWebsite extends Page
 {
     // === Pengaturan Menu ===
     protected static ?string $navigationIcon = 'heroicon-o-document-text'; // Ikon teks
-    protected static ?string $navigationLabel = 'Konten Website';
-    protected static ?string $navigationGroup = 'Pengaturan'; // Masuk grup Pengaturan
+    protected static ?string $navigationLabel = 'Konten Website dan pengaturan';
+    protected static ?string $navigationGroup = 'Manajemen Konten'; // Masuk grup Pengaturan
     protected static ?int $navigationSort = 1; // Urutan pertama di grup
 
     protected static string $view = 'filament.admin.pages.pengaturan-website';

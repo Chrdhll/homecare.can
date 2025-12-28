@@ -34,7 +34,7 @@ public function submitForm(Request $request)
         ]);
 
         // 2. Tentukan email admin (Penerima)
-        $adminEmail = "cobain679856@gmail.com";
+        $adminEmail = "homecarecan@gmail.com";
 
         // 3. Kirim email
         try {

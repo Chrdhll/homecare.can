@@ -180,7 +180,7 @@
         var(--default-color),
         transparent 96%
     );">
-        <div class="container">
+        <div class="container-boxed">
 
             <div class="section-title text-center mb-5" data-aos="fade-up">
                 <h2>Finalisasi Pesanan</h2>

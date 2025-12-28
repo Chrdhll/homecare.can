@@ -8,12 +8,19 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends Authenticatable implements FilamentUser
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
+class User extends Authenticatable implements MustVerifyEmail, FilamentUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
     use Notifiable;
+    
+    use SoftDeletes;
+
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +34,11 @@ class User extends Authenticatable implements FilamentUser
         'phone_number',
         'address',
         'role',
+        'email_verified_at',
         'google_id',
+        'google_token',
+        'google_refresh_token',
+        'avatar',
     ];
 
     /**
@@ -68,6 +79,8 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+
+        return $this->role === 'admin';
+
     }
 }

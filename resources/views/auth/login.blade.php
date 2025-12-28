@@ -17,47 +17,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        html {
-            zoom: 90%;
-            height: 111.11vh;
-            width: 111.11vw;
-            overflow-x: hidden;
-        }
-
         body {
-            min-height: 100%;
+            min-height: 100vh;
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
         }
 
         .main-container {
             position: relative;
-            min-height: 111.11vh;
-
-            /* --- INI BAGIAN UTAMANYA --- */
+            min-height: 100vh;
+            overflow: hidden;
+            width: 100%;
             background-color: #f8f9fa;
-            /* Warna fallback jika gambar gagal load */
             background-image:
-                linear-gradient(to bottom, white 50%, transparent 50%),
+                linear-gradient(to bottom, white 50%, rgba(6, 41, 55, 0.7) 50%),
                 url('{{ asset('assets/img/login_bg.jpg') }}');
-            /* GANTI URL GAMBAR */
             background-repeat: no-repeat;
             background-size: 100% 100%, cover;
-            /* Ukuran untuk gradient dan gambar */
             background-position: center, center;
         }
 
-        .main-container::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            /* Mulai dari tengah-tengah layar */
-            left: 0;
-            width: 100%;
-            height: 50%;
-            /* Tingginya hanya setengah layar */
-            background-color: rgba(6, 41, 55, 0.7);
-            /* Warna overlay gelap */
-        }
 
         .password-wrapper .form-control {
             padding-right: 3.5rem;
@@ -66,6 +45,7 @@
 
         .login-card {
             border-radius: 1.5rem;
+            max-width: 420px;
         }
 
         .form-control.custom-input {
@@ -94,7 +74,7 @@
         }
 
         .logo-image {
-            max-width: 200px;
+            max-width: 180px;
             height: auto;
         }
 
@@ -107,86 +87,95 @@
             color: #6c757d;
             z-index: 5;
         }
+
+        .login-card .form-control{
+            font-size: 0.9rem;
+        }
+
+        .login-card button{
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
 <body class="antialiased">
 
     <div class="main-container d-flex align-items-center justify-content-center p-3">
+=
+            <div class="logo-container">
+                <a href="/">
+                    <img src="{{ asset('assets/img/logo_1.png') }}" alt="Homecare.can Logo" class="logo-image">
+                </a>
+            </div>
 
-        <div class="logo-container">
-            <a href="/">
-                <img src="{{ asset('assets/img/logo_1.png') }}" alt="Homecare.can Logo" class="logo-image">
-            </a>
-        </div>
+            <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                <div class="card login-card shadow-lg border-0">
+                    <div class="card-body p-5">
 
-        <div class="col-11 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-            <div class="card login-card shadow-lg border-0">
-                <div class="card-body p-5">
+                        <h2 class="card-title text-center fw-bold mb-4" style="color: #062937">Log in</h2>
 
-                    <h2 class="card-title text-center fw-bold mb-4" style="color: #062937">Log in</h2>
+                        <form method="POST" action="{{ route('login') }}">
+                            @csrf
 
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="mb-3">
-                            <input type="email" name="email" class="form-control rounded-pill custom-input"
-                                placeholder="Email" required autofocus value="{{ old('email') }}">
-                            @error('email')
-                                <div class="text-danger small mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="mb-3 position-relative password-wrapper">
-                            <input id="password" type="password" name="password"
-                                class="form-control rounded-pill custom-input" placeholder="Password" required>
-                            <i class="bi bi-eye-slash password-toggle-icon" id="togglePassword"></i>
-                            @error('password')
-                                <div class="text-danger small mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember_me">
-                                <label class="form-check-label small" for="remember_me">
-                                    Remember me
-                                </label>
+                            <div class="mb-3">
+                                <input type="email" name="email" class="form-control rounded-pill custom-input"
+                                    placeholder="Email" required autofocus value="{{ old('email') }}">
+                                @error('email')
+                                    <div class="text-danger small mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
-                            @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" class="small text-decoration-none">Forgot
-                                    password?</a>
-                            @endif
-                        </div>
 
-                        <div class="d-grid mb-3">
-                            <button type="submit" class="btn btn-dark-custom rounded-pill fw-bold py-2">LOG IN</button>
-                        </div>
+                            <div class="mb-3 position-relative password-wrapper">
+                                <input id="password" type="password" name="password"
+                                    class="form-control rounded-pill custom-input" placeholder="Password" required>
+                                <i class="bi bi-eye-slash password-toggle-icon" id="togglePassword"></i>
+                                @error('password')
+                                    <div class="text-danger small mt-2">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                        <div class="d-flex align-items-center my-4">
-                            <hr class="flex-grow-1">
-                            <span class="mx-3 text-muted small">OR</span>
-                            <hr class="flex-grow-1">
-                        </div>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember_me">
+                                    <label class="form-check-label small" for="remember_me">
+                                        Remember me
+                                    </label>
+                                </div>
+                                @if (Route::has('password.request'))
+                                    <a href="{{ route('password.request') }}" class="small text-decoration-none">Forgot
+                                        password?</a>
+                                @endif
+                            </div>
 
-                        <div class="d-grid">
-                            <a href="{{ route('auth.google.redirect') }}"
-                                class="btn btn-outline-secondary rounded-pill py-2">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
-                                    alt="Google" width="20" class="me-2 align-middle">
-                                <span class="align-middle">Sign in with Google</span>
-                            </a>
-                        </div>
+                            <div class="d-grid mb-3">
+                                <button type="submit" class="btn btn-dark-custom rounded-pill fw-bold py-2">LOG
+                                    IN</button>
+                            </div>
 
-                        <div class="text-center mt-4">
-                            <p class="small mb-0">
-                                Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a>
-                            </p>
-                        </div>
-                    </form>
+                            <div class="d-flex align-items-center my-4">
+                                <hr class="flex-grow-1">
+                                <span class="mx-3 text-muted small">OR</span>
+                                <hr class="flex-grow-1">
+                            </div>
+
+                            <div class="d-grid">
+                                <a href="{{ route('auth.google.redirect') }}"
+                                    class="btn btn-outline-secondary rounded-pill py-2">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+                                        alt="Google" width="20" class="me-2 align-middle">
+                                    <span class="align-middle">Sign in with Google</span>
+                                </a>
+                            </div>
+
+                            <div class="text-center mt-4">
+                                <p class="small mb-0">
+                                    Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a>
+                                </p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

@@ -2,21 +2,31 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\OrderResource\Pages;
-use App\Models\Order;
+use Carbon\Carbon;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Order;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Filament\Support\Enums\FontWeight;
-use Filament\Forms\Components\Section;
+use App\Exports\OrdersExport;
+use App\Support\OrderColumns;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Filament\Resources\Resource;
+use Illuminate\Support\HtmlString;
+use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Group;
-use Filament\Forms\Components\Placeholder; 
-use Illuminate\Support\HtmlString; 
-use Filament\Tables\Columns\SelectColumn;
+use Maatwebsite\Excel\Facades\Excel;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Section;
+use Filament\Support\Enums\FontWeight;
 use Filament\Notifications\Notification;
-
+use App\Notifications\OrderStatusChanged;
+use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Columns\SelectColumn;
+use Filament\Forms\Components\Placeholder;
+use Filament\Forms\Components\CheckboxList;
+use Filament\Forms\Components\ToggleButtons;
+use App\Filament\Admin\Resources\OrderResource\Pages;
 
 class OrderResource extends Resource
 {
@@ -26,6 +36,21 @@ class OrderResource extends Resource
     protected static ?string $navigationLabel = 'Daftar Pesanan';
     protected static ?int $navigationSort = 1;
     protected static ?string $modelLabel = 'Pesanan';
+
+
+    public static function getNavigationBadge(): ?string
+    {
+        $count = static::getModel()::where('status', 'Menunggu Konfirmasi')->count();
+
+        // Kalau ada order (> 0) tampilin angka, kalau 0 return NULL (Badge Hilang)
+        return $count > 0 ? $count : null;
+    }
+
+
+    public static function getNavigationBadgeColor(): ?string
+    {
+        return 'danger';
+    }
 
     public static function form(Form $form): Form
     {
@@ -63,10 +88,11 @@ class OrderResource extends Resource
                                 ->formatStateUsing(fn ($state) => '#ORD-' . str_pad($state, 5, '0', STR_PAD_LEFT))
                                 ->disabled(),
 
-                            Forms\Components\Select::make('user_id')
+                            Forms\Components\TextInput::make('patient_name')
                                 ->label('Nama Pasien')
-                                ->relationship('user', 'name')
-                                ->disabled(),
+                                ->disabled()
+                                ->dehydrated(false),
+
 
                             Forms\Components\Select::make('service_id')
                                 ->label('Layanan')
@@ -162,11 +188,13 @@ class OrderResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('user.name')
+
+                Tables\Columns\TextColumn::make('patient_name')
                     ->label('Pasien')
-                    ->description(fn (Order $record) => $record->user->phone_number ?? '-')
+                    ->description(fn (Order $record) => $record->patient_phone ?? '-')
                     ->searchable()
                     ->weight(FontWeight::Bold),
+
 
                 Tables\Columns\TextColumn::make('service.name')
                     ->label('Layanan')
@@ -190,7 +218,7 @@ class OrderResource extends Resource
                         'Belum Lunas' => 'Belum Lunas',
                         'Lunas' => 'Lunas',
                     ])
-                    ->selectablePlaceholder(false) 
+                    ->selectablePlaceholder(false)
                     ->searchable(false)
                     ->afterStateUpdated(function ($record, $state) {
                         Notification::make()
@@ -210,13 +238,24 @@ class OrderResource extends Resource
                     ])
                     ->selectablePlaceholder(false)
                     ->searchable(false)
+                    ->sortable()
                     ->disableOptionWhen(fn ($value, $record) => $record->status === 'Selesai' && $value === 'Dibatalkan')
                     ->afterStateUpdated(function ($record, $state) {
+
+                        try {
+
+                            if ($record->user && !$record->user->trashed()) {
+                                $record->user->notify(new OrderStatusChanged($record));
+                            }
+                        } catch (\Exception $e) {
+                            // Opsional: Log error kalau mau
+                        }
                         Notification::make()
-                            ->title('Status Diupdate')
-                            ->body("Order #{$record->id} -> {$state}")
-                            ->info()
+                            ->title('Status berhasil diperbarui')
+                            ->body("Status pesanan #{$record->id} -> {$state}")
+                            ->success()
                             ->send();
+
                     }),
 
                 Tables\Columns\TextColumn::make('total_price')
@@ -232,26 +271,157 @@ class OrderResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('payment_status')
-                    ->options([
-                        'Belum Lunas' => 'Belum Lunas',
-                        'Lunas' => 'Lunas',
-                    ]),
-            ])
-            ->actions([
-                Tables\Actions\Action::make('chat')
-                    ->icon('heroicon-m-chat-bubble-left-right')
-                    ->color('success')
-                    ->url(fn (Order $record) => "https://wa.me/" . preg_replace('/[^0-9]/', '', $record->user->phone_number ?? ''))
-                    ->openUrlInNewTab(),
+                                Tables\Filters\SelectFilter::make('payment_status')
+                                    ->options([
+                                        'Belum Lunas' => 'Belum Lunas',
+                                        'Lunas' => 'Lunas',
+                                    ]),
 
-                Tables\Actions\EditAction::make()->label('Kelola'),
-            ])
+                                Tables\Filters\Filter::make('created_at')
+                                    ->form([
+                                        Forms\Components\DatePicker::make('created_from')->label('Dari Tanggal'),
+                                        Forms\Components\DatePicker::make('created_until')->label('Sampai Tanggal'),
+                                    ])
+                                    ->query(function ($query, array $data) {
+                                        return $query
+                                            ->when($data['created_from'], fn ($q) => $q->whereDate('created_at', '>=', $data['created_from']))
+                                            ->when($data['created_until'], fn ($q) => $q->whereDate('created_at', '<=', $data['created_until']));
+                                    })
+                            ])
+            ->actions([
+                                Tables\Actions\Action::make('chat')
+                                    ->icon('heroicon-m-chat-bubble-left-right')
+                                    ->color('success')
+                                    ->url(
+                                        fn (Order $record) =>
+                                        $record->patient_phone
+                                            ? "https://wa.me/" . preg_replace('/[^0-9]/', '', $record->patient_phone)
+                                            : null
+                                    )
+                                    ->visible(fn (Order $record) => !empty($record->patient_phone))
+                                    ->openUrlInNewTab(),
+
+                                Tables\Actions\Action::make('pdf')
+                                    ->label('Invoice')
+                                    ->icon('heroicon-o-document-arrow-down')
+                                    ->url(fn (Order $record) => route('invoice.download', $record))
+                                    ->openUrlInNewTab(),
+
+                                Tables\Actions\EditAction::make()->label('Kelola'),
+                            ])
+            ->headerActions([
+                        Action::make('downloadReport')
+                            ->label('Download Laporan')
+                            ->icon('heroicon-o-arrow-down-tray')
+                            ->color('success')
+
+                            ->modalHeading('Download Laporan Pesanan')
+                            ->modalDescription('Filter bersifat opsional. Kosongkan untuk mengunduh semua data.')
+
+                            ->form([
+                                Select::make('format')
+                                    ->label('Format File')
+                                    ->options([
+                                        'excel' => 'Excel (.xlsx)',
+                                        'pdf'   => 'PDF',
+                                    ])
+                                    ->default('excel')
+                                    ->required(),
+
+                                CheckboxList::make('columns')
+                                    ->label('Kolom yang Ditampilkan')
+                                    ->options(OrderColumns::all())
+                                    ->default(array_keys(OrderColumns::all()))
+                                    ->columns(2)
+                                    ->required(),
+
+                                Select::make('status')
+                                    ->label('Status Pesanan')
+                                    ->options([
+                                        'Menunggu Konfirmasi' => 'Menunggu Konfirmasi',
+                                        'Diproses' => 'Diproses',
+                                        'Selesai' => 'Selesai',
+                                        'Dibatalkan' => 'Dibatalkan',
+                                    ])
+                                    ->placeholder('Semua Status')
+                                    ->helperText('Opsional'),
+
+                                DatePicker::make('from')
+                                    ->label('Dari Tanggal')
+                                    ->helperText('Opsional'),
+
+                                DatePicker::make('until')
+                                    ->label('Sampai Tanggal')
+                                    ->helperText('Opsional'),
+                            ])
+
+                            ->action(function (array $data) {
+
+                                $filename = 'laporan-pesanan'
+                                    . ($data['status'] ? '-' . str($data['status'])->slug() : '')
+                                    . '-' . now()->format('Y-m-d');
+
+                                if ($data['format'] === 'excel') {
+                                    return Excel::download(
+                                        new OrdersExport(
+                                            $data['from'] ?? null,
+                                            $data['until'] ?? null,
+                                            $data['status'] ?? null,
+                                            $data['columns']
+                                        ),
+                                        "$filename.xlsx"
+                                    );
+                                }
+
+                                // === PDF ===
+                                $orders = Order::query()
+                                    ->when($data['from'], fn ($q) => $q->whereDate('created_at', '>=', $data['from']))
+                                    ->when($data['until'], fn ($q) => $q->whereDate('created_at', '<=', $data['until']))
+                                    ->when($data['status'], fn ($q) => $q->where('status', $data['status']))
+                                    ->get();
+
+                                // HEADERS
+                                $headers = collect($data['columns'])
+                                    ->map(fn ($key) => \App\Support\OrderColumns::all()[$key])
+                                    ->toArray();
+
+                                // ROWS
+                                $rows = $orders->map(function ($order) use ($data) {
+                                    return collect($data['columns'])->map(fn ($key) => match ($key) {
+                                        'id' => 'ORD-' . str_pad($order->id, 5, '0', STR_PAD_LEFT),
+                                        'patient' => $order->patient_name ?? '-',
+                                        'service' => $order->service->name ?? '-',
+                                        'address' => $order->address ?? '-',
+                                        'status' => $order->status,
+                                        'payment' => $order->payment_status,
+                                        'total' => 'Rp ' . number_format($order->total_price, 0, ',', '.'),
+                                        'date' => $order->created_at->format('d M Y'),
+                                    })->toArray();
+                                })->toArray();
+
+                                return response()->streamDownload(
+                                    function () use ($headers, $rows) {
+                                        echo \Barryvdh\DomPDF\Facade\Pdf::loadView(
+                                            'pdf.orders-report',
+                                            [
+                                                'headers' => $headers,
+                                                'rows' => $rows,
+                                            ]
+                                        )
+                                        ->setPaper('A4', 'landscape')
+                                        ->output();
+                                    },
+                                    "$filename.pdf"
+                                );
+
+                            })
+                    ])
+
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+                                Tables\Actions\BulkActionGroup::make([
+                                    Tables\Actions\DeleteBulkAction::make(),
+                                ]),
+                            ]);
     }
 
     public static function getPages(): array

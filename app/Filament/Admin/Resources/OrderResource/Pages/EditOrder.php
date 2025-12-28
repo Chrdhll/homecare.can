@@ -20,4 +20,12 @@ class EditOrder extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
+
+    protected function afterSave(): void
+    {
+        $order = $this->record;
+        if ($order->wasChanged('status')) {
+            $order->user->notify(new \App\Notifications\OrderStatusChanged($order));
+        }
+    }
 }

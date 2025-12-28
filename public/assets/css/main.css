@@ -1,12 +1,48 @@
 /* Fonts */
-html {
+/* html {
     zoom: 90%;
     height: 111.11vh;
     width: 111.11vw;
-
-    /* Mencegah scrollbar horizontal aneh */
     overflow-x: hidden;
+    scroll-behavior: smooth;
+} */
+
+:root {
+    font-size: 14.4px;
 }
+
+.container-boxed {
+    max-width: 1320px;
+    padding-left: 32px;
+    padding-right: 32px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 1400px) {
+    .container-boxed {
+        max-width: 1440px;
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (max-width: 991px) {
+    html {
+        font-size: 14px;
+    }
+}
+
 :root {
     --default-font: "Poppins", "Open Sans", system-ui, -apple-system, "Segoe UI",
         Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
@@ -72,6 +108,7 @@ body {
     background-color: var(--background-color);
     font-family: var(--default-font);
     min-height: 100%;
+    overflow-x: hidden;
 }
 
 a {
@@ -1434,7 +1471,7 @@ section,
     z-index: 2;
 }
 
-.call-to-action .container {
+.call-to-action .container-boxed {
     position: relative;
     z-index: 3;
 }
@@ -3819,7 +3856,7 @@ body.mobile-nav-active .navmenu .nav-button-container > a.nav-login-button {
 
 /* Tombol Biru (Primary) */
 .btn-hero-primary {
-    background: #0e4170; /* warna biru existing */
+    background: #0e4170;
     color: #fff;
     padding: 10px 24px;
     border-radius: 50px; /* SAMA dengan button Masuk */
@@ -4427,4 +4464,122 @@ body.mobile-nav-active .navmenu .nav-button-container > a.nav-login-button {
     top: 2px;
     color: var(--accent-color);
     font-size: 16px;
+}
+
+/* Card lupa password biar ada napas */
+#forgot-password .card-body {
+    padding: 2.75rem 2.75rem;
+}
+
+@media (max-width: 576px) {
+    #forgot-password .card-body {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* Input group custom dengan border 1 garis halus */
+#forgot-password .hc-input-group {
+    border: 1px solid #d3d9e5;
+    border-radius: 12px;
+    background-color: #ffffff;
+    overflow: hidden; /* radius rapi */
+}
+
+/* Icon di kiri */
+#forgot-password .hc-input-group .input-group-text {
+    border: none;
+    background-color: transparent;
+    color: #6c7a8c;
+    padding: 0 14px;
+    font-size: 1rem;
+}
+
+/* Field input */
+#forgot-password .hc-input-group .form-control {
+    border: none;
+    box-shadow: none;
+    padding: 12px 16px; /* ini bikin teks nggak mepet */
+    font-size: 0.95rem;
+}
+
+/* Fokus: kasih glow lembut, bukan border biru default */
+#forgot-password .hc-input-group .form-control:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(23, 66, 114, 0.18);
+}
+
+/* Saat error (Laravel is-invalid) tetap pakai border merah luar */
+#forgot-password .hc-input-group .form-control.is-invalid {
+    box-shadow: none;
+}
+
+#forgot-password .hc-input-group .form-control.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+.btn-hero-animated {
+    padding: 14px 36px;
+    border-radius: 999px;
+    background: var(--accent-color);
+    color: #fff;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    0% {
+        box-shadow: 0 0 0 0 rgba(23, 66, 114, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 14px rgba(23, 66, 114, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(23, 66, 114, 0);
+    }
+}
+
+.btn-hero-animated:hover {
+    transform: translateY(-2px);
+    background: var(--nav-hover-color);
+}
+
+@media (max-width: 991px) {
+    .hero,
+    .call-to-action {
+        height: auto !important;
+        min-height: auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-boxed {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@media (max-width: 991px) {
+    .cta-container {
+        max-width: 100% !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .cta-container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .call-to-action h3 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+
+    .call-to-action .cta-btn {
+        width: 100%;
+        text-align: center;
+    }
 }

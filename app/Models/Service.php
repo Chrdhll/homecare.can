@@ -13,6 +13,7 @@ class Service extends Model
         'name',
         'description',
         'price',
+        'slug',
         'gallery',
         'icon_class',
         'benefits',
@@ -23,6 +24,11 @@ class Service extends Model
         'gallery' => 'array', 
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
     public function promotions()
     {
         return $this->hasMany(Promotion::class);
@@ -31,5 +37,10 @@ class Service extends Model
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }

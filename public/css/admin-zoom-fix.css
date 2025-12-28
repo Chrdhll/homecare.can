@@ -1,10 +1,26 @@
-html {
-  zoom: 90%;
-  height: 111.11vh;
-  width: 111.11vw;
-  overflow-x: hidden; 
+:root {
+    font-size: 14.4px;
 }
 
-body {
-  min-height: 100%;
+.fi-main {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
 }
+
+@media (min-width: 1280px) {
+    .fi-main {
+        max-width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.fi-ta-table,
+.fi-fo-field-wrp {
+    font-size: 0.95rem;
+}
+
+.fi-sidebar {
+    font-size: 0.9rem;
+}
+
