@@ -35,7 +35,13 @@
 
 html {
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
+
+body.modal-open {
+    padding-right: 0 !important;
+}
+
 
 @media (max-width: 991px) {
     html {

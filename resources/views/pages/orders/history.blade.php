@@ -269,29 +269,7 @@
     @endpush
 
 
-    <style>
-        .modal,
-        .modal-backdrop {
-            zoom: 1.112 !important;
-        }
-
-        .modal-dialog {
-            zoom: 0.9 !important;
-            /* Pastikan tetep di tengah */
-            display: flex;
-            align-items: center;
-            min-height: calc(100% - 3.5rem);
-        }
-
-        /* Memaksa Modal tampil paling depan (Z-Index Perang) */
-        .modal-backdrop {
-            z-index: 2000 !important;
-        }
-
-        .modal {
-            z-index: 2050 !important;
-        }
-
+    <style>      
         /* CSS Tambahan Khusus Halaman Ini */
         .font-small {
             font-size: 0.9rem;

@@ -102,18 +102,17 @@
             padding-right: 0 !important;
         }
 
-        .modal,
-        .modal-backdrop {
-            zoom: 1.112 !important;
-        }
+        /* .modal,
+                            .modal-backdrop {
+                                zoom: 1.112 !important;
+                            } */
 
-        .modal-dialog {
-            zoom: 0.9 !important;
-            /* Pastikan tetep di tengah */
-            display: flex;
-            align-items: center;
-            min-height: calc(100% - 3.5rem);
-        }
+        /* .modal-dialog {
+                                zoom: 0.9 !important;
+                                display: flex;
+                                align-items: center;
+                                min-height: calc(100% - 3.5rem);
+                            } */
 
         /* Memaksa Modal tampil paling depan (Z-Index Perang) */
         .modal-backdrop {
@@ -418,7 +417,7 @@
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
                         <button type="button" class="btn btn-secondary rounded-pill px-4"
-                            onclick="closeDeleteModal()">Batal</button>
+                            data-bs-dismiss="modal">Batal</button>
                         <button type="submit" class="btn btn-danger rounded-pill px-4">Ya, Hapus Akun</button>
                     </div>
                 </form>
@@ -482,42 +481,19 @@
         }
     </script>
 
-    <script>
-        function closeDeleteModal() {
-            const modal = document.getElementById('confirmUserDeletionModal');
-            const backdrop = document.querySelector('.modal-backdrop');
-
-            if (modal) {
-                modal.classList.remove('show');
-                modal.style.display = 'none';
-            }
-
-            if (backdrop) {
-                backdrop.remove();
-            }
-
-            document.body.classList.remove('modal-open');
-        }
-    </script>
-
 
     @if ($errors->userDeletion->any())
         <script>
             window.addEventListener('load', function() {
                 const modalEl = document.getElementById('confirmUserDeletionModal');
-
                 if (modalEl) {
-                    modalEl.classList.add('show');
-                    modalEl.style.display = 'block';
-                    document.body.classList.add('modal-open');
-
-                    const backdrop = document.createElement('div');
-                    backdrop.className = 'modal-backdrop fade show';
-                    document.body.appendChild(backdrop);
+                    const modal = new bootstrap.Modal(modalEl);
+                    modal.show();
                 }
             });
         </script>
     @endif
+
 
     <script>
         document.addEventListener('keydown', function(e) {
