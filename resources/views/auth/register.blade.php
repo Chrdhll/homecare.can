@@ -95,6 +95,54 @@
         .register-card button {
             font-size: 0.9rem;
         }
+
+        @media (max-width: 576px) {
+            .main-container {
+                padding: 1rem !important;
+            }
+
+            .logo-container {
+                top: 1rem;
+                left: 1rem;
+            }
+
+            .logo-image {
+                max-width: 140px;
+            }
+
+            .register-card {
+                margin-top: 3.5rem;
+            }
+
+            /* Card lebih ramping di mobile */
+            .card-body {
+                padding: 1.5rem !important;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem !important;
+            }
+
+            .form-control.custom-input {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            /* Tombol lebih tinggi */
+            .btn-dark-custom,
+            .btn-outline-secondary {
+                padding-top: 0.8rem !important;
+                padding-bottom: 0.8rem !important;
+                font-size: 1rem !important;
+            }
+
+            /* Jarak antar elemen dirapikan dikit */
+            .mb-3,
+            .mb-4 {
+                margin-bottom: 1rem !important;
+            }
+        }
     </style>
 </head>
 

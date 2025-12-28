@@ -36,7 +36,7 @@
 
 
     @stack('styles')
-    
+
     <style>
         /* HILANGKAN PANAH DROPDOWN BAWAAN BOOTSTRAP */
         /* .no-arrow::after {
@@ -183,18 +183,6 @@
             }
         }
 
-        /* MOBILE RIGHT FIX */
-        .mobile-right-actions {
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            z-index: 9999;
-        }
-
         /* ICON SIZE & TEBAL */
         .mobile-right-actions i {
             font-size: 22px;
@@ -223,6 +211,38 @@
 
             border-radius: 999px;
 
+        }
+
+        .mobile-controls-wrapper {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            z-index: 9999;
+        }
+        .mobile-nav-toggle,
+        .mobile-right-actions {
+            position: static !important;
+            transform: none !important;
+            display: block;
+        }
+
+        .mobile-nav-toggle {
+            font-size: 28px;
+            color: #0d2757;
+            cursor: pointer;
+            margin: 0 !important;
+        }
+
+        .mobile-right-actions {
+            margin-right: 15px;
+        }
+
+        /* KETIKA MENU DIBUKA (Silang X) */
+        body.mobile-nav-active .mobile-nav-toggle {
+            color: #fff;
         }
     </style>
 </head>
@@ -336,51 +356,54 @@
                 {{-- <i class="mobile-nav-toggle d-xl-none bi bi-list"></i> --}}
             </nav>
 
-            <div class="mobile-right-actions d-xl-none">
-                @auth
-                    <div class="dropdown d-xl-none">
-                        <a href="#" class="position-relative text-secondary" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+            <div class="mobile-controls-wrapper d-xl-none">
+                <div class="mobile-right-actions position-relative me-3">
+                    @auth
+                        <div class="dropdown">
+                            <a href="#" class="position-relative text-secondary" data-bs-toggle="dropdown"
+                                aria-expanded="false">
 
-                            {{-- ICON LONCENG TEBAL --}}
-                            <i class="bi bi-bell fs-5 fw-bold"></i>
+                                {{-- ICON LONCENG TEBAL --}}
+                                <i class="bi bi-bell fs-5 fw-bold"></i>
 
-                            @if (Auth::user()->unreadNotifications->count() > 0)
-                                <span
-                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                                    style="font-size: 9px; padding: 4px 6px;">
-                                    {{ Auth::user()->unreadNotifications->count() }}
-                                </span>
-                            @endif
-                        </a>
+                                @if (Auth::user()->unreadNotifications->count() > 0)
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                        style="font-size: 9px; padding: 4px 6px;">
+                                        {{ Auth::user()->unreadNotifications->count() }}
+                                    </span>
+                                @endif
+                            </a>
 
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0"
-                            style="width: 92vw; max-height: 65vh; overflow-y: auto;">
-                            <li class="px-3 py-2 border-bottom fw-bold small text-muted">
-                                Notifikasi
-                            </li>
-
-                            @forelse(Auth::user()->notifications->take(5) as $notification)
-                                <li>
-                                    <a class="dropdown-item py-3 {{ $notification->read_at ? '' : 'bg-light' }}"
-                                        href="{{ route('notification.read', $notification->id) }}">
-                                        <strong class="d-block small">
-                                            {{ $notification->data['title'] ?? 'Info' }}
-                                        </strong>
-                                        <small class="text-muted">
-                                            {{ $notification->data['message'] ?? '' }}
-                                        </small>
-                                    </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0"
+                                style="width: 92vw; max-height: 65vh; overflow-y: auto;">
+                                <li class="px-3 py-2 border-bottom fw-bold small text-muted">
+                                    Notifikasi
                                 </li>
-                            @empty
-                                <li class="text-center py-4 text-muted small">
-                                    <i class="bi bi-bell-slash fs-4 d-block mb-2"></i>
-                                    Belum ada notifikasi
-                                </li>
-                            @endforelse
-                        </ul>
-                    </div>
-                @endauth
+
+                                @forelse(Auth::user()->notifications->take(5) as $notification)
+                                    <li>
+                                        <a class="dropdown-item py-3 {{ $notification->read_at ? '' : 'bg-light' }}"
+                                            href="{{ route('notification.read', $notification->id) }}">
+                                            <strong class="d-block small">
+                                                {{ $notification->data['title'] ?? 'Info' }}
+                                            </strong>
+                                            <small class="text-muted">
+                                                {{ $notification->data['message'] ?? '' }}
+                                            </small>
+                                        </a>
+                                    </li>
+                                @empty
+                                    <li class="text-center py-4 text-muted small">
+                                        <i class="bi bi-bell-slash fs-4 d-block mb-2"></i>
+                                        Belum ada notifikasi
+                                    </li>
+                                @endforelse
+                            </ul>
+
+                        </div>
+                    @endauth
+                </div>
                 <i class="mobile-nav-toggle bi bi-list"></i>
             </div>
 
