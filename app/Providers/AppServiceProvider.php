@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Filament\Facades\Filament;
 use Illuminate\Support\HtmlString;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,11 @@ class AppServiceProvider extends ServiceProvider
             'panels::styles.after',
             fn () => new HtmlString('<link rel="stylesheet" href="' . asset('css/admin-zoom-fix.css') . '">'),
         );
+
+
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
 
     }
 }
