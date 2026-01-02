@@ -38,19 +38,19 @@ class ServiceResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->live(onBlur: true) // Biar gak berat, generate pas pindah kolom aja
-    ->afterStateUpdated(
-        fn (string $operation, $state, Forms\Set $set) =>
-        $operation === 'create' ? $set('slug', Str::slug($state)) : null
-    )
+                    ->afterStateUpdated(
+                        fn (string $operation, $state, Forms\Set $set) =>
+                        $operation === 'create' ? $set('slug', Str::slug($state)) : null
+                    )
                     ->columnSpanFull(), // Bikin input ini jadi lebar penuh
 
                 Forms\Components\TextInput::make('slug')
-    ->label('URL Slug')
-    ->disabled() // Admin gak perlu edit manual
-    ->dehydrated() // Tetap dikirim ke database walau disabled
-    ->required()
-    ->maxLength(255)
-    ->unique(ignoreRecord: true),
+                ->label('URL Slug')
+                ->disabled() // Admin gak perlu edit manual
+                ->dehydrated() // Tetap dikirim ke database walau disabled
+                ->required()
+                ->maxLength(255)
+                ->unique(ignoreRecord: true),
 
                 Forms\Components\Textarea::make('description')
                     ->label('Deskripsi')

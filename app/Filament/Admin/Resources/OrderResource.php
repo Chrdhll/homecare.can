@@ -129,7 +129,7 @@ class OrderResource extends Resource
                             Placeholder::make('open_maps_btn')
                                 ->label('Navigasi')
                                 ->content(fn (Order $record) => new HtmlString(
-                                    '<a href="http://maps.google.com/maps?q=' . $record->latitude . ',' . $record->longitude . '" 
+                                    '<a href="https://www.google.com/maps/search/?api=1&query=' . $record->latitude . ',' . $record->longitude . '" 
                                         target="_blank" 
                                         style="display: block; width: 100%; text-align: center; background-color: green; color: white; padding: 8px; border-radius: 8px; font-weight: bold; text-decoration: none;">
                                         Buka di Google Maps
