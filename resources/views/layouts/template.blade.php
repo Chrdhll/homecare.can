@@ -629,11 +629,11 @@
                 <strong class="px-1 sitename">Homecare.can 2025</strong>
                 <span>All Rights Reserved</span>
             </p>
-            {{-- <div class="credits">
+            <div class="credits">
                 Designed by
                 <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by
                 <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
-            </div> --}}
+            </div>
         </div>
     </footer>
 
