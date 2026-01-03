@@ -38,10 +38,6 @@ Route::middleware('auth', 'verified')->group(function () {
     // Route Simpan Review
     Route::post('/orders/{order}/review', [ReviewController::class, 'store'])->name('reviews.store');
 
-
-    Route::post('/orders/{order}/reviews', [ReviewController::class, 'store'])
-        ->name('reviews.store');
-
     Route::put('/orders/{order}/reviews', [ReviewController::class, 'update'])
         ->name('reviews.update');
 
