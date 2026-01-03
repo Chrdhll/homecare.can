@@ -67,7 +67,6 @@ class AdminPanelProvider extends PanelProvider
                 \App\Filament\Widgets\RevenueChart::class,
                 \App\Filament\Widgets\TopServicesChart::class,
 
-                \App\Filament\Widgets\OrdersStatusChart::class,
                 \App\Filament\Widgets\RecentOrders::class,
             ])
             ->middleware([
