@@ -399,20 +399,24 @@ class OrderResource extends Resource
                                     })->toArray();
                                 })->toArray();
 
-                                return response()->streamDownload(
-                                    function () use ($headers, $rows) {
-                                        echo \Barryvdh\DomPDF\Facade\Pdf::loadView(
-                                            'pdf.orders-report',
-                                            [
-                                                'headers' => $headers,
-                                                'rows' => $rows,
-                                            ]
-                                        )
-                                        ->setPaper('A4', 'landscape')
-                                        ->output();
-                                    },
-                                    "$filename.pdf"
+
+                                // 1. Siapkan Object PDF-nya dulu
+                                $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView(
+                                    'pdf.orders-report',
+                                    [
+                                        'headers' => $headers,
+                                        'rows' => $rows,
+                                    ]
                                 );
+
+                                // 2. Set Kertas
+                                $pdf->setPaper('A4', 'landscape');
+
+                                // 3. Return sebagai Download (Bukan Stream)
+
+                                return response()->streamDownload(function () use ($pdf) {
+                                    echo $pdf->output();
+                                }, "$filename.pdf");
 
                             })
                     ])

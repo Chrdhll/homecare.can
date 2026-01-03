@@ -27,6 +27,14 @@ class InvoiceController extends Controller
         $pdf->setPaper('a4', 'portrait');
 
         // Download file dengan nama unik
-        return $pdf->stream('Invoice-#' . $order->id . '.pdf');
+
+        $id = str_pad($order->id, 5, '0', STR_PAD_LEFT);
+        $name = str($order->patient_name)->slug();
+
+        $filename = "INV-{$id}-{$name}.pdf";
+
+        return $pdf->download($filename);
+
+
     }
 }
