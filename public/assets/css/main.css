@@ -42,7 +42,6 @@ body.modal-open {
     padding-right: 0 !important;
 }
 
-
 @media (max-width: 991px) {
     html {
         font-size: 14px;
@@ -3896,6 +3895,20 @@ body.mobile-nav-active .navmenu .nav-button-container > a.nav-login-button {
 }
 
 @media (max-width: 575.98px) {
+    body, html {
+        overflow-x: hidden;
+    }
+    
+    .hero {
+        overflow: hidden;
+    }
+
+    .container-boxed {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        width: 100% !important;
+    }
+
     .hero-cta {
         display: flex !important;
         flex-direction: row !important;
@@ -3918,11 +3931,17 @@ body.mobile-nav-active .navmenu .nav-button-container > a.nav-login-button {
 
     #hero h1 {
         text-align: center;
+        font-size: 24px !important; /* Turunin dikit biar ga lebar */
+        line-height: 1.3 !important;
+        word-wrap: break-word;
     }
     #hero p {
         text-align: center;
     }
     .trust-indicators {
+        width: auto !important;
+        flex: 1 1 30% !important; 
+        min-width: 80px;
         justify-content: center !important;
         margin-top: 20px !important;
     }

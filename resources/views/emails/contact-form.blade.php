@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
     <title>Pesan Formulir Kontak Baru</title>
+    <link rel="canonical" href="{{ url()->current() }}" />
 </head>
 <body style="font-family: Arial, sans-serif;">
     <p>Anda menerima pesan baru dari formulir kontak website.</p>

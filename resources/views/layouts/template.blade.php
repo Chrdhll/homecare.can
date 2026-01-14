@@ -26,6 +26,7 @@
     <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" defer rel="stylesheet" />
+    <link rel="canonical" href="{{ url()->current() }}" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Main CSS File -->
